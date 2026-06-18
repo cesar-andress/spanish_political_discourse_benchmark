@@ -1,5 +1,7 @@
 # Bibliography gap report — SPDB paper (p01)
 
+> **Superseded by [`bibliography_audit.md`](bibliography_audit.md)** (full manuscript audit, 2026-06-18).
+
 **Date:** 2026-06-18  
 **Manuscript:** `paper/sections/{01_introduction,02_related_work,03_dataset_design}.tex`  
 **Shared bibliography:** `papers_unir/bibliography.bib` (symlinked from `paper/main.tex` as `../../bibliography.bib`)
