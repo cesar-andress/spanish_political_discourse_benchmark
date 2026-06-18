@@ -1,6 +1,6 @@
 .PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
-.PHONY: parlamint-500 validate-parlamint-500
+.PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
 PYTHON ?= python3.11
 INTERMEDIATE ?= data/intermediate/parliament_documents.jsonl
@@ -84,7 +84,29 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+
+PILOT_ANNOTATOR_A ?= annotation/pilot_001/pilot_100_units_annotator_a.csv
+PILOT_ANNOTATOR_B ?= annotation/pilot_001/pilot_100_units_annotator_b.csv
+PILOT_RESULTS = annotation/pilot_001/results
+
+pilot-agreement:
+	$(PYTHON) -m scripts.analysis.compute_cohen_kappa \
+		--annotator-a $(PILOT_ANNOTATOR_A) \
+		--annotator-b $(PILOT_ANNOTATOR_B) \
+		--output-dir $(PILOT_RESULTS)
+	$(PYTHON) -m scripts.analysis.compute_krippendorff_alpha \
+		--annotator-a $(PILOT_ANNOTATOR_A) \
+		--annotator-b $(PILOT_ANNOTATOR_B) \
+		--output-dir $(PILOT_RESULTS)
+	$(PYTHON) -m scripts.analysis.compute_confusion_matrix \
+		--annotator-a $(PILOT_ANNOTATOR_A) \
+		--annotator-b $(PILOT_ANNOTATOR_B) \
+		--output-dir $(PILOT_RESULTS)
+	$(PYTHON) -m scripts.analysis.generate_disagreement_report \
+		--annotator-a $(PILOT_ANNOTATOR_A) \
+		--annotator-b $(PILOT_ANNOTATOR_B) \
+		--output-dir $(PILOT_RESULTS)
 
 dataset-inventory:
 	$(PYTHON) code/src/discourse_classifier/dataset_inventory.py

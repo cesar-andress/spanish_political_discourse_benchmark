@@ -26,6 +26,7 @@ annotation/pilot_001/
   pilot_protocol.md        # instructions and workflow
   pilot_metrics.md         # κ / α targets and go/no-go rules
   disagreement_log.csv       # disagreement tracker (header only)
+  results/                 # agreement analysis outputs (see results/README.md)
 ```
 
 ## Expected outcomes
