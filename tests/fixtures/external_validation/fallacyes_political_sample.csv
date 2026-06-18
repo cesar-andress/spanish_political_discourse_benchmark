@@ -1,0 +1,4 @@
+document,category,text,prev_context,foll_context,speaker_id,speaker_name,speaker_party
+1993-05-24,Ad Hominem,"Señor diputado, usted no entiende nada de economía porque nunca ha trabajado fuera del partido.",contexto previo,contexto posterior,SPEAKER_01,Nombre Ejemplo,PP
+1993-05-24,False Dilemma,"O aprobamos esta reforma hoy o el país se hundirá en la ruina total.",,,SPEAKER_02,Otro Ejemplo,PSOE
+2008-03-03,Appeal to Authority,"Como dijo el premio Nobel de economía, esta política es la única viable.",,,SPEAKER_03,Tercer Ejemplo,UPyD

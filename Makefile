@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare discriminant-validity discriminant-validity-fixtures register-shift register-shift-fixtures dataset-card datasheet docs-release leaderboard leaderboard-fixtures leaderboard-validate leaderboard-score error-taxonomy error-taxonomy-fixtures external-validation fallacy-external-dry-run fallacy-external-run fallacy-external-report
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare discriminant-validity discriminant-validity-fixtures register-shift register-shift-fixtures dataset-card datasheet docs-release leaderboard leaderboard-fixtures leaderboard-validate leaderboard-score error-taxonomy error-taxonomy-fixtures external-validation fallacy-external-dry-run fallacy-external-run fallacy-external-report ingest-fallacyes-political map-fallacyes-political run-fallacyes-political-mistral report-fallacyes-political
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -177,6 +177,44 @@ fallacy-external-report:
 		--report $(FALLACY_REPORT_DIR)/fallacy_llm_report.md \
 		--label-distribution $(FALLACY_REPORT_DIR)/fallacy_label_distribution.csv \
 		--parse-errors $(FALLACY_REPORT_DIR)/fallacy_parse_errors.csv
+
+FALLACYES_DIR ?= data/external/fallacyes_political
+FALLACYES_INGESTED ?= $(FALLACYES_DIR)/fallacyes_political.jsonl
+FALLACYES_MAPPED ?= $(FALLACYES_DIR)/fallacyes_political_spdb_mapped.jsonl
+FALLACYES_PREDICTIONS ?= data/experiments/external_validation/mistral_fallacyes_political.jsonl
+FALLACYES_REPORT ?= reports/external_validation/fallacyes_political_llm_report.md
+
+ingest-fallacyes-political:
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.ingest_fallacyes_political \
+		--output $(FALLACYES_INGESTED)
+
+map-fallacyes-political:
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.map_fallacyes_to_spdb \
+		--input $(FALLACYES_INGESTED) \
+		--output $(FALLACYES_MAPPED)
+
+run-fallacyes-political-mistral:
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.run_fallacy_llm_batch \
+		--input $(FALLACYES_INGESTED) \
+		--text-column text \
+		--id-column id \
+		--prompt prompts/fallacy_spdb_zero_shot.txt \
+		--model-name mistral \
+		--backend-command "ollama run mistral" \
+		--output $(FALLACYES_PREDICTIONS)
+
+report-fallacyes-political:
+	-PYTHONPATH=. $(PYTHON) -m scripts.external_validation.validate_spdb_fallacy_predictions \
+		--predictions $(FALLACYES_PREDICTIONS) \
+		--input $(FALLACYES_INGESTED) \
+		--text-column text \
+		--id-column id
+	PYTHONPATH=. $(PYTHON) -m analysis.external_validation.fallacyes_political_report \
+		--ingested $(FALLACYES_INGESTED) \
+		--mapped $(FALLACYES_MAPPED) \
+		--predictions $(FALLACYES_PREDICTIONS) \
+		--model-name mistral \
+		--report $(FALLACYES_REPORT)
 
 ARTIFACT_AUDIT_INPUT ?= tests/fixtures/annotation/artifact_audit_sample.csv
 

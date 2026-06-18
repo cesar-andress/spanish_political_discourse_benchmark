@@ -59,11 +59,16 @@ def run_fallacy_batch(
     backend: AnnotationBackend,
     output_path: Path,
     id_column: str = "id",
+    limit: int | None = None,
+    progress_every: int = 50,
 ) -> FallacyBatchResult:
     rows = load_external_dataset(input_path, text_column=text_column, id_column=id_column)
+    if limit is not None:
+        rows = rows[:limit]
     records: List[dict] = []
+    total = len(rows)
 
-    for row in rows:
+    for index, row in enumerate(rows, start=1):
         prompt = render_fallacy_prompt(
             prompt_path,
             text=row.text,
@@ -81,6 +86,8 @@ def run_fallacy_batch(
                     "_parse_error": f"backend error: {exc}",
                 }
             )
+            if progress_every and index % progress_every == 0:
+                print(f"Progress: {index}/{total} rows", flush=True)
             continue
 
         parsed, parse_error = parse_model_response(raw, unit_id=row.row_id, model_name=model_name)
@@ -94,10 +101,12 @@ def run_fallacy_batch(
                     "_raw_response": raw[:500],
                 }
             )
-            continue
+        else:
+            record = _normalize_prediction(parsed, row=row, model_name=model_name)
+            records.append(record)
 
-        record = _normalize_prediction(parsed, row=row, model_name=model_name)
-        records.append(record)
+        if progress_every and index % progress_every == 0:
+            print(f"Progress: {index}/{total} rows", flush=True)
 
     write_predictions_jsonl(output_path, records)
     validation = validate_predictions_file(
@@ -124,6 +133,8 @@ def run_fallacy_batch_command(
     output_path: Path,
     id_column: str = "id",
     timeout_seconds: int = 180,
+    limit: int | None = None,
+    progress_every: int = 50,
 ) -> FallacyBatchResult:
     backend = CommandBackend(backend_command, timeout_seconds=timeout_seconds)
     return run_fallacy_batch(
@@ -134,6 +145,8 @@ def run_fallacy_batch_command(
         backend=backend,
         output_path=output_path,
         id_column=id_column,
+        limit=limit,
+        progress_every=progress_every,
     )
 
 

@@ -29,6 +29,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_DIR / "fallacy_batch.jsonl")
     parser.add_argument("--dry-run", action="store_true", help="Use deterministic mock outputs (no backend).")
     parser.add_argument("--timeout-seconds", type=int, default=180)
+    parser.add_argument("--limit", type=int, default=None, help="Process only the first N input rows.")
+    parser.add_argument("--progress-every", type=int, default=50)
     return parser
 
 
@@ -57,6 +59,8 @@ def main(argv: Iterable[str] | None = None) -> int:
             output_path=args.output,
             id_column=args.id_column,
             timeout_seconds=args.timeout_seconds,
+            limit=args.limit,
+            progress_every=args.progress_every,
         )
 
     validation = result.validation
