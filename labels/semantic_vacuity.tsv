@@ -1,0 +1,4 @@
+label_id	label_name	definition	positive_examples_needed	negative_examples_needed	notes
+SV_0	Semantic vacuity absent	Unit conveys specifiable propositional content about politics/policy.	TODO	TODO	Experimental label (§5.3). Mutually exclusive within semantic vacuity arm. Experimental arm: 2,000 units double-annotated; not required for leaderboard v1 (§5.3).
+SV_1	Semantic vacuity present	Unit is largely empty of propositional content (slogans, pure applause lines, content-free assent).	TODO	TODO	Experimental label (§5.3). Mutually exclusive within semantic vacuity arm. Subset drawn from train+dev for annotation training (§11.3).
+SV_UNCLEAR	Semantic vacuity unclear	Insufficient context; use sparingly (<3% per label).	TODO	TODO	Experimental label (§5.3). Use sparingly (<3% per label per §5.3).

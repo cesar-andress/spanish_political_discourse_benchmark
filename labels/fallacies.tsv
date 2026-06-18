@@ -1,0 +1,9 @@
+label_id	label_name	definition	positive_examples_needed	negative_examples_needed	notes
+FAL_ADHOM	Ad hominem	Rejects/challenges claim primarily via personal attack on actor rather than claim merits.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit; pick top 3 by salience. Label only if move present in span (§6 rule 1). Context window: ±1 adjacent unit from same document_id (§6 rule 2).
+FAL_STRAW	Straw man / distortion	Misrepresents opponent position (stronger/weaker) then refutes the distortion.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit. Do not infer intent beyond text + minimal context (§5.2).
+FAL_DILEMMA	False dilemma	Presents two (or few) exclusive options when reasonable alternatives exist.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit.
+FAL_SLOPE	Slippery slope	Claims action inevitably leads to extreme outcome without sufficient evidential steps.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit.
+FAL_EMOTION	Appeal to emotion / fear	Replaces/evades evidentiary support with fear, outrage, or pity as primary warrant.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit.
+FAL_GENERAL	Hasty generalization	Generalizes from unrepresentative or insufficient evidence.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit.
+FAL_WHATABOUT	Whataboutism / tu quoque	Deflects criticism by pointing to opponent's unrelated or symmetric behavior without addressing merit.	TODO	TODO	Multi-label fallacy (§5.2). Max 3 fallacy labels per unit.
+FAL_NONE	No fallacy	No fallacy present (store as empty list + fallacy_none_explicit=true).	TODO	TODO	Not combined with other fallacy labels (§5.2). When selected, export fallacy_labels as empty list with fallacy_none_explicit=true (§4.3).

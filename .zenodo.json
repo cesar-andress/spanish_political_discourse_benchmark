@@ -1,9 +1,37 @@
 {
-  "title": "",
-  "description": "<!-- TODO: Repository-level Zenodo metadata -->",
-  "creators": [],
-  "keywords": [],
-  "license": "",
-  "upload_type": "software",
-  "notes": "TODO: Sync with zenodo/releases/ on each archive."
+  "title": "Spanish Political Discourse Benchmark (SPDB)",
+  "description": "Stratified benchmark of Spanish political discourse with discourse-unit annotations for pragmatic function and political fallacies. Status: under development (v0.1.0-dev). Annotated dataset splits are not yet publicly released.",
+  "version": "0.1.0-dev",
+  "publication_date": "2026-06-18",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Baena Rojas, Jose Jaime",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
+      "orcid": "0000-0002-0915-4087"
+    },
+    {
+      "name": "Pinto Pajares, Daniel",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
+      "orcid": "0000-0001-9397-811X"
+    },
+    {
+      "name": "Andrés, César",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
+      "orcid": "0009-0001-8968-3404"
+    }
+  ],
+  "keywords": [
+    "Spanish",
+    "political discourse",
+    "benchmark",
+    "natural language processing",
+    "computational social science",
+    "annotation",
+    "pragmatics",
+    "fallacies"
+  ],
+  "license": "CC-BY-4.0",
+  "notes": "Development snapshot. Sync with zenodo/releases/ on each archive. Dataset DOI will be registered at v1.0.0 release."
 }

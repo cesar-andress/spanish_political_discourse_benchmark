@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/spdb/schemas/discourse_unit.schema.json",
+  "title": "SPDB discourse_unit",
+  "description": "Canonical unit record for Spanish Political Discourse Benchmark v1 (ingestion through release).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "instance_id",
+    "text",
+    "text_redistributable",
+    "source_type",
+    "source_corpus",
+    "document_id",
+    "segment_index",
+    "char_start",
+    "char_end",
+    "language",
+    "date",
+    "speaker_id",
+    "speaker_role",
+    "party_family",
+    "chamber_or_level",
+    "election_cycle",
+    "platform",
+    "license_ref",
+    "split",
+    "annotated",
+    "annotation_version",
+    "token_count_beto",
+    "character_count",
+    "created_at",
+    "pipeline_version"
+  ],
+  "properties": {
+    "instance_id": {
+      "type": "string",
+      "pattern": "^spdb-v1-"
+    },
+    "text": {
+      "type": "string"
+    },
+    "text_redistributable": {
+      "type": "boolean"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["parliamentary", "manifesto", "social_media"]
+    },
+    "source_corpus": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "segment_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "char_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "char_end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "speaker_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "speaker_role": {
+      "type": "string",
+      "enum": ["legislator", "party_org", "executive", "candidate", "unknown"]
+    },
+    "party_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chamber_or_level": {
+      "type": "string",
+      "minLength": 1
+    },
+    "election_cycle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform_post_id": {
+      "type": "string"
+    },
+    "rehydration_url": {
+      "type": "string"
+    },
+    "license_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split": {
+      "type": "string",
+      "enum": ["train", "dev", "test", "unassigned"]
+    },
+    "annotated": {
+      "type": "boolean"
+    },
+    "annotation_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "token_count_beto": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "character_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pipeline_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "duplicate_of": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source_type": { "const": "social_media" }
+        },
+        "required": ["source_type"]
+      },
+      "then": {
+        "required": ["platform_post_id"]
+      }
+    }
+  ]
+}

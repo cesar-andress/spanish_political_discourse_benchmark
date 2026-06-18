@@ -1,0 +1,149 @@
+<!--
+  SPDB v1 — Label Studio labeling configuration
+  Canonical label IDs: labels/*.tsv
+  Spec: docs/dataset_documentation/v1_build_specification.md §5–§6, §8–§9
+
+  Expected task data fields (import JSON):
+    instance_id, document_id, text
+    context_prev, context_next          (optional; ±1 unit context, §6 rule 2)
+    task_type                           primary | adjudication
+    experimental_subset                 true | false (string or boolean in display)
+    adjudication_context                HTML string; empty for primary tasks
+    source_type, source_corpus, date, party_family, chamber_or_level (optional display)
+
+  Export mapping (post-processing):
+    pragmatic_function                  -> pragmatic_function
+    fallacy_labels                      -> fallacy_labels (list; max 3)
+    fallacy_none_explicit               -> fallacy_none_explicit (true when FAL_NONE)
+    semantic_vacuity                    -> semantic_vacuity (experimental arm only)
+    conceptual_anachronism              -> conceptual_anachronism (experimental arm only)
+    borderline, irony_possible          -> QC flags (analysis / adjudication triggers)
+    adjudication_notes                  -> adjudication_log (adjudication tasks only)
+-->
+<View>
+  <Style>
+    .spdb-meta { background: #f5f7fa; padding: 12px 16px; margin-bottom: 16px; border-radius: 6px; border: 1px solid #dde2e8; }
+    .spdb-unit { background: #fffde7; padding: 12px 16px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .spdb-context { color: #546e7a; font-size: 0.95em; }
+    .spdb-adjudication { background: #ffebee; padding: 12px 16px; margin: 16px 0; border-radius: 6px; border: 2px solid #c62828; }
+    .spdb-step { margin-top: 20px; }
+  </Style>
+
+  <!-- ── Task metadata (read-only) ─────────────────────────────────────── -->
+  <View className="spdb-meta">
+    <Header value="SPDB v1 — Spanish Political Discourse Benchmark"/>
+    <Text name="meta_instance" value="instance_id: $instance_id"/>
+    <Text name="meta_document" value="document_id: $document_id"/>
+    <Text name="meta_task_type" value="task_type: $task_type"/>
+    <Text name="meta_experimental" value="experimental_subset: $experimental_subset"/>
+    <Text name="meta_source" value="source: $source_type / $source_corpus — $party_family — $date"/>
+  </View>
+
+  <!-- ── Context window (read-only, §6 rule 2) ───────────────────────────── -->
+  <View className="spdb-step">
+    <Header value="Context window (read-only)"/>
+    <Header value="Previous unit" size="4"/>
+    <Text name="context_prev" value="$context_prev" className="spdb-context" granularity="paragraph"/>
+    <Header value="Unit to annotate" size="3"/>
+    <View className="spdb-unit">
+      <Text name="text" value="$text" granularity="paragraph"/>
+    </View>
+    <Header value="Next unit" size="4"/>
+    <Text name="context_next" value="$context_next" className="spdb-context" granularity="paragraph"/>
+  </View>
+
+  <!-- ── Adjudication workflow (task_type=adjudication) ─────────────────── -->
+  <View className="spdb-adjudication">
+    <Header value="Adjudication"/>
+    <HyperText name="adjudication_context" value="$adjudication_context" inline="true"/>
+    <Text name="adjudication_help" value="Set gold labels below. Use notes to document rationale when overriding annotators (§6 rule 5, §9.3)."/>
+    <TextArea name="adjudication_notes" toName="text" rows="4" maxSubmissions="1"
+              placeholder="Adjudication rationale (required when task_type=adjudication and labels differ from both annotators)."/>
+  </View>
+
+  <!-- ── Step 1: Pragmatic function (single-label, §5.1) ─────────────────── -->
+  <View className="spdb-step">
+    <Header value="1. Pragmatic function — select exactly one (required)"/>
+    <Choices name="pragmatic_function" toName="text"
+             choice="single" showInline="false" required="true">
+      <Choice value="PF_ADVOCACY"
+              hint="Supports/advances a policy position, program, or normative goal."/>
+      <Choice value="PF_ATTACK"
+              hint="Challenges an actor's competence, integrity, legitimacy, or record."/>
+      <Choice value="PF_DEFENSE"
+              hint="Rebuts criticism or protects actor/policy reputation."/>
+      <Choice value="PF_PROPOSAL"
+              hint="Commits to future action, concrete measure, or implementation pledge."/>
+      <Choice value="PF_APPEAL"
+              hint="Seeks electoral/civic support via identity, values, fear, hope, or solidarity."/>
+      <Choice value="PF_INFO"
+              hint="Conveys factual or procedural information with minimal evaluative framing."/>
+      <Choice value="PF_DEFLECT"
+              hint="Avoids question/topic; pivots without substantive engagement."/>
+      <Choice value="PF_PROCEDURAL"
+              hint="Order of business, courtesy, formal parliamentary ritual with political context."/>
+    </Choices>
+    <Choices name="borderline" toName="text" choice="single" showInline="true">
+      <Choice value="true" alias="Borderline PF case (≤5% expected)"/>
+    </Choices>
+  </View>
+
+  <!-- ── Step 2: Political fallacies (multi-label, §5.2) ─────────────────── -->
+  <View className="spdb-step">
+    <Header value="2. Political fallacies — multi-label (max 3) or no fallacy"/>
+    <Header value="If no fallacy is present, select only the option below (do not combine with fallacy labels)." size="4"/>
+    <Choices name="fallacy_none_explicit" toName="text" choice="single" showInline="true">
+      <Choice value="true" alias="No fallacy present (FAL_NONE)"/>
+    </Choices>
+    <Header value="Otherwise select up to three fallacy labels by salience:" size="4"/>
+    <Choices name="fallacy_labels" toName="text" choice="multiple" showInline="false">
+      <Choice value="FAL_ADHOM"
+              hint="Rejects/challenges claim primarily via personal attack on actor rather than claim merits."/>
+      <Choice value="FAL_STRAW"
+              hint="Misrepresents opponent position (stronger/weaker) then refutes the distortion."/>
+      <Choice value="FAL_DILEMMA"
+              hint="Presents two (or few) exclusive options when reasonable alternatives exist."/>
+      <Choice value="FAL_SLOPE"
+              hint="Claims action inevitably leads to extreme outcome without sufficient evidential steps."/>
+      <Choice value="FAL_EMOTION"
+              hint="Replaces/evades evidentiary support with fear, outrage, or pity as primary warrant."/>
+      <Choice value="FAL_GENERAL"
+              hint="Generalizes from unrepresentative or insufficient evidence."/>
+      <Choice value="FAL_WHATABOUT"
+              hint="Deflects criticism by pointing to opponent's unrelated or symmetric behavior without addressing merit."/>
+    </Choices>
+  </View>
+
+  <!-- ── Step 3: Experimental labels (§5.3) ──────────────────────────────── -->
+  <Collapse>
+    <Panel value="3. Experimental labels — semantic vacuity &amp; conceptual anachronism">
+      <Header value="Apply only when experimental_subset=true for this task."/>
+      <Header value="3a. Semantic vacuity — select exactly one" size="4"/>
+      <Choices name="semantic_vacuity" toName="text" choice="single" showInline="false">
+        <Choice value="SV_0"
+                hint="Unit conveys specifiable propositional content about politics/policy."/>
+        <Choice value="SV_1"
+                hint="Unit is largely empty of propositional content (slogans, pure applause lines, content-free assent)."/>
+        <Choice value="SV_UNCLEAR"
+                hint="Insufficient context; use sparingly (&lt;3% per label)."/>
+      </Choices>
+      <Header value="3b. Conceptual anachronism — select exactly one" size="4"/>
+      <Choices name="conceptual_anachronism" toName="text" choice="single" showInline="false">
+        <Choice value="CA_0"
+                hint="Concepts/terms used in historically/contextually appropriate frame."/>
+        <Choice value="CA_1"
+                hint="Applies concept/term anachronistically to past actors/events or misdates political category."/>
+        <Choice value="CA_UNCLEAR"
+                hint="Insufficient context; use sparingly (&lt;3% per label)."/>
+      </Choices>
+    </Panel>
+  </Collapse>
+
+  <!-- ── QC flags (§6 rule 3) ────────────────────────────────────────────── -->
+  <View className="spdb-step">
+    <Header value="Quality flags (optional)"/>
+    <Choices name="irony_possible" toName="text" choice="single" showInline="true">
+      <Choice value="true" alias="Irony/sarcasm possible (analysis flag only, not a label)"/>
+    </Choices>
+  </View>
+</View>

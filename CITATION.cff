@@ -1,9 +1,58 @@
-# TODO: Complete before Zenodo release.
 cff-version: 1.2.0
-title: Spanish Political Discourse Benchmark
 message: >-
-  If you use this benchmark, please cite it using the metadata from this file.
-license: unknown
-authors: []
-repository-code: unknown
-version: 0.0.0
+  If you use this benchmark or its development artefacts, please cite using the
+  metadata below. The dataset is under active development and has not yet been
+  released; this citation is provisional until v1.0.0 and a Zenodo DOI are published.
+title: Spanish Political Discourse Benchmark (SPDB)
+version: 0.1.0-dev
+date-released: 2026-06-18
+license: CC-BY-4.0
+license-url: https://creativecommons.org/licenses/by/4.0/
+abstract: >-
+  A stratified benchmark of Spanish political discourse with discourse-unit
+  annotations for pragmatic function and political fallacies, combining
+  parliamentary speech, party manifestos, and elite social media. Under active
+  development; annotated splits not yet publicly released.
+authors:
+  - family-names: Baena Rojas
+    given-names: Jose Jaime
+    email: josejaime.baena@unir.net
+    affiliation: Universidad Internacional de La Rioja (UNIR)
+    orcid: https://orcid.org/0000-0002-0915-4087
+  - family-names: Pinto Pajares
+    given-names: Daniel
+    email: daniel.pinto@unir.net
+    affiliation: Universidad Internacional de La Rioja (UNIR)
+    orcid: https://orcid.org/0000-0001-9397-811X
+  - family-names: Andrés
+    given-names: César
+    email: cesar.andres@unir.net
+    affiliation: Universidad Internacional de La Rioja (UNIR)
+    orcid: https://orcid.org/0009-0001-8968-3404
+repository-code: https://github.com/PLACEHOLDER/spanish_political_discourse_benchmark
+url: https://github.com/PLACEHOLDER/spanish_political_discourse_benchmark
+keywords:
+  - Spanish
+  - political discourse
+  - benchmark
+  - NLP
+  - computational social science
+  - annotation
+  - pragmatics
+  - fallacies
+preferred-citation:
+  type: generic
+  title: Spanish Political Discourse Benchmark (SPDB)
+  authors:
+    - family-names: Baena Rojas
+      given-names: Jose Jaime
+    - family-names: Pinto Pajares
+      given-names: Daniel
+    - family-names: Andrés
+      given-names: César
+  year: 2026
+  notes: >-
+    Under development (v0.1.0-dev). Dataset not yet released. Provisional
+    citation until Zenodo DOI is assigned at v1.0.0.
+  publisher:
+    name: Universidad Internacional de La Rioja (UNIR)

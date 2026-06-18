@@ -1,0 +1,9 @@
+label_id	label_name	definition	positive_examples_needed	negative_examples_needed	notes
+PF_ADVOCACY	Policy advocacy	Supports/advances a policy position, program, or normative goal.	TODO	TODO	Primary pragmatic function; mutually exclusive (v1_build_specification.md §5.1). If truly tied, choose function directed at primary political target; flag borderline=true (≤5% expected).
+PF_ATTACK	Position attack	Challenges an actor's competence, integrity, legitimacy, or record.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1). Independent of fallacy labels: may co-occur with or without FAL_* (§6 rule 4).
+PF_DEFENSE	Defense / rebuttal	Rebuts criticism or protects actor/policy reputation.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).
+PF_PROPOSAL	Proposal / commitment	Commits to future action, concrete measure, or implementation pledge.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).
+PF_APPEAL	Mobilization appeal	Seeks electoral/civic support via identity, values, fear, hope, or solidarity.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).
+PF_INFO	Informational	Conveys factual or procedural information with minimal evaluative framing.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).
+PF_DEFLECT	Deflection / evasion	Avoids question/topic; pivots without substantive engagement.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).
+PF_PROCEDURAL	Ritual / procedural	Order of business, courtesy, formal parliamentary ritual with political context.	TODO	TODO	Primary pragmatic function; mutually exclusive (§5.1).

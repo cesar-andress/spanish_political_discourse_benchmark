@@ -1,0 +1,4 @@
+label_id	label_name	definition	positive_examples_needed	negative_examples_needed	notes
+CA_0	Conceptual anachronism absent	Concepts/terms used in historically/contextually appropriate frame.	TODO	TODO	Experimental label (§5.3). Mutually exclusive within conceptual anachronism arm. Experimental arm: 2,000 units double-annotated; not required for leaderboard v1 (§5.3).
+CA_1	Conceptual anachronism present	Applies concept/term anachronistically to past actors/events or misdates political category.	TODO	TODO	Experimental label (§5.3). Mutually exclusive within conceptual anachronism arm. Subset drawn from train+dev for annotation training (§11.3).
+CA_UNCLEAR	Conceptual anachronism unclear	Insufficient context; use sparingly (<3% per label).	TODO	TODO	Experimental label (§5.3). Use sparingly (<3% per label per §5.3).
