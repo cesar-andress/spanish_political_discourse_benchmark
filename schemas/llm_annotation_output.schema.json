@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spdb.unir.net/schemas/llm_annotation_output.schema.json",
+  "title": "SPDB LLM annotation output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "unit_id",
+    "model_name",
+    "pragmatic_function",
+    "fallacy_labels"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pragmatic_function": {
+      "type": "string",
+      "enum": [
+        "PF_ADVOCACY",
+        "PF_ATTACK",
+        "PF_DEFENSE",
+        "PF_PROPOSAL",
+        "PF_APPEAL",
+        "PF_INFO",
+        "PF_DEFLECT",
+        "PF_PROCEDURAL"
+      ]
+    },
+    "fallacy_labels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "FAL_ADHOM",
+          "FAL_STRAW",
+          "FAL_DILEMMA",
+          "FAL_SLOPE",
+          "FAL_EMOTION",
+          "FAL_GENERAL",
+          "FAL_WHATABOUT",
+          "FAL_NONE"
+        ]
+      },
+      "uniqueItems": true,
+      "maxItems": 3
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "rationale": {
+      "type": "string"
+    }
+  }
+}

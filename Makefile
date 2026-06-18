@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -84,7 +84,7 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ analysis/llm_annotation/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
@@ -145,6 +145,31 @@ ontology-validation-fixtures:
 		--output-dir reports/ontology_validation \
 		--figures-dir figures/ontology_validation \
 		--seed 42
+
+LLM_PILOT_INPUT ?= annotation/pilot_001/pilot_100_units.csv
+LLM_OUTPUT_DIR ?= data/experiments/llm_annotations
+LLM_REPORT_DIR ?= reports/llm_annotation
+
+llm-annotation-dry-run:
+	$(PYTHON) -m scripts.llm_annotation.run_local_llm \
+		--dry-run \
+		--pilot-input $(LLM_PILOT_INPUT) \
+		--dry-run-report $(LLM_REPORT_DIR)/dry_run_report.md \
+		--model-name dry-run-mock
+
+llm-annotation-local:
+	@test -n "$(MODEL_NAME)" || (echo "MODEL_NAME is required" && exit 1)
+	@test -n "$(BACKEND_COMMAND)" || (echo "BACKEND_COMMAND is required" && exit 1)
+	$(PYTHON) -m scripts.llm_annotation.run_local_llm \
+		--pilot-input $(LLM_PILOT_INPUT) \
+		--model-name $(MODEL_NAME) \
+		--backend-command "$(BACKEND_COMMAND)" \
+		--output-dir $(LLM_OUTPUT_DIR) \
+		--report $(LLM_REPORT_DIR)/llm_annotation_report.md
+	$(PYTHON) -m scripts.llm_annotation.validate_llm_annotations \
+		--annotations $(LLM_OUTPUT_DIR)/$(MODEL_NAME)_pilot_100.jsonl \
+		--pilot-input $(LLM_PILOT_INPUT) \
+		--model-name $(MODEL_NAME)
 
 pilot-agreement:
 	$(PYTHON) -m scripts.analysis.compute_cohen_kappa \

@@ -1,0 +1,41 @@
+You are annotating Spanish political discourse for the SPDB benchmark.
+
+## Task — pragmatic function (exactly one label)
+
+Select **exactly one** `PF_*` label for the discourse unit below.
+
+### Label inventory
+
+{{PF_LABELS}}
+
+### Rules
+
+- Output **one** pragmatic function only (`PF_*`).
+- Do **not** include explanations, rationale, or commentary unless the output schema explicitly includes an optional `rationale` field and you are instructed to fill it.
+- Return **only** valid JSON matching the required output schema.
+
+### Discourse unit
+
+- unit_id: {{UNIT_ID}}
+- speaker_name: {{SPEAKER_NAME}}
+- speaker_party: {{SPEAKER_PARTY}}
+- date: {{DATE}}
+- text:
+"""
+{{TEXT}}
+"""
+
+### Required JSON output shape
+
+```json
+{
+  "unit_id": "{{UNIT_ID}}",
+  "model_name": "{{MODEL_NAME}}",
+  "pragmatic_function": "PF_*",
+  "fallacy_labels": ["FAL_*"],
+  "confidence": 0.0,
+  "rationale": ""
+}
+```
+
+Replace `PF_*` with exactly one inventory label. For fallacy labels use the fallacy task rules (may be filled in a combined pass).

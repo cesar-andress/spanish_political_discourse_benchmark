@@ -115,6 +115,13 @@ data/external/*
 !data/external/.gitkeep
 !data/external/README.md
 
+data/experiments/*
+!data/experiments/README.md
+!data/experiments/llm_annotations/
+!data/experiments/llm_annotations/README.md
+data/experiments/llm_annotations/*
+!data/experiments/llm_annotations/README.md
+
 # Large binary / serialized formats (anywhere in repo)
 *.parquet
 *.feather

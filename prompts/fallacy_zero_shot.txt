@@ -1,0 +1,37 @@
+## Task — political fallacies (zero or more labels)
+
+Annotate **fallacy_labels** for the same discourse unit.
+
+### Fallacy inventory
+
+{{FAL_LABELS}}
+
+### Rules
+
+- Select **zero or more** fallacy labels (`FAL_*`) present in the unit (max 3 by salience).
+- If **no fallacy** is present, output `"fallacy_labels": ["FAL_NONE"]` only.
+- **Never** combine `FAL_NONE` with any other fallacy label.
+- Do **not** include explanations unless optional `rationale` is explicitly requested.
+- Return labels only; no free-text analysis outside the JSON object.
+
+### FAL_NONE handling
+
+| Situation | fallacy_labels |
+|-----------|----------------|
+| No fallacy detected | `["FAL_NONE"]` |
+| One or more fallacies | `["FAL_ADHOM", ...]` (max 3, no `FAL_NONE`) |
+
+### Required JSON fields (combined with pragmatic function)
+
+```json
+{
+  "unit_id": "{{UNIT_ID}}",
+  "model_name": "{{MODEL_NAME}}",
+  "pragmatic_function": "PF_*",
+  "fallacy_labels": ["FAL_*"],
+  "confidence": 0.0,
+  "rationale": ""
+}
+```
+
+`pragmatic_function` must contain exactly one `PF_*` label from the pragmatic-function inventory.
