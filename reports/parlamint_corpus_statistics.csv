@@ -1,0 +1,68 @@
+section,metric,value,rank,extra
+summary,source_file,data/processed/parlamint_units.jsonl,,
+summary,generated_at_utc,2026-06-18T10:10:07Z,,
+summary,total_units,878,,
+summary,unique_parties,25,,
+summary,unique_speakers,99,,
+summary,unique_years,3,,
+summary,years,"2017, 2020, 2023",,
+summary,mean_character_count,1025.25,,
+summary,median_character_count,1257.50,,
+summary,mean_token_count,220.01,,
+summary,median_token_count,269.00,,
+top_parties,non_partisan,223,1,25.40%
+top_parties,PSOE,140,2,15.95%
+top_parties,Cs,140,3,15.95%
+top_parties,PP,80,4,9.11%
+top_parties,EAJPNV,61,5,6.95%
+top_parties,UP,50,6,5.69%
+top_parties,ERCCATSÍ,22,7,2.51%
+top_parties,ECP,21,8,2.39%
+top_parties,EHBildu,21,9,2.39%
+top_parties,CDC,18,10,2.05%
+top_parties,ERCS,15,11,1.71%
+top_parties,ECPGUAYEMELCANVI,13,12,1.48%
+top_parties,PSCPSOE,11,13,1.25%
+top_parties,CPEUPV,10,14,1.14%
+top_parties,JxCatJUNTS,9,15,1.03%
+top_parties,PPFORO,8,16,0.91%
+top_parties,PSdGPSOE,8,17,0.91%
+top_parties,Vox,7,18,0.80%
+top_parties,ECUP,5,19,0.57%
+top_parties,CCNCPNC,4,20,0.46%
+top_parties,unknown,4,21,0.46%
+top_parties,COMPROMÍSQ,3,22,0.34%
+top_parties,UPN,2,23,0.23%
+top_parties,BNG,2,24,0.23%
+top_parties,UPNPP,1,25,0.11%
+top_speakers,Presidencia,223,1,25.40%
+top_speakers,María Montero Cuadrado,70,2,7.97%
+top_speakers,José Prendes Prendes,52,3,5.92%
+top_speakers,Idoia Sagastizabal Unzetabarrenetxea,33,4,3.76%
+top_speakers,Inés Arrimadas García,25,5,2.85%
+top_speakers,Melisa Rodríguez Hernández,16,6,1.82%
+top_speakers,Joseba Agirretxea Urresti,16,7,1.82%
+top_speakers,Oskar Matute García Jalón,16,8,1.82%
+top_speakers,Jordi Xuclà Costa,11,9,1.25%
+top_speakers,María Lucio Carrasco,10,10,1.14%
+top_speakers,Micaela Navarro Garzón,10,11,1.14%
+top_speakers,Pablo Echenique Robba,10,12,1.14%
+top_speakers,Gabriel Rufián Romero,10,13,1.14%
+top_speakers,Adriana Lastra Fernández,10,14,1.14%
+top_speakers,Esther Peña Camarero,9,15,1.03%
+top_speakers,Dolors Montserrat Montserrat,9,16,1.03%
+top_speakers,Isidro Martínez Oblanca,8,17,0.91%
+top_speakers,María García Puig,8,18,0.91%
+top_speakers,María Galovart Carrera,8,19,0.91%
+top_speakers,Lucía Martín González,8,20,0.91%
+top_speakers,Teodoro García Egea,8,21,0.91%
+top_speakers,Eva García Sempere,8,22,0.91%
+top_speakers,Guillermo Mariscal Anaya,7,23,0.80%
+top_speakers,Teresa Jordà Roura,7,24,0.80%
+top_speakers,Albert Rivera Díaz,7,25,0.80%
+token_distribution,1-50,256,,29.16%
+token_distribution,51-100,68,,7.74%
+token_distribution,101-200,84,,9.57%
+token_distribution,201-400,425,,48.41%
+token_distribution,401-800,45,,5.13%
+token_distribution,801+,0,,0.00%
