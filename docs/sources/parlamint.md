@@ -50,4 +50,8 @@ make ingest-parlamint
 make segment-parlamint
 make parlamint-100
 make validate-parlamint-100
+make parlamint-500
+make validate-parlamint-500
 ```
+
+See `reports/parlamint_500_sampling_report.md` for stratified 500-unit candidate sampling (current pool ceiling: 398 units under speaker cap).

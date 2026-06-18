@@ -1,5 +1,6 @@
 .PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
+.PHONY: parlamint-500 validate-parlamint-500
 
 PYTHON ?= python3.11
 INTERMEDIATE ?= data/intermediate/parliament_documents.jsonl
@@ -10,8 +11,13 @@ PARLAMINT_RAW ?= data/raw/parlamint
 PARLAMINT_INTERMEDIATE = data/intermediate/parlamint_documents.jsonl
 PARLAMINT_UNITS = data/processed/parlamint_units.jsonl
 PARLAMINT_100 = data/processed/parlamint_100_units.jsonl
+PARLAMINT_500 = data/processed/parlamint_500_units.jsonl
+PARLAMINT_500_REPORT = reports/parlamint_500_sampling_report.md
 PARLAMINT_SAMPLE_N ?= 100
 PARLAMINT_SAMPLE_SEED ?= 42
+PARLAMINT_500_N ?= 500
+PARLAMINT_500_SEED ?= 42
+PARLAMINT_500_MAX_PER_SPEAKER ?= 5
 
 check-ingest-input:
 ifndef INGEST_INPUT
@@ -63,8 +69,22 @@ validate-parlamint-100:
 		--input $(PARLAMINT_100) \
 		--allow-real-data
 
+parlamint-500:
+	$(PYTHON) -m scripts.analysis.parlamint_500_sampling_report \
+		--input $(PARLAMINT_UNITS) \
+		--output $(PARLAMINT_500) \
+		--report $(PARLAMINT_500_REPORT) \
+		--n $(PARLAMINT_500_N) \
+		--seed $(PARLAMINT_500_SEED) \
+		--max-per-speaker $(PARLAMINT_500_MAX_PER_SPEAKER)
+
+validate-parlamint-500:
+	$(PYTHON) -m scripts.validation.validate_dataset \
+		--input $(PARLAMINT_500) \
+		--allow-real-data
+
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ -q
 
 dataset-inventory:
 	$(PYTHON) code/src/discourse_classifier/dataset_inventory.py
