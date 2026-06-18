@@ -1,37 +1,39 @@
 {
   "title": "Spanish Political Discourse Benchmark (SPDB)",
-  "description": "Stratified benchmark of Spanish political discourse with discourse-unit annotations for pragmatic function and political fallacies. Status: under development (v0.1.0-dev). Annotated dataset splits are not yet publicly released.",
-  "version": "0.1.0-dev",
-  "publication_date": "2026-06-18",
-  "upload_type": "dataset",
-  "access_right": "open",
+  "description": "Multilayer annotated corpus framework for Spanish political discourse. v0.1.0-alpha: annotation guidelines, codebook v1, JSON schemas, pipeline documentation, and an unannotated 100-unit ParlaMint pilot sample.",
   "creators": [
     {
-      "name": "Baena Rojas, Jose Jaime",
-      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
-      "orcid": "0000-0002-0915-4087"
-    },
-    {
-      "name": "Pinto Pajares, Daniel",
-      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
-      "orcid": "0000-0001-9397-811X"
-    },
-    {
-      "name": "Andrés, César",
-      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
-      "orcid": "0009-0001-8968-3404"
+      "name": "Andres, Cesar",
+      "affiliation": "Universidad Camilo José Cela",
+      "orcid": "0000-0000-0000-0000"
     }
   ],
   "keywords": [
-    "Spanish",
     "political discourse",
-    "benchmark",
-    "natural language processing",
-    "computational social science",
-    "annotation",
+    "Spanish NLP",
     "pragmatics",
-    "fallacies"
+    "argumentation",
+    "corpus annotation",
+    "ParlaMint"
   ],
-  "license": "CC-BY-4.0",
-  "notes": "Development snapshot. Sync with zenodo/releases/ on each archive. Dataset DOI will be registered at v1.0.0 release."
+  "license": {
+    "id": "CC-BY-4.0"
+  },
+  "upload_type": "software",
+  "publication_date": "2026-06-18",
+  "version": "0.1.0-alpha",
+  "access_right": "open",
+  "communities": [
+    {
+      "identifier": "zenodo"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Alpha release — not a gold benchmark. No annotated train/dev/test splits. DOI to be assigned after deposit."
 }

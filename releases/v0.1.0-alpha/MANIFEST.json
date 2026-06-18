@@ -1,0 +1,59 @@
+{
+  "release": "v0.1.0-alpha",
+  "status": "alpha",
+  "published": false,
+  "date": "2026-06-18",
+  "description": "First public alpha: schemas, annotation guidelines, pipeline documentation, and an unannotated 100-unit ParlaMint pilot sample. Not a benchmark gold release.",
+  "repository": "https://github.com/cesar-andress/spanish_political_discourse_benchmark",
+  "tag": "v0.1.0-alpha",
+  "guideline_version": "guidelines-v1.0",
+  "codebook_version": "codebook-v1.0.0",
+  "schema_files": [
+    "schemas/discourse_unit.schema.json",
+    "schemas/pipeline_discourse_unit.schema.json",
+    "schemas/parliament_document.schema.json"
+  ],
+  "label_inventories": [
+    "labels/pragmatic_functions.tsv",
+    "labels/fallacies.tsv",
+    "labels/semantic_vacuity.tsv",
+    "labels/conceptual_anachronism.tsv"
+  ],
+  "annotation_bundle": [
+    "annotation/guidelines/README.md",
+    "annotation/labelstudio/instructions.md",
+    "annotation/labelstudio/config.xml",
+    "annotation/guidelines/pragmatic_function_examples.md",
+    "annotation/codebook/SPDB_Codebook_v1.md",
+    "annotation/codebook/SPDB_Codebook_v1.pdf",
+    "annotation/pilot_001/pilot_protocol.md"
+  ],
+  "documentation": [
+    "docs/pipeline.md",
+    "docs/annotation_workflow.md",
+    "docs/release_notes_v0.1.0-alpha.md",
+    "docs/github_release_checklist_v0.1.0-alpha.md",
+    "dataset_documentation/dataset_card.md"
+  ],
+  "samples": [
+    {
+      "path": "releases/v0.1.0-alpha/samples/parlamint_100_units.jsonl",
+      "units": 100,
+      "annotated": false,
+      "schema": "schemas/pipeline_discourse_unit.schema.json",
+      "sha256": "a1a3cdcf5236721305e6e24d8fdab5b46483c210724d9ea22d8db805ffcd8909"
+    },
+    {
+      "path": "releases/v0.1.0-alpha/samples/pilot_100_units.csv",
+      "rows": 100,
+      "annotated": false,
+      "sha256": "898c112225a1068f0957b824899c27b9764eb3ca1c47e522b3f3eea73b02dce7"
+    }
+  ],
+  "excluded_from_alpha": [
+    "Annotated train/dev/test splits",
+    "Zenodo DOI",
+    "Baseline leaderboard",
+    "Full ParlaMint raw TEI (see docs/sources/parlamint.md)"
+  ]
+}

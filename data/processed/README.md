@@ -1,11 +1,29 @@
-# Processed data
+# Processed data (local)
 
-<!-- TODO: Document preprocessing steps, scripts, and provenance from data/raw/. -->
+Large or regenerated artefacts under `data/processed/` are **gitignored** by default.
 
-## Contents
+## Pilot 100-unit sample (v0.1.0-alpha)
 
-<!-- TODO: Describe derived datasets and their schemas. -->
+The versioned alpha sample lives in the repository:
 
-## Regeneration
+```
+releases/v0.1.0-alpha/samples/parlamint_100_units.jsonl
+releases/v0.1.0-alpha/samples/pilot_100_units.csv
+```
 
-<!-- TODO: Link to code/ scripts that reproduce these files from raw data. -->
+## Regenerate locally
+
+From a full ParlaMint processed pool:
+
+```bash
+make parlamint-100
+```
+
+This writes `data/processed/parlamint_100_units.jsonl` (100 lines, seed 42). Copy into the release bundle if refreshing the alpha sample:
+
+```bash
+cp data/processed/parlamint_100_units.jsonl releases/v0.1.0-alpha/samples/
+make release-validate
+```
+
+See [`docs/pipeline.md`](../docs/pipeline.md) and [`docs/sources/parlamint.md`](../docs/sources/parlamint.md).

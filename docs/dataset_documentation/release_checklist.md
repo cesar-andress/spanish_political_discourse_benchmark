@@ -1,19 +1,33 @@
 # Release checklist (p01)
 
-<!-- TODO: Pre-release checklist for GitHub and Zenodo publication. -->
+Operational checklists for SPDB releases.
 
-## Dataset bundle
+## v0.1.0-alpha (current)
 
-<!-- TODO: Files, checksums, and version tag to include in release. -->
+Use the dedicated GitHub release checklist:
 
-## Documentation
+- [`docs/github_release_checklist_v0.1.0-alpha.md`](../github_release_checklist_v0.1.0-alpha.md)
+- Release notes: [`docs/release_notes_v0.1.0-alpha.md`](../release_notes_v0.1.0-alpha.md)
+- Local validation: `make release-validate`
 
-<!-- TODO: Confirm datasheet, data statement, and rehydration instructions are complete. -->
+## Future stable releases (v1.0.0+)
 
-## Baselines & code
+### Dataset bundle
 
-<!-- TODO: Confirm rule-based and LLM baseline artifacts and reproducibility scripts. -->
+- Annotated train / dev / test JSONL with checksums
+- Version tag and [`releases/`](../../releases/) manifest
 
-## Archiving
+### Documentation
 
-<!-- TODO: Zenodo metadata, DOI, and cross-links from README. -->
+- Datasheet, data statement, rehydration instructions complete
+- Changelog and CITATION.cff DOI fields updated
+
+### Baselines & code
+
+- Rule-based and LLM baseline artifacts
+- Reproducibility scripts pinned in `environment/`
+
+### Archiving
+
+- Zenodo metadata (`.zenodo.json`), DOI, README cross-links
+- GitHub Release assets aligned with Zenodo deposit

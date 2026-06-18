@@ -95,6 +95,7 @@ papers/**/drafts/*.pdf
 # PDFs elsewhere (allow committed figure exports if explicitly added)
 *.pdf
 !figures/export/.gitkeep
+!annotation/codebook/*.pdf
 
 # --- Large datasets (raw & processed) --------------------------------------
 # Ignore dataset contents by default; allow documentation placeholders.
