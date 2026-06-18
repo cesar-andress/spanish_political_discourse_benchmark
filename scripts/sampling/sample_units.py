@@ -25,10 +25,17 @@ def sample_units(
     units = list(read_jsonl(input_path))
     if not units:
         raise ValueError(f"No units found in {input_path}")
-    if n > len(units):
-        raise ValueError(f"Requested n={n} but input contains only {len(units)} unit(s)")
+
+    sample_size = min(n, len(units))
+    if sample_size < n:
+        logger.warning(
+            "Requested n=%d but input contains only %d unit(s); writing all available units",
+            n,
+            len(units),
+        )
+
     rng = random.Random(seed)
-    selected = rng.sample(units, n)
+    selected = rng.sample(units, sample_size)
     return write_jsonl(output_path, selected)
 
 

@@ -189,7 +189,7 @@ def build_pipeline_unit(
     document_id = resolve_document_id(document)
     text = normalize_text(span.text)
     token_count = _count_tokens(text, config)
-    date_value = _metadata_string(document, DOCUMENT_DATE_FIELDS, default="1970-01-01")
+    date_value = _metadata_string(document, DOCUMENT_DATE_FIELDS, default="unknown")
     if "T" in date_value:
         date_value = date_value[:10]
 

@@ -6,12 +6,14 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 from xml.etree import ElementTree as ET
 
 from scripts.ingestion.common import normalize_text, setup_logging, write_jsonl
 from scripts.ingestion.parlamint_tei import (
+    ParseStats,
     iter_parlamint_files,
     load_org_registry,
     load_person_registry,
@@ -20,6 +22,7 @@ from scripts.ingestion.parlamint_tei import (
 )
 
 DEFAULT_OUTPUT = Path("data/intermediate/parlamint_documents.jsonl")
+UNKNOWN = "unknown"
 
 REQUIRED_FIELDS = (
     "document_id",
@@ -34,6 +37,16 @@ REQUIRED_FIELDS = (
 )
 
 
+@dataclass
+class IngestStats:
+    files_read: int = 0
+    speeches_extracted: int = 0
+    skipped_empty: int = 0
+    missing_speaker: int = 0
+    missing_date: int = 0
+    missing_party: int = 0
+
+
 def validate_parlamint_document(record: Dict[str, Any]) -> List[str]:
     errors: List[str] = []
     for field in REQUIRED_FIELDS:
@@ -43,7 +56,7 @@ def validate_parlamint_document(record: Dict[str, Any]) -> List[str]:
     if not isinstance(provenance, dict):
         errors.append("provenance: must be an object")
     else:
-        for key in ("source_url", "license_status"):
+        for key in ("source_file", "license_status"):
             if not provenance.get(key):
                 errors.append(f"provenance.{key}: required")
     if record.get("source_type") != "parliamentary":
@@ -55,38 +68,59 @@ def validate_parlamint_document(record: Dict[str, Any]) -> List[str]:
     return errors
 
 
+def _track_missing(record: Dict[str, Any], stats: IngestStats) -> None:
+    if record.get("speaker_name") == UNKNOWN:
+        stats.missing_speaker += 1
+    if record.get("date") == UNKNOWN:
+        stats.missing_date += 1
+    if record.get("speaker_party") == UNKNOWN:
+        stats.missing_party += 1
+
+
+def _find_registry(input_path: Path, filename: str) -> Optional[Path]:
+    direct = input_path / filename if input_path.is_dir() else input_path.parent / filename
+    if direct.exists():
+        return direct
+    root = input_path if input_path.is_dir() else input_path.parent
+    for candidate in root.rglob(filename):
+        return candidate
+    return None
+
+
 def ingest_parlamint(
     input_path: Path,
     output_path: Path,
     *,
     limit_documents: Optional[int] = None,
     dry_run: bool = False,
-) -> tuple[int, List[str]]:
-    person_path = input_path / "ParlaMint-ES-listPerson.xml"
-    org_path = input_path / "ParlaMint-ES-listOrg.xml"
-    if not person_path.exists():
-        for candidate in input_path.rglob("ParlaMint-ES-listPerson.xml"):
-            person_path = candidate
-            break
-    if not org_path.exists():
-        for candidate in input_path.rglob("ParlaMint-ES-listOrg.xml"):
-            org_path = candidate
-            break
+) -> Tuple[int, List[str], IngestStats]:
+    input_root = input_path if input_path.is_dir() else input_path.parent
+    parse_stats = ParseStats()
+    ingest_stats = IngestStats()
 
-    person_registry = load_person_registry(person_path) if person_path.exists() else {}
-    org_registry = load_org_registry(org_path) if org_path.exists() else {}
+    person_path = _find_registry(input_path, "ParlaMint-ES-listPerson.xml")
+    org_path = _find_registry(input_path, "ParlaMint-ES-listOrg.xml")
+    person_registry = load_person_registry(person_path) if person_path else {}
+    org_registry = load_org_registry(org_path) if org_path else {}
 
     documents: List[Dict[str, Any]] = []
     errors: List[str] = []
 
     for file_path in iter_parlamint_files(input_path):
+        ingest_stats.files_read += 1
         if file_path.suffix.lower() == ".txt":
-            iterator = parse_plain_text_export(file_path)
+            iterator = parse_plain_text_export(
+                file_path,
+                input_root=input_root,
+                stats=parse_stats,
+            )
         else:
             iterator = parse_tei_session(
                 file_path,
                 person_registry=person_registry,
                 org_registry=org_registry,
+                input_root=input_root,
+                stats=parse_stats,
             )
         for record in iterator:
             record["text"] = normalize_text(record["text"])
@@ -94,18 +128,22 @@ def ingest_parlamint(
             if field_errors:
                 errors.append(f"{file_path.name}: " + "; ".join(field_errors))
                 continue
+            _track_missing(record, ingest_stats)
             documents.append(record)
+            ingest_stats.speeches_extracted += 1
             if limit_documents is not None and len(documents) >= limit_documents:
                 break
         if limit_documents is not None and len(documents) >= limit_documents:
             break
 
+    ingest_stats.skipped_empty = parse_stats.skipped_empty
+
     if errors:
-        return len(documents), errors
+        return len(documents), errors, ingest_stats
     if dry_run:
-        return len(documents), []
+        return len(documents), [], ingest_stats
     written = write_jsonl(output_path, documents)
-    return written, []
+    return written, [], ingest_stats
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -152,7 +190,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     try:
-        count, errors = ingest_parlamint(
+        count, errors, stats = ingest_parlamint(
             args.input,
             args.output,
             limit_documents=args.limit_documents,
@@ -166,6 +204,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         for message in errors[:10]:
             logger.error(message)
         return 1
+
+    logger.info("files_read=%d", stats.files_read)
+    logger.info("speeches_extracted=%d", stats.speeches_extracted)
+    logger.info("skipped_empty=%d", stats.skipped_empty)
+    logger.info("missing_speaker=%d", stats.missing_speaker)
+    logger.info("missing_date=%d", stats.missing_date)
+    logger.info("missing_party=%d", stats.missing_party)
 
     if args.dry_run:
         logger.info("Dry run: validated %d document(s)", count)

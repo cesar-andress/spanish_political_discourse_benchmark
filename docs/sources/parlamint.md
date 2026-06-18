@@ -1,44 +1,41 @@
-# ParlaMint source (SPDB development sample)
+# ParlaMint source (SPDB parliamentary layer)
 
 | Field | Value |
 |-------|-------|
-| Source name | ParlaMint 5.0 — Spanish (Congreso de los Diputados) |
-| Project URL | https://www.clarin.eu/parlamint |
-| GitHub | https://github.com/clarin-eric/ParlaMint |
-| CLARIN.SI handle | https://www.clarin.si/repository/xmlui/handle/11356/2004 |
-| Access date | 2026-06-18 |
-| License / status | **To be verified** before any public SPDB release |
+| **Source** | ParlaMint |
+| **Project URL** | https://www.clarin.eu/parlamint |
+| **GitHub** | https://github.com/clarin-eric/ParlaMint |
+| **CLARIN.SI handle (ParlaMint 5.0)** | https://www.clarin.si/repository/xmlui/handle/11356/2004 |
+| **Access date** | 2026-06-18 |
+| **Status** | License **to be verified** before public release |
 
-## Why ParlaMint fits SPDB
+## Intended use in SPDB
 
-ParlaMint provides harmonised TEI/XML parliamentary corpora with:
+ParlaMint provides harmonised TEI/XML parliamentary corpora. For SPDB it serves as the
+**parliamentary source layer** while direct Congreso ingestion is finalised:
 
-- utterance-level segmentation (`<u>` elements) aligned with speaker metadata;
-- ISO dates and session identifiers;
+- utterance-level `<u>` elements with speaker metadata;
+- session dates and identifiers;
 - person and party registries (`listPerson`, `listOrg`);
-- Spanish coverage for the Congreso de los Diputados (corpus `ParlaMint-ES`).
+- Spanish coverage via `ParlaMint-ES` (Congreso de los Diputados).
 
-This makes it suitable for bootstrapping SPDB parliamentary discourse units with documented provenance while the project finalises direct Congreso ingestion.
+The local ingestor writes intermediate JSONL without downloading data automatically.
 
-## Redistribution warning
+## Redistribution note
 
-ParlaMint data is research infrastructure output with its own licence terms (typically CC BY 4.0 for many releases, but **must be confirmed per deposit version**).
+**Do not redistribute raw ParlaMint texts or SPDB slices derived from them until:**
 
-**Do not redistribute SPDB slices derived from ParlaMint until:**
-
-1. licence terms for the exact ParlaMint 5.0 Spanish files are verified;
-2. downstream citation requirements are documented;
+1. licence terms for the exact ParlaMint 5.0 Spanish deposit are verified;
+2. citation and attribution requirements are documented;
 3. SPDB release policy explicitly permits the derived sample.
 
-The ingestor records `provenance.license_status = "to_be_verified"` on every document.
+Every ingested record carries `provenance.license_status = "to_be_verified"`.
 
 ## Local acquisition (manual)
 
-The ingestor **does not download** data. Place files under `data/raw/parlamint/`:
+Place TEI/XML session files and registries under `data/raw/parlamint/`:
 
-```bash
-# Example: copy ParlaMint-ES session TEI files and registries locally
-# (obtain from CLARIN.SI handle 11356/2004 or ParlaMint GitHub Samples/ParlaMint-ES)
+```text
 data/raw/parlamint/
   ParlaMint-ES-listPerson.xml
   ParlaMint-ES-listOrg.xml
@@ -50,6 +47,7 @@ Then run:
 
 ```bash
 make ingest-parlamint
+make segment-parlamint
 make parlamint-100
 make validate-parlamint-100
 ```
