@@ -4,6 +4,22 @@ First-stage pipeline for parliamentary discourse: **ingest → segment → valid
 
 All steps operate on **local files only**. No automatic downloads and no synthetic benchmark text.
 
+## Real pipeline vs test pipeline
+
+| Target | Purpose | Input |
+|--------|---------|-------|
+| `make pipeline` | **Real corpus build** | Requires `INGEST_INPUT=...` pointing to local raw data under `data/raw/` |
+| `make pipeline-fixture` | **Automated smoke test only** | Uses `tests/fixtures/pipeline/` (not SPDB data) |
+
+**Fixtures are not part of SPDB.** Files under `tests/fixtures/` exist solely for unit tests and local pipeline checks. Never commit fixture outputs as benchmark releases and never cite them as empirical samples.
+
+`make pipeline` **fails immediately** if `INGEST_INPUT` is missing:
+
+```bash
+make pipeline
+# → Error: INGEST_INPUT is required for real pipeline runs.
+```
+
 ## Layout
 
 | Stage | Script | Input | Output |
@@ -20,18 +36,38 @@ JSON Schemas:
 ## Makefile targets
 
 ```bash
-make ingest    # local raw file → intermediate JSONL
-make segment   # intermediate → discourse units
-make validate  # schema + duplicate + empty-text checks
-make pipeline  # ingest + segment + validate
+# Real data (INGEST_INPUT required)
+make pipeline INGEST_INPUT=data/raw/parliamentary/interventions.jsonl
+
+make ingest INGEST_INPUT=data/raw/parliamentary/interventions.jsonl
+make segment   # reads data/intermediate/parliament_documents.jsonl
+make validate  # checks data/processed/discourse_units.jsonl
+
+# Test/smoke only — uses tests/fixtures/pipeline/
+make pipeline-fixture
 ```
 
-Override input paths when needed:
+Override output paths when needed:
 
 ```bash
-make ingest INGEST_INPUT=/path/to/local/records.jsonl
 make segment INTERMEDIATE=data/intermediate/parliament_documents.jsonl
 make validate PROCESSED=data/processed/discourse_units.jsonl
+```
+
+## Real ingestion examples
+
+Place acquired parliamentary files under `data/raw/parliamentary/` (not tracked in Git), then run:
+
+```bash
+make pipeline INGEST_INPUT=data/raw/parliamentary/congreso_interventions.jsonl
+```
+
+Or step by step:
+
+```bash
+make ingest INGEST_INPUT=data/raw/parliamentary/congreso_interventions.jsonl
+make segment
+make validate
 ```
 
 ## CLI examples
@@ -135,6 +171,8 @@ One JSON object per discourse unit (segment level):
 - empty `text`
 - schema violations (language code, ISO date, counts, offsets)
 - non-parliamentary `metadata.source_type`
+
+It also **warns and fails** when `document_id` or `unit_id` contains fixture markers (`fixture`, `synthetic`, `example`, `test`) unless `--allow-fixtures` is passed. The `make pipeline-fixture` target passes that flag; real `make validate` does not.
 
 ## Segmentation rules
 

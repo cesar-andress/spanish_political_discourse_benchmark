@@ -10,3 +10,4 @@ if str(BENCHMARK_ROOT) not in sys.path:
     sys.path.insert(0, str(BENCHMARK_ROOT))
 
 FIXTURES = Path(__file__).parent / "fixtures"
+PIPELINE_FIXTURES = FIXTURES / "pipeline"

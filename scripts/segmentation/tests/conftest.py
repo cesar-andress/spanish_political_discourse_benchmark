@@ -9,4 +9,4 @@ BENCHMARK_ROOT = Path(__file__).resolve().parents[3]
 if str(BENCHMARK_ROOT) not in sys.path:
     sys.path.insert(0, str(BENCHMARK_ROOT))
 
-FIXTURES = Path(__file__).parent / "fixtures"
+FIXTURES = BENCHMARK_ROOT / "tests" / "fixtures" / "pipeline"

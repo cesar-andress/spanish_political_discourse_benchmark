@@ -40,6 +40,14 @@ REQUIRED_METADATA = (
     "char_end",
 )
 
+FIXTURE_ID_MARKERS = ("fixture", "synthetic", "example", "test")
+
+
+def fixture_like_identifier(value: str) -> bool:
+    """Return True when an identifier looks like test/fixture data."""
+    lowered = value.lower()
+    return any(marker in lowered for marker in FIXTURE_ID_MARKERS)
+
 
 @dataclass
 class DatasetValidationReport:
@@ -73,6 +81,16 @@ def validate_dataset_file(path: Path) -> DatasetValidationReport:
             if unit_id in seen_unit_ids:
                 report.errors.append(f"{label}.unit_id: duplicate unit_id {unit_id!r}")
             seen_unit_ids.add(unit_id)
+            if fixture_like_identifier(unit_id):
+                report.warnings.append(
+                    f"{label}.unit_id: fixture-like identifier {unit_id!r}"
+                )
+
+        document_id = record.get("document_id")
+        if isinstance(document_id, str) and fixture_like_identifier(document_id):
+            report.warnings.append(
+                f"{label}.document_id: fixture-like identifier {document_id!r}"
+            )
 
         metadata = record.get("metadata")
         if metadata is None:
@@ -105,6 +123,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="JSONL file to validate (default: data/processed/discourse_units.jsonl).",
     )
     parser.add_argument(
+        "--allow-fixtures",
+        action="store_true",
+        help="Allow fixture-like document_id/unit_id markers (for test pipeline runs).",
+    )
+    parser.add_argument(
         "--log-level",
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
@@ -133,6 +156,17 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             len(report.errors),
         )
         return 1
+
+    if report.warnings:
+        for message in report.warnings:
+            logger.warning(message)
+        if not args.allow_fixtures:
+            logger.error(
+                "Validation failed: %d fixture-like identifier warning(s); "
+                "pass --allow-fixtures only for test data",
+                len(report.warnings),
+            )
+            return 1
 
     logger.info(
         "Validation passed: %d record(s) checked, 0 error(s)",
