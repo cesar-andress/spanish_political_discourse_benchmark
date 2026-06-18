@@ -181,8 +181,10 @@ ollama-annotate-all:
 		--failures-report $(LLM_REPORT_DIR)/ollama_batch_failures.md
 
 ollama-compare:
-	$(PYTHON) -m scripts.llm_annotation.compare_ollama_models \
-		--annotations-dir $(LLM_OUTPUT_DIR) \
+	PYTHONPATH=. $(PYTHON) -m scripts.llm_annotation.compare_ollama_models \
+		--jsonl $(LLM_OUTPUT_DIR)/llama3.1_pilot_100.jsonl \
+		--jsonl $(LLM_OUTPUT_DIR)/mistral_pilot_100.jsonl \
+		--jsonl $(LLM_OUTPUT_DIR)/gemma2_pilot_100.jsonl \
 		--report-dir $(LLM_REPORT_DIR)
 
 ollama-compare-fixtures:
