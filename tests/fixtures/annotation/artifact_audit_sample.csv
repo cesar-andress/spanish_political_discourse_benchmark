@@ -1,0 +1,31 @@
+unit_id,text,speaker_name,speaker_party,date,speaker_role,source_type,pragmatic_function,fallacy_labels,semantic_vacuity,conceptual_anachronism
+u001,Ataque breve al rival.,Speaker A,PP,2017-09-19,legislator,parliamentary,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u002,Critica dura al gobierno por su gestion.,Speaker B,PP,2017-09-19,legislator,parliamentary,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u003,Reproche al ministro por los datos.,Speaker C,PP,2017-09-19,legislator,parliamentary,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u004,Impugnacion de la propuesta contraria.,Speaker D,PP,2017-09-19,legislator,parliamentary,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u005,Defensa de nuestra trayectoria y del partido.,Speaker E,PSOE,2017-09-19,legislator,parliamentary,PF_DEFENSE,FAL_NONE,SV_0,CA_0
+u006,Replicamos a las acusaciones infundadas.,Speaker F,PSOE,2017-09-19,legislator,parliamentary,PF_DEFENSE,FAL_NONE,SV_0,CA_0
+u007,Explicamos por que la critica es injusta.,Speaker G,PSOE,2017-09-19,legislator,parliamentary,PF_DEFENSE,FAL_NONE,SV_0,CA_0
+u008,Defensa institucional del grupo parlamentario.,Speaker H,PSOE,2017-09-19,legislator,parliamentary,PF_DEFENSE,FAL_NONE,SV_0,CA_0
+u009,Apoyamos esta reforma porque mejora la sanidad publica y garantiza derechos.,Speaker I,Cs,2020-11-12,legislator,parliamentary,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u010,Defendemos una politica social mas justa y sostenible para las familias.,Speaker J,Cs,2020-11-12,legislator,parliamentary,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u011,Abogamos por medidas que refuercen la igualdad de oportunidades.,Speaker K,Cs,2020-11-12,legislator,parliamentary,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u012,Promovemos esta linea programatica como alternativa responsable.,Speaker L,Cs,2020-11-12,legislator,parliamentary,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u013,Proponemos aprobar la enmienda antes del pleno.,Speaker M,UP,2020-11-12,legislator,parliamentary,PF_PROPOSAL,FAL_NONE,SV_0,CA_0
+u014,Nos comprometemos a presentar la ley en enero.,Speaker N,UP,2020-11-12,legislator,parliamentary,PF_PROPOSAL,FAL_NONE,SV_0,CA_0
+u015,Anunciamos medidas concretas para la proxima legislatura.,Speaker O,UP,2020-11-12,legislator,parliamentary,PF_PROPOSAL,FAL_NONE,SV_0,CA_0
+u016,Pedimos el voto de la ciudadania en las proximas elecciones.,Speaker P,VOX,2023-02-23,legislator,parliamentary,PF_APPEAL,FAL_NONE,SV_0,CA_0
+u017,Convocamos a la movilizacion ciudadana por la libertad.,Speaker Q,VOX,2023-02-23,legislator,parliamentary,PF_APPEAL,FAL_NONE,SV_0,CA_0
+u018,El dato oficial es 12.4 por ciento segun el INE.,Speaker R,EAJPNV,2023-02-23,legislator,parliamentary,PF_INFO,FAL_NONE,SV_0,CA_0
+u019,La sesion comienza a las diez horas.,Speaker S,EAJPNV,2023-02-23,legislator,parliamentary,PF_INFO,FAL_NONE,SV_0,CA_0
+u020,Gracias presidenta.,Speaker T,EAJPNV,2023-02-23,legislator,parliamentary,PF_PROCEDURAL,FAL_NONE,SV_0,CA_0
+u021,Conforme al articulo ciento veinte.,Speaker U,EAJPNV,2023-02-23,legislator,parliamentary,PF_PROCEDURAL,FAL_NONE,SV_0,CA_0
+u022,Esa pregunta no corresponde a este punto del orden del dia.,Speaker V,ERC,2023-02-23,legislator,parliamentary,PF_DEFLECT,FAL_NONE,SV_0,CA_0
+u023,Prefiero hablar de economia en lugar de ese tema.,Speaker W,ERC,2023-02-23,legislator,parliamentary,PF_DEFLECT,FAL_NONE,SV_0,CA_0
+u024,Manifiesto del partido sobre vivienda y empleo para jovenes.,Org X,PSOE,2023-02-23,party_org,manifesto,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u025,Programa electoral con propuestas de fiscalidad y sanidad.,Org Y,PP,2023-02-23,party_org,manifesto,PF_PROPOSAL,FAL_NONE,SV_0,CA_0
+u026,Tweet corto contra la oposicion.,User Z,PSOE,2023-02-23,candidate,social_media,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u027,Post breve de apoyo a la medida.,User AA,Cs,2023-02-23,candidate,social_media,PF_ADVOCACY,FAL_NONE,SV_0,CA_0
+u028,Comunicado ejecutivo sobre el decreto.,Exec B,PSOE,2023-02-23,executive,parliamentary,PF_INFO,FAL_NONE,SV_0,CA_0
+u029,Intervencion larga del portavoz con datos y contexto historico detallado sobre la reforma.,Speaker AB,PP,2023-02-23,legislator,parliamentary,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u030,Discurso extenso replicando punto por punto las acusaciones recibidas en el hemiciclo.,Speaker AC,PSOE,2023-02-23,legislator,parliamentary,PF_DEFENSE,FAL_NONE,SV_0,CA_0

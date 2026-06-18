@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -88,6 +88,14 @@ test:
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
+
+ARTIFACT_AUDIT_INPUT ?= tests/fixtures/annotation/artifact_audit_sample.csv
+
+artifact-audit:
+	$(PYTHON) -m scripts.analysis.artifact_audit \
+		--input $(ARTIFACT_AUDIT_INPUT) \
+		--markdown reports/artifact_audit.md \
+		--figures-dir figures/artifact_audit
 
 PILOT_ANNOTATOR_A ?= annotation/pilot_001/pilot_100_units_annotator_a.csv
 PILOT_ANNOTATOR_B ?= annotation/pilot_001/pilot_100_units_annotator_b.csv
