@@ -1,0 +1,9 @@
+models:
+  - name: llama3.1
+    command: "ollama run llama3.1"
+  - name: qwen2.5
+    command: "ollama run qwen2.5"
+  - name: mistral
+    command: "ollama run mistral"
+  - name: gemma2
+    command: "ollama run gemma2"

@@ -1,0 +1,5 @@
+{"unit_id": "u001", "model_name": "model_alpha", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u002", "model_name": "model_alpha", "pragmatic_function": "PF_ADVOCACY", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u003", "model_name": "model_alpha", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_ADHOM"]}
+{"unit_id": "u004", "model_name": "model_alpha", "pragmatic_function": "PF_INFO", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u005", "model_name": "model_alpha", "pragmatic_function": "PF_PROCEDURAL", "fallacy_labels": ["FAL_NONE"]}

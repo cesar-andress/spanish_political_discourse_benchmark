@@ -1,0 +1,5 @@
+models:
+  - name: mock_alpha
+    command: "python3.11 tests/fixtures/llm_annotation/mock_backend.py"
+  - name: mock_beta
+    command: "python3.11 tests/fixtures/llm_annotation/mock_backend.py"

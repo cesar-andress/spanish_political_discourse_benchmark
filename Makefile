@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -170,6 +170,25 @@ llm-annotation-local:
 		--annotations $(LLM_OUTPUT_DIR)/$(MODEL_NAME)_pilot_100.jsonl \
 		--pilot-input $(LLM_PILOT_INPUT) \
 		--model-name $(MODEL_NAME)
+
+OLLAMA_REGISTRY ?= configs/ollama_models.yaml
+
+ollama-annotate-all:
+	$(PYTHON) -m scripts.llm_annotation.run_ollama_batch \
+		--config $(OLLAMA_REGISTRY) \
+		--pilot-input $(LLM_PILOT_INPUT) \
+		--output-dir $(LLM_OUTPUT_DIR) \
+		--failures-report $(LLM_REPORT_DIR)/ollama_batch_failures.md
+
+ollama-compare:
+	$(PYTHON) -m scripts.llm_annotation.compare_ollama_models \
+		--annotations-dir $(LLM_OUTPUT_DIR) \
+		--report-dir $(LLM_REPORT_DIR)
+
+ollama-compare-fixtures:
+	$(PYTHON) -m scripts.llm_annotation.compare_ollama_models \
+		--fixtures \
+		--report-dir $(LLM_REPORT_DIR)
 
 HUMAN_VS_LLM_OUTPUT ?= reports/human_vs_llm
 HUMAN_VS_LLM_GOLD ?= majority_vote

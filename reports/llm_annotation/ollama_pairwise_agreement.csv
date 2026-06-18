@@ -1,0 +1,4 @@
+model_a,model_b,field,observed_agreement,cohen_kappa,n_units
+model_alpha,model_beta,pragmatic_function,0.6000,0.4444,5
+model_alpha,model_gamma,pragmatic_function,0.6000,0.5238,5
+model_beta,model_gamma,pragmatic_function,0.4000,0.3182,5
