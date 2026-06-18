@@ -1,0 +1,56 @@
+{
+  "status": "complete",
+  "n_units": 24,
+  "n_annotators": 3,
+  "annotators": [
+    "annotator_a",
+    "annotator_b",
+    "annotator_c"
+  ],
+  "metrics": {
+    "krippendorff_alpha": {
+      "point": 0.7973775610527304,
+      "lower": 0.6331337886325099,
+      "upper": 0.935127674258109,
+      "iterations": 2000
+    },
+    "fleiss_kappa": {
+      "point": 0.7933774834437083,
+      "lower": 0.6258472661545414,
+      "upper": 0.9335486848177205,
+      "iterations": 2000
+    },
+    "mean_pairwise_cohen_kappa": {
+      "point": 0.7938393839383938,
+      "lower": 0.6319949233279378,
+      "upper": 0.933884297520661,
+      "iterations": 2000
+    },
+    "gwet_ac1": {
+      "point": 0.7936897789533344,
+      "lower": 0.6440716051232116,
+      "upper": 0.9366714833197209,
+      "iterations": 2000
+    },
+    "pairwise_cohen_kappa": [
+      {
+        "annotator_a": "annotator_a",
+        "annotator_b": "annotator_b",
+        "cohen_kappa": 0.9523809523809524,
+        "observed_agreement": 0.9583333333333334
+      },
+      {
+        "annotator_a": "annotator_a",
+        "annotator_b": "annotator_c",
+        "cohen_kappa": 0.7142857142857143,
+        "observed_agreement": 0.75
+      },
+      {
+        "annotator_a": "annotator_b",
+        "annotator_b": "annotator_c",
+        "cohen_kappa": 0.7148514851485148,
+        "observed_agreement": 0.75
+      }
+    ]
+  }
+}

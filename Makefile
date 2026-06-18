@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -84,7 +84,7 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
@@ -128,6 +128,22 @@ pilot-analytics-fixtures:
 		--output-dir reports/pilot \
 		--report reports/pilot_annotation_report.md \
 		--figures-dir figures/pilot \
+		--seed 42
+
+ontology-validation:
+	$(PYTHON) -m scripts.analysis.ontology_validation \
+		--template $(PILOT_TEMPLATE) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_A)),--annotator $(PILOT_ANNOTATOR_A),) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_B)),--annotator $(PILOT_ANNOTATOR_B),) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_C)),--annotator $(PILOT_ANNOTATOR_C),) \
+		--output-dir reports/ontology_validation \
+		--figures-dir figures/ontology_validation \
+		--seed 42
+
+ontology-validation-fixtures:
+	$(PYTHON) -m scripts.analysis.ontology_validation --fixtures \
+		--output-dir reports/ontology_validation \
+		--figures-dir figures/ontology_validation \
 		--seed 42
 
 pilot-agreement:
