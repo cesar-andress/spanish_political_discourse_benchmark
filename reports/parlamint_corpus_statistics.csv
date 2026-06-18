@@ -1,6 +1,6 @@
 section,metric,value,rank,extra
 summary,source_file,../spanish_political_discourse_benchmark/data/processed/parlamint_units.jsonl,,
-summary,generated_at_utc,2026-06-18T11:34:19Z,,
+summary,generated_at_utc,2026-06-18T11:35:51Z,,
 summary,total_units,878,,
 summary,unique_parties,25,,
 summary,unique_speakers,99,,
