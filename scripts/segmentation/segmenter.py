@@ -193,7 +193,7 @@ def build_pipeline_unit(
     if "T" in date_value:
         date_value = date_value[:10]
 
-    return {
+    unit: Dict[str, Any] = {
         "unit_id": make_unit_id(document_id, segment_index, config.split),
         "document_id": document_id,
         "language": _metadata_string(document, ("language",), default=config.language),
@@ -211,6 +211,9 @@ def build_pipeline_unit(
             "char_end": span.char_end,
         },
     }
+    if isinstance(document.get("provenance"), dict):
+        unit["provenance"] = dict(document["provenance"])
+    return unit
 
 
 def build_discourse_unit(

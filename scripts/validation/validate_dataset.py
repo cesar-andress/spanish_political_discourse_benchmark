@@ -128,6 +128,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Allow fixture-like document_id/unit_id markers (for test pipeline runs).",
     )
     parser.add_argument(
+        "--allow-real-data",
+        action="store_true",
+        help="Allow real-corpus identifier patterns during validation (skips fixture warnings).",
+    )
+    parser.add_argument(
         "--log-level",
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
@@ -160,10 +165,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if report.warnings:
         for message in report.warnings:
             logger.warning(message)
-        if not args.allow_fixtures:
+        if not (args.allow_fixtures or args.allow_real_data):
             logger.error(
                 "Validation failed: %d fixture-like identifier warning(s); "
-                "pass --allow-fixtures only for test data",
+                "pass --allow-fixtures for test data or --allow-real-data for real corpora",
                 len(report.warnings),
             )
             return 1

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listPerson xmlns="http://www.tei-c.org/ns/1.0" xml:id="ParlaMint-ES-listPerson">
+  <person xml:id="EvaGarcíaSempere">
+    <persName>
+      <forename>Eva</forename>
+      <surname>García</surname>
+      <surname>Sempere</surname>
+    </persName>
+    <affiliation role="member" ref="#party.PSOE"/>
+  </person>
+</listPerson>

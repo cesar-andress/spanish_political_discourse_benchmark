@@ -250,6 +250,15 @@ def validate_pipeline_discourse_unit(
             and metadata["char_end"] < metadata["char_start"]
         ):
             errors.append("unit.metadata.char_end: must be >= char_start")
+    provenance = record.get("provenance")
+    if provenance is not None:
+        provenance_schema = schema.get("properties", {}).get("provenance", {})
+        if isinstance(provenance, dict) and provenance_schema:
+            errors.extend(
+                validate_against_schema(provenance, provenance_schema, record_label="unit.provenance")
+            )
+        elif not isinstance(provenance, dict):
+            errors.append("unit.provenance: must be a JSON object")
     if (
         record.get("character_count") is not None
         and record.get("text") is not None

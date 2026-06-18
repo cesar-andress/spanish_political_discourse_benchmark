@@ -86,6 +86,16 @@
           "minimum": 0
         }
       }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["source_url", "license_status"],
+      "properties": {
+        "source_url": {"type": "string", "minLength": 1},
+        "license_status": {"type": "string", "minLength": 1},
+        "source_file": {"type": "string"}
+      }
     }
   }
 }

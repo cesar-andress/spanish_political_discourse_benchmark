@@ -180,6 +180,7 @@ Spanish paragraph-aware splitting with sentence-boundary refinement when token o
 
 ## Related documentation
 
+- `docs/sources/parlamint.md` — ParlaMint 5.0 Spanish source notes and licence warning
 - `docs/reproducibility.md` — release reproducibility
 - `docs/dataset_documentation/v1_build_specification.md` — full SPDB v1 build spec
 - `data/intermediate/README.md` — intermediate storage policy

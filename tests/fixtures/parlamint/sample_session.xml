@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="es" xml:id="ParlaMint-ES_test-session">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>ParlaMint test session fixture</title>
+      </titleStmt>
+    </fileDesc>
+    <profileDesc>
+      <settingDesc>
+        <setting>
+          <date when="2017-11-28">2017-11-28</date>
+        </setting>
+      </settingDesc>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+        <u xml:id="ParlaMint-ES_test-session.u1" ana="#chair topic:other">
+          <seg>Se abre la sesión.</seg>
+        </u>
+        <u xml:id="ParlaMint-ES_test-session.u2" who="#EvaGarcíaSempere" ana="#regular topic:educa">
+          <seg>Pues la haremos llegar con la documentación correspondiente al registro de la Cámara.</seg>
+        </u>
+      </div>
+    </body>
+  </text>
+</TEI>

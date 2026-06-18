@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listOrg xmlns="http://www.tei-c.org/ns/1.0" xml:id="ParlaMint-ES-listOrg">
+  <org xml:id="party.PSOE">
+    <orgName>PSOE</orgName>
+  </org>
+</listOrg>

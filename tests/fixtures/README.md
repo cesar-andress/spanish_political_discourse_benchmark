@@ -5,6 +5,7 @@ Files under `tests/fixtures/` are **synthetic technical fixtures** for automated
 | Path | Purpose |
 |------|---------|
 | `pipeline/` | Ingestion and segmentation JSONL samples |
+| `parlamint/` | Minimal TEI/XML snippets for ParlaMint parser tests |
 | `labelstudio_*.json` | Label Studio import/export validator samples |
 
 Run the guarded test pipeline with:
