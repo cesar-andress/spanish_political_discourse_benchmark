@@ -1,0 +1,50 @@
+[
+  {
+    "data": {
+      "instance_id": "spdb-fixture-import-001",
+      "document_id": "doc-fixture-synthetic-001",
+      "text": "Texto sintético de prueba 1. No usar como dato de investigación.",
+      "task_type": "primary",
+      "experimental_subset": "false",
+      "adjudication_context": "",
+      "context_prev": "",
+      "context_next": "",
+      "source_type": "parliamentary",
+      "source_corpus": "fixture_test",
+      "party_family": "FIXTURE",
+      "date": "2099-01-01"
+    }
+  },
+  {
+    "data": {
+      "instance_id": "spdb-fixture-import-002",
+      "document_id": "doc-fixture-synthetic-002",
+      "text": "Texto sintético de prueba 2. Solo validación técnica de importación.",
+      "task_type": "primary",
+      "experimental_subset": "true",
+      "adjudication_context": "",
+      "context_prev": "",
+      "context_next": "",
+      "source_type": "manifesto",
+      "source_corpus": "fixture_test",
+      "party_family": "FIXTURE",
+      "date": "2099-01-02"
+    }
+  },
+  {
+    "data": {
+      "instance_id": "spdb-fixture-import-003",
+      "document_id": "doc-fixture-synthetic-003",
+      "text": "Texto sintético de prueba 3. Tarea de adjudicación ficticia.",
+      "task_type": "adjudication",
+      "experimental_subset": "false",
+      "adjudication_context": "<p><b>FIXTURE</b> Annotator A: PF=PF_INFO; fallacies=none</p><p><b>FIXTURE</b> Annotator B: PF=PF_PROCEDURAL; fallacies=none</p>",
+      "context_prev": "Texto sintético de contexto previo. No es dato real.",
+      "context_next": "",
+      "source_type": "parliamentary",
+      "source_corpus": "fixture_test",
+      "party_family": "FIXTURE",
+      "date": "2099-01-03"
+    }
+  }
+]

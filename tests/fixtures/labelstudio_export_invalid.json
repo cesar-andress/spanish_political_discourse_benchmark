@@ -1,0 +1,33 @@
+[
+  {
+    "id": 9009,
+    "data": {
+      "instance_id": "spdb-fixture-invalid-001",
+      "document_id": "doc-fixture-invalid-001",
+      "text": "Texto sintético inválido para prueba de validador.",
+      "task_type": "primary",
+      "experimental_subset": "false",
+      "adjudication_context": ""
+    },
+    "annotations": [
+      {
+        "id": 9109,
+        "completed_by": 1,
+        "result": [
+          {
+            "from_name": "pragmatic_function",
+            "to_name": "text",
+            "type": "choices",
+            "value": {"choices": ["PF_INFO", "PF_ATTACK"]}
+          },
+          {
+            "from_name": "semantic_vacuity",
+            "to_name": "text",
+            "type": "choices",
+            "value": {"choices": ["SV_0"]}
+          }
+        ]
+      }
+    ]
+  }
+]
