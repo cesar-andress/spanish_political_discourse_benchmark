@@ -1,0 +1,3 @@
+unit_id,text,speaker_name,speaker_party,date,pragmatic_function,fallacy_labels,semantic_vacuity,conceptual_anachronism
+u003,texto tres,Speaker C,Cs,2020-11-12,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u009,texto nueve,Speaker I,PSOE,2023-02-23,PF_DEFENSE,FAL_NONE,SV_0,CA_0

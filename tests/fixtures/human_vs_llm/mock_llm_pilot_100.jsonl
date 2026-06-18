@@ -1,0 +1,10 @@
+{"unit_id": "u001", "model_name": "mock_llm", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u002", "model_name": "mock_llm", "pragmatic_function": "PF_DEFENSE", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u003", "model_name": "mock_llm", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u004", "model_name": "mock_llm", "pragmatic_function": "PF_INFO", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u005", "model_name": "mock_llm", "pragmatic_function": "PF_PROCEDURAL", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u006", "model_name": "mock_llm", "_parse_error": "invalid JSON from backend"}
+{"unit_id": "u007", "model_name": "mock_llm", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u008", "model_name": "mock_llm", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u009", "model_name": "mock_llm", "pragmatic_function": "PF_ATTACK", "fallacy_labels": ["FAL_NONE"]}
+{"unit_id": "u010", "model_name": "mock_llm", "pragmatic_function": "PF_DEFENSE", "fallacy_labels": ["FAL_NONE"]}

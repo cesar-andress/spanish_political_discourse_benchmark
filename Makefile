@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -84,7 +84,7 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ analysis/llm_annotation/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ analysis/llm_annotation/tests/ analysis/human_vs_llm/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
@@ -170,6 +170,20 @@ llm-annotation-local:
 		--annotations $(LLM_OUTPUT_DIR)/$(MODEL_NAME)_pilot_100.jsonl \
 		--pilot-input $(LLM_PILOT_INPUT) \
 		--model-name $(MODEL_NAME)
+
+HUMAN_VS_LLM_OUTPUT ?= reports/human_vs_llm
+HUMAN_VS_LLM_GOLD ?= majority_vote
+
+human-vs-llm:
+	$(PYTHON) -m scripts.analysis.human_vs_llm \
+		--output-dir $(HUMAN_VS_LLM_OUTPUT) \
+		--gold-strategy $(HUMAN_VS_LLM_GOLD)
+
+human-vs-llm-fixtures:
+	$(PYTHON) -m scripts.analysis.human_vs_llm \
+		--fixtures \
+		--output-dir $(HUMAN_VS_LLM_OUTPUT) \
+		--gold-strategy $(HUMAN_VS_LLM_GOLD)
 
 pilot-agreement:
 	$(PYTHON) -m scripts.analysis.compute_cohen_kappa \
