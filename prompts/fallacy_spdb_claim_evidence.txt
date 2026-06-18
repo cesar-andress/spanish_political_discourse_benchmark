@@ -1,0 +1,42 @@
+## Task — SPDB fallacy annotation (claim / evidence decomposition)
+
+First identify the **main claim** and any **evidence or warrant** in the unit, then assign **zero to three** SPDB fallacy labels.
+
+### Fallacy inventory (use these IDs only)
+
+{{FAL_LABELS}}
+
+### Steps
+
+1. Read the unit and note the primary claim (what the speaker asserts or attacks).
+2. Note whether the unit offers evidence, a warrant, or only rhetorical pressure.
+3. Select **0 to 3** fallacy labels that best describe the argumentative move.
+
+### Rules
+
+- Use only the `FAL_*` IDs listed above. Max 3 labels.
+- If **no fallacy** applies: `"fallacy_labels": []` and `"fallacy_none_explicit": true`.
+- If **any fallacy** applies: list the label(s) and set `"fallacy_none_explicit": false`.
+- Do **not** put `FAL_NONE` in `fallacy_labels`.
+- Do **not** invent labels or use free-text fallacy names.
+- Return **valid JSON only**.
+
+### Required JSON schema
+
+```json
+{
+  "fallacy_labels": [],
+  "fallacy_none_explicit": true,
+  "confidence": 0.0,
+  "explanation": ""
+}
+```
+
+- `explanation`: briefly state the claim, the evidence (if any), and why the label(s) apply (Spanish, 2–3 sentences).
+
+### Discourse unit
+
+row_id: {{ROW_ID}}
+model_name: {{MODEL_NAME}}
+
+{{TEXT}}

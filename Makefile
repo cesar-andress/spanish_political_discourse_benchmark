@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare discriminant-validity discriminant-validity-fixtures register-shift register-shift-fixtures dataset-card datasheet docs-release leaderboard leaderboard-fixtures leaderboard-validate leaderboard-score error-taxonomy error-taxonomy-fixtures external-validation fallacy-external-dry-run fallacy-external-run fallacy-external-report
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -84,10 +84,99 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ analysis/llm_annotation/tests/ analysis/human_vs_llm/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ analysis/ontology_validation/tests/ analysis/llm_annotation/tests/ analysis/human_vs_llm/tests/ analysis/discriminant_validity/tests/ analysis/register_shift/tests/ analysis/leaderboard/tests/ analysis/error_taxonomy/tests/ analysis/external_validation/tests/ scripts/release/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
+
+dataset-card:
+	PYTHONPATH=. $(PYTHON) scripts/release/generate_dataset_card.py
+
+datasheet:
+	PYTHONPATH=. $(PYTHON) scripts/release/generate_datasheet.py
+
+docs-release:
+	$(MAKE) dataset-card
+	$(MAKE) datasheet
+
+leaderboard:
+	PYTHONPATH=. $(PYTHON) -m scripts.leaderboard.leaderboard update
+
+leaderboard-fixtures:
+	PYTHONPATH=. $(PYTHON) -m scripts.leaderboard.leaderboard update --fixtures
+
+leaderboard-validate:
+	@test -n "$(SUBMISSION)" || (echo "SUBMISSION is required. Example: make leaderboard-validate SUBMISSION=leaderboard/submissions/my_team.json" && exit 1)
+	PYTHONPATH=. $(PYTHON) -m scripts.leaderboard.leaderboard validate $(SUBMISSION)
+
+leaderboard-score:
+	@test -n "$(GOLD)" || (echo "GOLD is required" && exit 1)
+	@test -n "$(PREDICTIONS)" || (echo "PREDICTIONS is required" && exit 1)
+	PYTHONPATH=. $(PYTHON) -m scripts.leaderboard.leaderboard score \
+		--gold $(GOLD) \
+		--predictions $(PREDICTIONS) \
+		--track $(or $(TRACK),C) \
+		$(if $(OUTPUT),--output $(OUTPUT),)
+
+error-taxonomy:
+	PYTHONPATH=. $(PYTHON) -m scripts.analysis.error_taxonomy
+
+error-taxonomy-fixtures:
+	PYTHONPATH=. $(PYTHON) -m scripts.analysis.error_taxonomy --fixtures
+
+external-validation:
+	PYTHONPATH=. $(PYTHON) -m scripts.analysis.external_validation --report-dir reports/external_validation
+
+FALLACY_FIXTURE ?= tests/fixtures/external_validation/fallacy_sample.jsonl
+FALLACY_PROMPT ?= prompts/fallacy_spdb_zero_shot.txt
+FALLACY_OUTPUT_DIR ?= data/experiments/external_validation
+FALLACY_OUTPUT ?= $(FALLACY_OUTPUT_DIR)/mock_fallacy_fixture.jsonl
+FALLACY_REPORT_DIR ?= reports/external_validation
+FALLACY_MOCK_BACKEND ?= $(PYTHON) tests/fixtures/external_validation/mock_fallacy_backend.py
+
+fallacy-external-dry-run:
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.run_fallacy_llm_batch \
+		--input $(FALLACY_FIXTURE) \
+		--text-column text \
+		--prompt $(FALLACY_PROMPT) \
+		--model-name mock-local \
+		--backend-command "$(FALLACY_MOCK_BACKEND)" \
+		--output $(FALLACY_OUTPUT)
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.validate_spdb_fallacy_predictions \
+		--predictions $(FALLACY_OUTPUT) \
+		--input $(FALLACY_FIXTURE)
+	PYTHONPATH=. $(PYTHON) -m analysis.external_validation.fallacy_prediction_report \
+		--predictions $(FALLACY_OUTPUT) \
+		--input $(FALLACY_FIXTURE) \
+		--model-name mock-local \
+		--report $(FALLACY_REPORT_DIR)/fallacy_llm_report.md \
+		--label-distribution $(FALLACY_REPORT_DIR)/fallacy_label_distribution.csv \
+		--parse-errors $(FALLACY_REPORT_DIR)/fallacy_parse_errors.csv
+
+fallacy-external-run:
+	@test -n "$(FALLACY_INPUT)" || (echo "FALLACY_INPUT is required" && exit 1)
+	@test -n "$(MODEL_NAME)" || (echo "MODEL_NAME is required" && exit 1)
+	@test -n "$(BACKEND_COMMAND)" || (echo "BACKEND_COMMAND is required" && exit 1)
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.run_fallacy_llm_batch \
+		--input $(FALLACY_INPUT) \
+		--text-column $(or $(TEXT_COLUMN),text) \
+		--prompt $(or $(FALLACY_PROMPT),prompts/fallacy_spdb_zero_shot.txt) \
+		--model-name $(MODEL_NAME) \
+		--backend-command "$(BACKEND_COMMAND)" \
+		--output $(or $(FALLACY_OUTPUT),$(FALLACY_OUTPUT_DIR)/$(MODEL_NAME)_fallacy_batch.jsonl)
+
+fallacy-external-report:
+	@test -n "$(FALLACY_OUTPUT)" || (echo "FALLACY_OUTPUT is required" && exit 1)
+	@test -n "$(FALLACY_INPUT)" || (echo "FALLACY_INPUT is required" && exit 1)
+	@test -n "$(MODEL_NAME)" || (echo "MODEL_NAME is required" && exit 1)
+	PYTHONPATH=. $(PYTHON) -m analysis.external_validation.fallacy_prediction_report \
+		--predictions $(FALLACY_OUTPUT) \
+		--input $(FALLACY_INPUT) \
+		--model-name $(MODEL_NAME) \
+		--text-column $(or $(TEXT_COLUMN),text) \
+		--report $(FALLACY_REPORT_DIR)/fallacy_llm_report.md \
+		--label-distribution $(FALLACY_REPORT_DIR)/fallacy_label_distribution.csv \
+		--parse-errors $(FALLACY_REPORT_DIR)/fallacy_parse_errors.csv
 
 ARTIFACT_AUDIT_INPUT ?= tests/fixtures/annotation/artifact_audit_sample.csv
 
@@ -191,6 +280,38 @@ ollama-compare-fixtures:
 	$(PYTHON) -m scripts.llm_annotation.compare_ollama_models \
 		--fixtures \
 		--report-dir $(LLM_REPORT_DIR)
+
+DISCRIMINANT_INPUT ?= annotation/pilot_001/pilot_100_units_annotator_a.csv
+DISCRIMINANT_OUTPUT ?= reports/discriminant_validity/discriminant_validity.md
+DISCRIMINANT_JSONL ?= data/processed/parlamint_100_units.jsonl
+
+discriminant-validity:
+	$(PYTHON) -m scripts.analysis.discriminant_validity \
+		--input $(DISCRIMINANT_INPUT) \
+		--jsonl $(DISCRIMINANT_JSONL) \
+		--output $(DISCRIMINANT_OUTPUT)
+
+discriminant-validity-fixtures:
+	$(PYTHON) -m scripts.analysis.discriminant_validity \
+		--fixtures \
+		--output $(DISCRIMINANT_OUTPUT)
+
+REGISTER_SHIFT_OUTPUT ?= reports/register_shift/register_shift_report.md
+REGISTER_SHIFT_PARLIAMENT ?= data/processed/parlamint_100_units.jsonl
+REGISTER_SHIFT_MANIFESTO ?= data/processed/manifestos/discourse_units.jsonl
+REGISTER_SHIFT_SOCIAL ?= data/processed/social/discourse_units.jsonl
+
+register-shift:
+	$(PYTHON) -m scripts.analysis.register_shift \
+		--parliament-jsonl $(REGISTER_SHIFT_PARLIAMENT) \
+		--manifesto-jsonl $(REGISTER_SHIFT_MANIFESTO) \
+		--social-jsonl $(REGISTER_SHIFT_SOCIAL) \
+		--output $(REGISTER_SHIFT_OUTPUT)
+
+register-shift-fixtures:
+	$(PYTHON) -m scripts.analysis.register_shift \
+		--fixtures \
+		--output $(REGISTER_SHIFT_OUTPUT)
 
 HUMAN_VS_LLM_OUTPUT ?= reports/human_vs_llm
 HUMAN_VS_LLM_GOLD ?= majority_vote

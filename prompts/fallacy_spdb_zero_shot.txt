@@ -1,0 +1,39 @@
+## Task — SPDB fallacy annotation (zero-shot)
+
+Identify **zero to three** fallacy labels from the SPDB inventory for the Spanish political discourse unit below.
+
+### Fallacy inventory (use these IDs only)
+
+{{FAL_LABELS}}
+
+### Rules
+
+- Select **0 to 3** fallacy labels by salience. Use only the `FAL_*` IDs listed above.
+- If **no fallacy** applies: `"fallacy_labels": []` and `"fallacy_none_explicit": true`.
+- If **any fallacy** applies: list the label(s) and set `"fallacy_none_explicit": false`.
+- Do **not** put `FAL_NONE` in `fallacy_labels`. Absence of fallacy is expressed via an empty list plus `fallacy_none_explicit`.
+- Do **not** invent labels or use free-text fallacy names.
+- Return **valid JSON only** — no markdown fences, no commentary outside the object.
+
+### Required JSON schema
+
+```json
+{
+  "fallacy_labels": [],
+  "fallacy_none_explicit": true,
+  "confidence": 0.0,
+  "explanation": ""
+}
+```
+
+- `fallacy_labels`: array of 0–3 SPDB `FAL_*` labels (excluding `FAL_NONE`).
+- `fallacy_none_explicit`: `true` iff `fallacy_labels` is empty; otherwise `false`.
+- `confidence`: number in [0, 1].
+- `explanation`: brief Spanish rationale (1–2 sentences).
+
+### Discourse unit
+
+row_id: {{ROW_ID}}
+model_name: {{MODEL_NAME}}
+
+{{TEXT}}

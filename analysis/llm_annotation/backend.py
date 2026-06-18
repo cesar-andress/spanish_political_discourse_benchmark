@@ -46,7 +46,12 @@ class MockResponseBackend:
 
     def generate(self, prompt: str) -> str:
         for unit_id, response in self.responses_by_unit_id.items():
-            if f"unit_id: {unit_id}" in prompt or f'"unit_id": "{unit_id}"' in prompt:
+            if (
+                f"unit_id: {unit_id}" in prompt
+                or f'"unit_id": "{unit_id}"' in prompt
+                or f"row_id: {unit_id}" in prompt
+                or f'"row_id": "{unit_id}"' in prompt
+            ):
                 return response
         raise KeyError("No mock response configured for prompt unit_id")
 

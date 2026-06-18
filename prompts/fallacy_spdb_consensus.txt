@@ -1,0 +1,43 @@
+## Task — SPDB fallacy annotation (dual-pass consensus)
+
+Perform **two independent readings** of the unit, then output a **consensus** fallacy annotation.
+
+### Fallacy inventory (use these IDs only)
+
+{{FAL_LABELS}}
+
+### Procedure
+
+1. **Pass A:** decide which 0–3 labels apply (or none).
+2. **Pass B:** repeat independently without copying Pass A.
+3. **Consensus:** keep labels agreed in both passes; if Pass A and Pass B disagree on presence/absence of any fallacy, prefer the **more conservative** set (fewer labels; if one pass finds none, output none).
+
+### Rules
+
+- Use only the `FAL_*` IDs listed above. Max 3 labels in the final consensus.
+- If **no fallacy** applies: `"fallacy_labels": []` and `"fallacy_none_explicit": true`.
+- If **any fallacy** applies: list the label(s) and set `"fallacy_none_explicit": false`.
+- Do **not** put `FAL_NONE` in `fallacy_labels`.
+- Do **not** invent labels or use free-text fallacy names.
+- Return **valid JSON only** — output the consensus object, not the intermediate passes.
+
+### Required JSON schema
+
+```json
+{
+  "fallacy_labels": [],
+  "fallacy_none_explicit": true,
+  "confidence": 0.0,
+  "explanation": ""
+}
+```
+
+- `confidence`: reflect agreement between Pass A and Pass B (higher when both passes match).
+- `explanation`: summarize the consensus and note any disagreement (Spanish, 2–3 sentences).
+
+### Discourse unit
+
+row_id: {{ROW_ID}}
+model_name: {{MODEL_NAME}}
+
+{{TEXT}}
