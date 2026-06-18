@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -84,7 +84,7 @@ validate-parlamint-500:
 		--allow-real-data
 
 test:
-	PYTHONPATH=. $(PYTHON) -m pytest tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ analysis/pilot/tests/ scripts/ingestion/tests/ scripts/segmentation/tests/ scripts/sampling/tests/ scripts/analysis/tests/ -q
 
 release-validate:
 	$(PYTHON) scripts/release/validate_release_metadata.py
@@ -99,7 +99,36 @@ artifact-audit:
 
 PILOT_ANNOTATOR_A ?= annotation/pilot_001/pilot_100_units_annotator_a.csv
 PILOT_ANNOTATOR_B ?= annotation/pilot_001/pilot_100_units_annotator_b.csv
+PILOT_ANNOTATOR_C ?= annotation/pilot_001/pilot_100_units_annotator_c.csv
+PILOT_TEMPLATE ?= annotation/pilot_001/pilot_100_units.csv
 PILOT_RESULTS = annotation/pilot_001/results
+PILOT_FIXTURE_A = tests/fixtures/annotation/pilot_annotator_a.csv
+PILOT_FIXTURE_B = tests/fixtures/annotation/pilot_annotator_b.csv
+PILOT_FIXTURE_C = tests/fixtures/annotation/pilot_annotator_c.csv
+PILOT_FIXTURE_TEMPLATE = tests/fixtures/annotation/pilot_template.csv
+
+pilot-analytics:
+	$(PYTHON) -m scripts.analysis.pilot_analytics \
+		--template $(PILOT_TEMPLATE) \
+		$(if $(filter 1,$(PILOT_USE_FIXTURES)),--annotator $(PILOT_FIXTURE_A) --annotator $(PILOT_FIXTURE_B) --annotator $(PILOT_FIXTURE_C),) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_A)),--annotator $(PILOT_ANNOTATOR_A),) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_B)),--annotator $(PILOT_ANNOTATOR_B),) \
+		$(if $(wildcard $(PILOT_ANNOTATOR_C)),--annotator $(PILOT_ANNOTATOR_C),) \
+		--output-dir reports/pilot \
+		--report reports/pilot_annotation_report.md \
+		--figures-dir figures/pilot \
+		--seed 42
+
+pilot-analytics-fixtures:
+	$(PYTHON) -m scripts.analysis.pilot_analytics \
+		--template $(PILOT_FIXTURE_TEMPLATE) \
+		--annotator $(PILOT_FIXTURE_A) \
+		--annotator $(PILOT_FIXTURE_B) \
+		--annotator $(PILOT_FIXTURE_C) \
+		--output-dir reports/pilot \
+		--report reports/pilot_annotation_report.md \
+		--figures-dir figures/pilot \
+		--seed 42
 
 pilot-agreement:
 	$(PYTHON) -m scripts.analysis.compute_cohen_kappa \

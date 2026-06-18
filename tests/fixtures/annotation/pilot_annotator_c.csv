@@ -1,0 +1,6 @@
+unit_id,text,speaker_name,speaker_party,date,pragmatic_function,fallacy_labels,semantic_vacuity,conceptual_anachronism
+u001,texto uno,Speaker A,PSOE,2017-09-19,PF_ATTACK,FAL_NONE,SV_0,CA_0
+u002,texto dos,Speaker B,PP,2017-09-19,PF_ADVOCACY,FAL_ADHOM,SV_0,CA_0
+u003,texto tres,Speaker C,Cs,2020-11-12,PF_DEFENSE,FAL_NONE,SV_1,CA_0
+u004,texto cuatro,Speaker D,UP,2020-11-12,PF_INFO,FAL_STRAW|FAL_EMOTION,SV_0,CA_1
+u005,texto cinco,Speaker E,PSOE,2023-02-23,PF_PROCEDURAL,FAL_NONE,SV_0,CA_0

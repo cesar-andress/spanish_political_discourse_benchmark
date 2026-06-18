@@ -1,0 +1,109 @@
+{
+  "status": "pending",
+  "dimensions": {
+    "pragmatic_function": {
+      "inventory": [
+        "PF_ADVOCACY",
+        "PF_ATTACK",
+        "PF_DEFENSE",
+        "PF_PROPOSAL",
+        "PF_APPEAL",
+        "PF_INFO",
+        "PF_DEFLECT",
+        "PF_PROCEDURAL"
+      ],
+      "support": {
+        "PF_ADVOCACY": 0,
+        "PF_ATTACK": 0,
+        "PF_DEFENSE": 0,
+        "PF_PROPOSAL": 0,
+        "PF_APPEAL": 0,
+        "PF_INFO": 0,
+        "PF_DEFLECT": 0,
+        "PF_PROCEDURAL": 0
+      },
+      "entropy": 2.0794415416798357,
+      "imbalance": {
+        "total": 0,
+        "max_share": 0.0,
+        "min_share": 0.0,
+        "imbalance_ratio": null,
+        "assessment": "pending"
+      },
+      "dominant_confusion_pairs": []
+    },
+    "fallacy_labels": {
+      "inventory": [
+        "FAL_ADHOM",
+        "FAL_STRAW",
+        "FAL_DILEMMA",
+        "FAL_SLOPE",
+        "FAL_EMOTION",
+        "FAL_GENERAL",
+        "FAL_WHATABOUT",
+        "FAL_NONE"
+      ],
+      "support": {
+        "FAL_ADHOM": 0,
+        "FAL_STRAW": 0,
+        "FAL_DILEMMA": 0,
+        "FAL_SLOPE": 0,
+        "FAL_EMOTION": 0,
+        "FAL_GENERAL": 0,
+        "FAL_WHATABOUT": 0,
+        "FAL_NONE": 0
+      },
+      "entropy": 2.0794415416798357,
+      "imbalance": {
+        "total": 0,
+        "max_share": 0.0,
+        "min_share": 0.0,
+        "imbalance_ratio": null,
+        "assessment": "pending"
+      },
+      "dominant_confusion_pairs": []
+    },
+    "semantic_vacuity": {
+      "inventory": [
+        "SV_0",
+        "SV_1",
+        "SV_UNCLEAR"
+      ],
+      "support": {
+        "SV_0": 0,
+        "SV_1": 0,
+        "SV_UNCLEAR": 0
+      },
+      "entropy": 1.0986122886681098,
+      "imbalance": {
+        "total": 0,
+        "max_share": 0.0,
+        "min_share": 0.0,
+        "imbalance_ratio": null,
+        "assessment": "pending"
+      },
+      "dominant_confusion_pairs": []
+    },
+    "conceptual_anachronism": {
+      "inventory": [
+        "CA_0",
+        "CA_1",
+        "CA_UNCLEAR"
+      ],
+      "support": {
+        "CA_0": 0,
+        "CA_1": 0,
+        "CA_UNCLEAR": 0
+      },
+      "entropy": 1.0986122886681098,
+      "imbalance": {
+        "total": 0,
+        "max_share": 0.0,
+        "min_share": 0.0,
+        "imbalance_ratio": null,
+        "assessment": "pending"
+      },
+      "dominant_confusion_pairs": []
+    }
+  }
+}
