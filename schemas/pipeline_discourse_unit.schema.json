@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spdb.unir.net/schemas/pipeline_discourse_unit.schema.json",
+  "title": "SPDB pipeline discourse unit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "unit_id",
+    "document_id",
+    "language",
+    "text",
+    "character_count",
+    "token_count",
+    "metadata"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^spdb-v1-"
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "character_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "token_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_type",
+        "source_name",
+        "date",
+        "speaker_name",
+        "speaker_party",
+        "segment_index",
+        "char_start",
+        "char_end"
+      ],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": ["parliamentary"]
+        },
+        "source_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "speaker_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speaker_party": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "char_start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "char_end": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

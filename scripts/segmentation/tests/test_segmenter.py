@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from scripts.ingestion.common import validate_discourse_unit
+from scripts.ingestion.common import read_jsonl, validate_discourse_unit, validate_pipeline_discourse_unit
 from scripts.segmentation.common import make_unit_id
-from scripts.segmentation.segmenter import SegmentConfig, segment_document
+from scripts.segmentation.segmenter import SegmentConfig, segment_document, segment_document_pipeline
 from scripts.segmentation.tests.conftest import FIXTURES
-from scripts.ingestion.common import read_jsonl
 
 
 def test_make_unit_id_is_stable():
@@ -18,20 +17,20 @@ def test_make_unit_id_is_stable():
 
 def test_segment_long_document_produces_multiple_units():
     doc = next(read_jsonl(FIXTURES / "sample_long_document.jsonl"))
-    units = segment_document(doc, SegmentConfig(max_tokens_beto=80))
+    units = segment_document_pipeline(doc, SegmentConfig(max_tokens_beto=80))
     assert len(units) >= 3
-    assert all(unit["document_id"] == doc["doc_id"] for unit in units)
+    assert all(unit["document_id"] == doc["document_id"] for unit in units)
     assert all(unit["language"] == "es" for unit in units)
-    assert all(unit["party_family"] == "PSOE" for unit in units)
+    assert all(unit["metadata"]["speaker_party"] == "PSOE" for unit in units)
     assert all(unit["character_count"] == len(unit["text"]) for unit in units)
-    assert all(unit["token_count_beto"] > 0 for unit in units)
-    assert all(not validate_discourse_unit(unit) for unit in units)
+    assert all(unit["token_count"] > 0 for unit in units)
+    assert all(not validate_pipeline_discourse_unit(unit) for unit in units)
 
 
 def test_segment_indices_are_sequential():
     doc = next(read_jsonl(FIXTURES / "sample_long_document.jsonl"))
-    units = segment_document(doc, SegmentConfig(max_tokens_beto=80))
-    assert [unit["segment_index"] for unit in units] == list(range(len(units)))
+    units = segment_document_pipeline(doc, SegmentConfig(max_tokens_beto=80))
+    assert [unit["metadata"]["segment_index"] for unit in units] == list(range(len(units)))
 
 
 def test_short_spans_are_filtered():
@@ -52,3 +51,4 @@ def test_short_spans_are_filtered():
     assert units
     assert all(len(unit["text"]) >= 20 for unit in units)
     assert all("Corto." not in unit["text"] for unit in units)
+    assert all(not validate_discourse_unit(unit) for unit in units)

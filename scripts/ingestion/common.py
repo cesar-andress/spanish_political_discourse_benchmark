@@ -15,6 +15,8 @@ ISO_DATETIME_RE = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$"
 )
 SCHEMA_REL_PATH = Path("schemas/discourse_unit.schema.json")
+PARLIAMENT_DOCUMENT_SCHEMA_REL_PATH = Path("schemas/parliament_document.schema.json")
+PIPELINE_DISCOURSE_UNIT_SCHEMA_REL_PATH = Path("schemas/pipeline_discourse_unit.schema.json")
 
 
 def benchmark_root() -> Path:
@@ -32,6 +34,16 @@ def default_intermediate_path(source: str, *parts: str) -> Path:
 
 def default_processed_path(source: str, filename: str = "discourse_units.jsonl") -> Path:
     return benchmark_root() / "data" / "processed" / source / filename
+
+
+def default_parliament_documents_path() -> Path:
+    """Default intermediate JSONL for parliamentary ingestion."""
+    return benchmark_root() / "data" / "intermediate" / "parliament_documents.jsonl"
+
+
+def default_pipeline_discourse_units_path() -> Path:
+    """Default processed JSONL for the first SPDB pipeline stage."""
+    return benchmark_root() / "data" / "processed" / "discourse_units.jsonl"
 
 
 def setup_logging(level: str = "INFO") -> logging.Logger:
@@ -118,6 +130,38 @@ def _validate_property(name: str, value: Any, spec: Mapping[str, Any]) -> List[s
     return errors
 
 
+def validate_against_schema(
+    record: Mapping[str, Any],
+    schema: Mapping[str, Any],
+    *,
+    record_label: str = "record",
+) -> List[str]:
+    """Validate a JSON object against a JSON Schema subset used by SPDB."""
+    errors: List[str] = []
+    if not isinstance(record, dict):
+        return [f"{record_label}: must be a JSON object"]
+
+    allowed = set(schema.get("properties", {}))
+    if schema.get("additionalProperties") is False:
+        for key in record:
+            if key not in allowed:
+                errors.append(f"{record_label}.{key}: unexpected field")
+
+    properties = schema.get("properties", {})
+    for field in schema.get("required", []):
+        if field not in record:
+            errors.append(f"{record_label}.{field}: required field missing")
+
+    for name, value in record.items():
+        if name not in properties:
+            continue
+        errors.extend(
+            _validate_property(f"{record_label}.{name}", value, properties[name])
+        )
+
+    return errors
+
+
 def validate_discourse_unit(
     record: Mapping[str, Any],
     schema: Optional[Mapping[str, Any]] = None,
@@ -128,26 +172,8 @@ def validate_discourse_unit(
     Returns a list of human-readable error strings (empty if valid).
     """
     schema = schema or load_schema()
-    errors: List[str] = []
-
-    if not isinstance(record, dict):
-        return ["record must be a JSON object"]
-
-    allowed = set(schema.get("properties", {}))
-    if schema.get("additionalProperties") is False:
-        for key in record:
-            if key not in allowed:
-                errors.append(f"{key}: unexpected field")
-
+    errors = validate_against_schema(record, schema)
     properties = schema.get("properties", {})
-    for field in schema.get("required", []):
-        if field not in record:
-            errors.append(f"{field}: required field missing")
-
-    for name, value in record.items():
-        if name not in properties:
-            continue
-        errors.extend(_validate_property(name, value, properties[name]))
 
     for rule in schema.get("allOf", []):
         condition = rule.get("if", {})
@@ -179,6 +205,58 @@ def make_instance_id(document_id: str, segment_index: int, split: str = "unassig
     """Stable instance_id prefix per SPDB v1 convention."""
     digest = hashlib.sha256(f"{document_id}:{segment_index}".encode("utf-8")).hexdigest()[:12]
     return f"spdb-v1-{split}-{digest}"
+
+
+def make_unit_id(document_id: str, segment_index: int, split: str = "unassigned") -> str:
+    """Stable discourse-unit identifier for the first pipeline stage."""
+    return make_instance_id(document_id, segment_index, split)
+
+
+def load_parliament_document_schema(schema_path: Optional[Path] = None) -> Dict[str, Any]:
+    path = schema_path or (benchmark_root() / PARLIAMENT_DOCUMENT_SCHEMA_REL_PATH)
+    with path.open(encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def load_pipeline_discourse_unit_schema(schema_path: Optional[Path] = None) -> Dict[str, Any]:
+    path = schema_path or (benchmark_root() / PIPELINE_DISCOURSE_UNIT_SCHEMA_REL_PATH)
+    with path.open(encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def validate_parliament_document(
+    record: Mapping[str, Any],
+    schema: Optional[Mapping[str, Any]] = None,
+) -> List[str]:
+    schema = schema or load_parliament_document_schema()
+    return validate_against_schema(record, schema, record_label="document")
+
+
+def validate_pipeline_discourse_unit(
+    record: Mapping[str, Any],
+    schema: Optional[Mapping[str, Any]] = None,
+) -> List[str]:
+    schema = schema or load_pipeline_discourse_unit_schema()
+    errors = validate_against_schema(record, schema, record_label="unit")
+    metadata = record.get("metadata")
+    if isinstance(metadata, dict):
+        metadata_schema = schema.get("properties", {}).get("metadata", {})
+        errors.extend(
+            validate_against_schema(metadata, metadata_schema, record_label="unit.metadata")
+        )
+        if (
+            metadata.get("char_end") is not None
+            and metadata.get("char_start") is not None
+            and metadata["char_end"] < metadata["char_start"]
+        ):
+            errors.append("unit.metadata.char_end: must be >= char_start")
+    if (
+        record.get("character_count") is not None
+        and record.get("text") is not None
+        and record["character_count"] != len(record["text"])
+    ):
+        errors.append("unit.character_count: must match len(text)")
+    return errors
 
 
 def normalize_text(text: str) -> str:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI: segment long political texts into SPDB discourse_unit JSONL."""
+"""CLI: segment parliament documents into pipeline discourse units."""
 
 from __future__ import annotations
 
@@ -9,34 +9,40 @@ import sys
 from pathlib import Path
 from typing import Optional, Sequence
 
-from scripts.ingestion.common import read_jsonl, validate_discourse_unit, write_jsonl
-from scripts.segmentation.common import default_segmented_path, setup_logging
-from scripts.segmentation.segmenter import SegmentConfig, segment_document, segment_documents
+from scripts.ingestion.common import (
+    default_parliament_documents_path,
+    default_pipeline_discourse_units_path,
+    read_jsonl,
+    validate_pipeline_discourse_unit,
+    write_jsonl,
+)
+from scripts.segmentation.common import setup_logging
+from scripts.segmentation.segmenter import SegmentConfig, segment_documents_pipeline
 
 logger = logging.getLogger("spdb.segmentation.cli")
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="SPDB v1 discourse segmentation — paragraph- and sentence-aware Spanish splitter.",
+        description="SPDB discourse segmentation — parliament documents to discourse units.",
     )
     parser.add_argument(
         "--input",
         type=Path,
-        required=True,
-        help="Input JSONL of document records (local only; must include document_id/doc_id and text_raw/text).",
+        default=None,
+        help="Input JSONL (default: data/intermediate/parliament_documents.jsonl).",
     )
     parser.add_argument(
         "--output",
         type=Path,
         default=None,
-        help="Output discourse_unit JSONL (default: data/processed/segmented/discourse_units.jsonl).",
+        help="Output JSONL (default: data/processed/discourse_units.jsonl).",
     )
     parser.add_argument(
-        "--max-tokens-beto",
+        "--max-tokens",
         type=int,
         default=400,
-        help="Maximum BETO tokens per unit before sentence-level splitting.",
+        help="Maximum tokens per unit before sentence-level splitting.",
     )
     parser.add_argument(
         "--min-chars",
@@ -54,17 +60,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--split",
         default="unassigned",
         choices=["train", "dev", "test", "unassigned"],
-        help="Split label embedded in unit_id / instance_id.",
-    )
-    parser.add_argument(
-        "--pipeline-version",
-        default="0.1.0",
-        help="Pipeline version stored in provenance fields.",
+        help="Split label embedded in unit_id.",
     )
     parser.add_argument(
         "--use-beto-model",
         action="store_true",
-        help="Use Hugging Face BETO tokenizer when available (offline tests use estimate fallback).",
+        help="Use Hugging Face BETO tokenizer when available (offline runs use estimate fallback).",
     )
     parser.add_argument(
         "--log-level",
@@ -80,35 +81,33 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--document-id",
         default=None,
-        help="Segment a single document_id/doc_id from the input file.",
+        help="Segment a single document_id from the input file.",
     )
     return parser
 
 
 def run_segmentation(args: argparse.Namespace) -> tuple[int, int]:
+    input_path = args.input or default_parliament_documents_path()
     config = SegmentConfig(
-        max_tokens_beto=args.max_tokens_beto,
+        max_tokens_beto=args.max_tokens,
         min_chars=args.min_chars,
         max_chars=args.max_chars,
         split=args.split,
-        pipeline_version=args.pipeline_version,
         use_beto_model=args.use_beto_model,
     )
 
-    documents = list(read_jsonl(args.input))
+    documents = list(read_jsonl(input_path))
     if args.document_id:
         documents = [
-            doc
-            for doc in documents
-            if doc.get("document_id") == args.document_id or doc.get("doc_id") == args.document_id
+            doc for doc in documents if doc.get("document_id") == args.document_id
         ]
         if not documents:
             raise ValueError(f"document id not found in input: {args.document_id}")
 
-    units = list(segment_documents(documents, config))
+    units = list(segment_documents_pipeline(documents, config))
     validation_errors: list[str] = []
     for index, unit in enumerate(units):
-        field_errors = validate_discourse_unit(unit)
+        field_errors = validate_pipeline_discourse_unit(unit)
         for message in field_errors:
             validation_errors.append(f"unit {index}: {message}")
 
@@ -121,7 +120,7 @@ def run_segmentation(args: argparse.Namespace) -> tuple[int, int]:
         logger.info("Dry run: validated %d unit(s); no output written", len(units))
         return len(documents), len(units)
 
-    output_path = args.output or default_segmented_path()
+    output_path = args.output or default_pipeline_discourse_units_path()
     written = write_jsonl(output_path, units)
     logger.info("Wrote %d discourse unit(s) to %s", written, output_path)
     return len(documents), written
@@ -132,8 +131,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parser.parse_args(argv)
     setup_logging(args.log_level)
 
-    if not args.input.exists():
-        logger.error("Input not found: %s", args.input)
+    input_path = args.input or default_parliament_documents_path()
+    if not input_path.exists():
+        logger.error("Input not found: %s", input_path)
         return 1
 
     try:

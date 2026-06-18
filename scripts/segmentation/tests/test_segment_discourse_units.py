@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from scripts.segmentation.segment_discourse_units import main
-from scripts.ingestion.common import read_jsonl, validate_discourse_unit
+from scripts.ingestion.common import read_jsonl, validate_pipeline_discourse_unit
 from scripts.segmentation.tests.conftest import FIXTURES
 
 
@@ -14,7 +14,7 @@ def test_cli_dry_run():
                 "--input",
                 str(FIXTURES / "sample_long_document.jsonl"),
                 "--dry-run",
-                "--max-tokens-beto",
+                "--max-tokens",
                 "80",
                 "--log-level",
                 "ERROR",
@@ -24,8 +24,8 @@ def test_cli_dry_run():
     )
 
 
-def test_cli_writes_jsonl(tmp_path: Path):
-    output = tmp_path / "units.jsonl"
+def test_cli_writes_pipeline_jsonl(tmp_path: Path):
+    output = tmp_path / "discourse_units.jsonl"
     assert (
         main(
             [
@@ -33,7 +33,7 @@ def test_cli_writes_jsonl(tmp_path: Path):
                 str(FIXTURES / "sample_long_document.jsonl"),
                 "--output",
                 str(output),
-                "--max-tokens-beto",
+                "--max-tokens",
                 "80",
                 "--log-level",
                 "ERROR",
@@ -43,4 +43,6 @@ def test_cli_writes_jsonl(tmp_path: Path):
     )
     units = list(read_jsonl(output))
     assert units
-    assert all(not validate_discourse_unit(unit) for unit in units)
+    assert all("unit_id" in unit for unit in units)
+    assert all("metadata" in unit for unit in units)
+    assert all(not validate_pipeline_discourse_unit(unit) for unit in units)

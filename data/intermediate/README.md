@@ -7,7 +7,8 @@ Parsed and normalized records produced by `scripts/ingestion/` before segmentati
 
 | Path | Producer | Format |
 |------|----------|--------|
-| `parliamentary/` | `ingest_parliament.py` | Document-level JSONL |
+| `parliament_documents.jsonl` | `ingest_parliament.py` | Document-level JSONL (canonical pipeline) |
+| `parliamentary/` | legacy layout | Deprecated subdirectory layout |
 | `manifestos/` | `ingest_manifestos.py` | Paragraph-level JSONL |
 | `social/` | `ingest_social_ids.py` | Post-ID metadata JSONL |
 

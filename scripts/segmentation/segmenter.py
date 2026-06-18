@@ -14,7 +14,11 @@ from scripts.segmentation.tokenize import count_tokens_beto
 logger = logging.getLogger("spdb.segmentation.segmenter")
 
 DOCUMENT_ID_FIELDS: Sequence[str] = ("document_id", "doc_id")
-DOCUMENT_TEXT_FIELDS: Sequence[str] = ("text_raw", "text")
+DOCUMENT_TEXT_FIELDS: Sequence[str] = ("text", "text_raw")
+DOCUMENT_DATE_FIELDS: Sequence[str] = ("date", "timestamp")
+DOCUMENT_SPEAKER_FIELDS: Sequence[str] = ("speaker_name", "speaker", "author")
+DOCUMENT_PARTY_FIELDS: Sequence[str] = ("speaker_party", "party", "party_family")
+DOCUMENT_SOURCE_NAME_FIELDS: Sequence[str] = ("source_name", "source_corpus", "chamber")
 
 DEFAULTS = {
     "language": "es",
@@ -69,8 +73,8 @@ def validate_document_record(document: Mapping[str, Any]) -> List[str]:
         resolve_document_text(document)
     except ValueError as exc:
         errors.append(str(exc))
-    if not document.get("date") and not document.get("timestamp"):
-        errors.append("date or timestamp: required in document metadata")
+    if not any(document.get(field) for field in DOCUMENT_DATE_FIELDS):
+        errors.append("date: required in document metadata")
     return errors
 
 
@@ -148,15 +152,22 @@ def _passes_length_filters(span: TextSpan, config: SegmentConfig) -> bool:
 
 
 def _speaker_id(document: Mapping[str, Any]) -> str:
+    for field in DOCUMENT_SPEAKER_FIELDS:
+        if document.get(field):
+            return str(document[field])
     if document.get("speaker_id"):
         return str(document["speaker_id"])
     if document.get("author_handle"):
         return str(document["author_handle"])
-    if document.get("speaker"):
-        return f"speaker-{document['speaker']}"
-    if document.get("party"):
-        return f"party-{document['party']}"
     return "unknown"
+
+
+def _metadata_string(document: Mapping[str, Any], fields: Sequence[str], default: str = "unknown") -> str:
+    for field in fields:
+        value = document.get(field)
+        if value not in (None, ""):
+            return str(value)
+    return default
 
 
 def _metadata_value(document: Mapping[str, Any], field: str, fallback_keys: Sequence[str] = ()) -> Any:
@@ -166,6 +177,40 @@ def _metadata_value(document: Mapping[str, Any], field: str, fallback_keys: Sequ
         if key in document and document[key] not in (None, ""):
             return document[key]
     return DEFAULTS.get(field)
+
+
+def build_pipeline_unit(
+    document: Mapping[str, Any],
+    span: TextSpan,
+    segment_index: int,
+    config: SegmentConfig,
+) -> Dict[str, Any]:
+    """Map a text span to the first-stage pipeline discourse unit schema."""
+    document_id = resolve_document_id(document)
+    text = normalize_text(span.text)
+    token_count = _count_tokens(text, config)
+    date_value = _metadata_string(document, DOCUMENT_DATE_FIELDS, default="1970-01-01")
+    if "T" in date_value:
+        date_value = date_value[:10]
+
+    return {
+        "unit_id": make_unit_id(document_id, segment_index, config.split),
+        "document_id": document_id,
+        "language": _metadata_string(document, ("language",), default=config.language),
+        "text": text,
+        "character_count": len(text),
+        "token_count": token_count,
+        "metadata": {
+            "source_type": "parliamentary",
+            "source_name": _metadata_string(document, DOCUMENT_SOURCE_NAME_FIELDS),
+            "date": date_value,
+            "speaker_name": _speaker_id(document),
+            "speaker_party": _metadata_string(document, DOCUMENT_PARTY_FIELDS),
+            "segment_index": segment_index,
+            "char_start": span.char_start,
+            "char_end": span.char_end,
+        },
+    }
 
 
 def build_discourse_unit(
@@ -225,6 +270,41 @@ def build_discourse_unit(
         unit["date"] = unit["date"][:10]
 
     return unit
+
+
+def segment_document_pipeline(
+    document: Mapping[str, Any],
+    config: Optional[SegmentConfig] = None,
+) -> List[Dict[str, Any]]:
+    """Segment one parliament document into pipeline discourse units."""
+    config = config or SegmentConfig()
+    errors = validate_document_record(document)
+    if errors:
+        raise ValueError("; ".join(errors))
+
+    document_id = resolve_document_id(document)
+    text = resolve_document_text(document)
+    spans = segment_text(text, config)
+    spans = [span for span in spans if _passes_length_filters(span, config)]
+
+    units = [
+        build_pipeline_unit(document, span, index, config)
+        for index, span in enumerate(spans)
+    ]
+    logger.info("Document %s: produced %d pipeline unit(s)", document_id, len(units))
+    return units
+
+
+def segment_documents_pipeline(
+    documents: Iterable[Mapping[str, Any]],
+    config: Optional[SegmentConfig] = None,
+) -> Iterator[Dict[str, Any]]:
+    config = config or SegmentConfig()
+    for index, document in enumerate(documents):
+        try:
+            yield from segment_document_pipeline(document, config)
+        except ValueError as exc:
+            raise ValueError(f"document index {index}: {exc}") from exc
 
 
 def segment_document(
