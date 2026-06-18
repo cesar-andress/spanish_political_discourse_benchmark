@@ -1,0 +1,33 @@
+# Template for curated dataset metadata (not auto-generated).
+# Copy this file to datasets/metadata/{dataset_id}.yaml and fill in verified values.
+
+dataset_id: unknown
+dataset_name: unknown
+local_path: unknown
+
+language: unknown
+source_type: unknown  # parliamentary | manifesto | social_media | other
+license: unknown
+full_text_allowed: unknown  # yes | no | partial | unknown
+
+topic: unknown
+start_year: unknown
+end_year: unknown
+
+status: unknown  # available | pending | restricted | deprecated
+notes: unknown
+
+provenance:
+  fetch_date: unknown
+  fetch_script: unknown
+  source_url: unknown
+  contact: unknown
+
+redistribution:
+  github: unknown
+  zenodo: unknown
+  ids_only: unknown
+
+related_docs:
+  datasheet: unknown
+  data_statement: unknown

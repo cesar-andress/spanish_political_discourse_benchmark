@@ -1,0 +1,9 @@
+# TODO: Complete before Zenodo release.
+cff-version: 1.2.0
+title: Spanish Political Discourse Benchmark
+message: >-
+  If you use this benchmark, please cite it using the metadata from this file.
+license: unknown
+authors: []
+repository-code: unknown
+version: 0.0.0

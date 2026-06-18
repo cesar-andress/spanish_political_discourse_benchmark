@@ -1,0 +1,7 @@
+# TODO: Define conda/mamba environment name, channels, and pinned dependencies.
+name: papers_unir
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  # TODO: Add project dependencies.
