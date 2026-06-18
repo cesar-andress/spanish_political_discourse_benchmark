@@ -4,13 +4,18 @@
 from __future__ import annotations
 
 import json
-import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 RELEASE = "v0.1.0-alpha"
-VERSION_PATTERN = re.compile(r"0\.1\.0-alpha")
+VERSION = "spdb-v0.1.0"
+DOI = "10.5281/zenodo.20745404"
+EXPECTED_CREATORS = (
+    "Baena Rojas, José Jaime",
+    "Pinto Pajares, Daniel",
+    "Andrés Sánchez, César",
+)
 
 
 def _read(path: Path) -> str:
@@ -28,12 +33,17 @@ def check_citation_cff(errors: list[str]) -> None:
     text = _read(path)
     if "cff-version:" not in text:
         errors.append("CITATION.cff: missing cff-version")
-    if not VERSION_PATTERN.search(text):
-        errors.append("CITATION.cff: version must be 0.1.0-alpha")
+    if f"version: {VERSION}" not in text and f'version: "{VERSION}"' not in text:
+        errors.append(f"CITATION.cff: version must be {VERSION}")
+    if DOI not in text:
+        errors.append(f"CITATION.cff: missing doi {DOI}")
     if "PLACEHOLDER" in text:
         errors.append("CITATION.cff: contains PLACEHOLDER repository URL")
     if "0000-0000-0000-0000" in text:
         errors.append("CITATION.cff: invalid placeholder ORCID")
+    author_blocks = text.split("- family-names:")[1:]
+    if len(author_blocks) != 3:
+        errors.append("CITATION.cff: expected 3 authors")
     for field in ("title:", "authors:", "repository-code:", "abstract:"):
         if field not in text:
             errors.append(f"CITATION.cff: missing {field}")
@@ -42,15 +52,28 @@ def check_citation_cff(errors: list[str]) -> None:
 def check_zenodo_json(errors: list[str]) -> None:
     path = ROOT / ".zenodo.json"
     data = json.loads(_read(path))
-    if data.get("version") != "0.1.0-alpha":
-        errors.append(".zenodo.json: version must be 0.1.0-alpha")
-    if not data.get("creators"):
-        errors.append(".zenodo.json: creators required")
+    if data.get("version") != VERSION:
+        errors.append(f".zenodo.json: version must be {VERSION}")
+    if data.get("language") != "eng":
+        errors.append(".zenodo.json: language must be eng")
+    creators = data.get("creators", [])
+    if len(creators) != 3:
+        errors.append(".zenodo.json: expected 3 creators")
+    creator_names = [c.get("name", "") for c in creators]
+    if creator_names != list(EXPECTED_CREATORS):
+        errors.append(".zenodo.json: creator order or names mismatch")
     if not data.get("title"):
         errors.append(".zenodo.json: title required")
     if "PLACEHOLDER" in json.dumps(data):
         errors.append(".zenodo.json: contains PLACEHOLDER values")
-    for creator in data.get("creators", []):
+    doi_ids = [
+        r.get("identifier")
+        for r in data.get("related_identifiers", [])
+        if r.get("scheme") == "doi"
+    ]
+    if DOI not in doi_ids:
+        errors.append(f".zenodo.json: missing related_identifier doi {DOI}")
+    for creator in creators:
         orcid = creator.get("orcid", "")
         if orcid in ("", "0000-0000-0000-0000"):
             errors.append(".zenodo.json: invalid or missing ORCID for creator")
@@ -93,12 +116,28 @@ def check_sample_counts(errors: list[str]) -> None:
         errors.append(f"pilot_100_units.csv: expected 101 lines (header + 100), got {len(csv_lines)}")
 
 
-def check_readme_mentions_release(errors: list[str]) -> None:
+def check_readme_citation(errors: list[str]) -> None:
     readme = _read(ROOT / "README.md")
-    if RELEASE not in readme:
-        errors.append("README.md: must mention v0.1.0-alpha")
+    if DOI not in readme:
+        errors.append("README.md: must include DOI")
+    for author in ("Baena Rojas", "Pinto Pajares", "Andrés Sánchez"):
+        if author not in readme:
+            errors.append(f"README.md: missing author {author}")
+    if "How to cite" not in readme and "How to Cite" not in readme:
+        errors.append("README.md: missing How to cite section")
     if "PLACEHOLDER" in readme:
         errors.append("README.md: contains PLACEHOLDER URL")
+
+
+def check_bibliography_bib(errors: list[str]) -> None:
+    bib = _read(ROOT / "bibliography.bib")
+    if "spdb_2025" not in bib:
+        errors.append("bibliography.bib: missing spdb_2025 entry")
+    if DOI not in bib:
+        errors.append(f"bibliography.bib: missing doi {DOI}")
+    for author in ("Baena Rojas", "Pinto Pajares", "Andr"):
+        if author not in bib:
+            errors.append(f"bibliography.bib: missing author fragment {author}")
 
 
 def main() -> int:
@@ -113,7 +152,8 @@ def main() -> int:
     check_zenodo_json(errors)
     check_manifest(errors)
     check_sample_counts(errors)
-    check_readme_mentions_release(errors)
+    check_readme_citation(errors)
+    check_bibliography_bib(errors)
 
     if errors:
         print(f"Release validation FAILED ({len(errors)} issue(s)):", file=sys.stderr)

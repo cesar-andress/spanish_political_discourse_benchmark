@@ -1,27 +1,39 @@
 {
   "title": "Spanish Political Discourse Benchmark (SPDB)",
-  "description": "Multilayer annotated corpus framework for Spanish political discourse. v0.1.0-alpha: annotation guidelines, codebook v1, JSON schemas, pipeline documentation, and an unannotated 100-unit ParlaMint pilot sample.",
+  "description": "SPDB is an open benchmark for the systematic annotation and analysis of Spanish political discourse in parliamentary debates.",
   "creators": [
     {
-      "name": "Andres, Cesar",
+      "name": "Baena Rojas, José Jaime",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR), Spain",
+      "orcid": "0000-0002-0915-4087"
+    },
+    {
+      "name": "Pinto Pajares, Daniel",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR), Spain",
+      "orcid": "0000-0001-9397-811X"
+    },
+    {
+      "name": "Andrés Sánchez, César",
       "affiliation": "Universidad Internacional de La Rioja (UNIR), Spain",
       "orcid": "0009-0001-8968-3404"
     }
   ],
   "keywords": [
     "political discourse",
-    "Spanish NLP",
-    "pragmatics",
-    "argumentation",
-    "corpus annotation",
-    "ParlaMint"
+    "parliamentary debates",
+    "Spain",
+    "NLP",
+    "computational social science",
+    "annotation",
+    "benchmark"
   ],
   "license": {
     "id": "CC-BY-4.0"
   },
+  "language": "eng",
   "upload_type": "software",
-  "publication_date": "2026-06-18",
-  "version": "0.1.0-alpha",
+  "publication_date": "2025-01-01",
+  "version": "spdb-v0.1.0",
   "access_right": "open",
   "communities": [
     {
@@ -33,7 +45,11 @@
       "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark",
       "relation": "isSupplementTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.20745404",
+      "relation": "isIdenticalTo",
+      "scheme": "doi"
     }
-  ],
-  "notes": "Alpha release — not a gold benchmark. No annotated train/dev/test splits. DOI to be assigned after deposit."
+  ]
 }

@@ -1,25 +1,34 @@
 cff-version: 1.2.0
 title: "Spanish Political Discourse Benchmark (SPDB)"
-version: 0.1.0-alpha
-date-released: 2026-06-18
+version: spdb-v0.1.0
+date-released: 2025-01-01
 message: "If you use this resource, please cite it using the metadata from this file."
 type: software
 license: CC-BY-4.0
+doi: 10.5281/zenodo.20745404
 repository-code: "https://github.com/cesar-andress/spanish_political_discourse_benchmark"
-url: "https://github.com/cesar-andress/spanish_political_discourse_benchmark"
+url: "https://doi.org/10.5281/zenodo.20745404"
 abstract: >
-  Multilayer benchmark for Spanish political discourse covering pragmatic functions,
-  fallacies, semantic vacuity, and conceptual anachronism. Release v0.1.0-alpha provides
-  annotation guidelines, JSON schemas, pipeline documentation, and an unannotated
-  100-unit ParlaMint pilot sample for tooling and reliability testing.
+  SPDB is an open benchmark for the systematic annotation and analysis of Spanish
+  political discourse in parliamentary debates.
 keywords:
   - political discourse
-  - Spanish NLP
-  - pragmatics
-  - argumentation
-  - corpus annotation
+  - parliamentary debates
+  - Spain
+  - NLP
+  - computational social science
+  - annotation
+  - benchmark
 authors:
-  - family-names: "Andres"
-    given-names: "Cesar"
+  - family-names: "Baena Rojas"
+    given-names: "José Jaime"
+    affiliation: "Universidad Internacional de La Rioja (UNIR), Spain"
+    orcid: "https://orcid.org/0000-0002-0915-4087"
+  - family-names: "Pinto Pajares"
+    given-names: "Daniel"
+    affiliation: "Universidad Internacional de La Rioja (UNIR), Spain"
+    orcid: "https://orcid.org/0000-0001-9397-811X"
+  - family-names: "Andrés Sánchez"
+    given-names: "César"
     affiliation: "Universidad Internacional de La Rioja (UNIR), Spain"
     orcid: "https://orcid.org/0009-0001-8968-3404"
