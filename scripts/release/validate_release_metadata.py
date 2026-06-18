@@ -14,7 +14,7 @@ DOI = "10.5281/zenodo.20745404"
 EXPECTED_CREATORS = (
     "Baena Rojas, José Jaime",
     "Pinto Pajares, Daniel",
-    "Andrés Sánchez, César",
+    "Andrés, César",
 )
 
 
@@ -120,7 +120,7 @@ def check_readme_citation(errors: list[str]) -> None:
     readme = _read(ROOT / "README.md")
     if DOI not in readme:
         errors.append("README.md: must include DOI")
-    for author in ("Baena Rojas", "Pinto Pajares", "Andrés Sánchez"):
+    for author in ("Baena Rojas", "Pinto Pajares", "Andrés, C"):
         if author not in readme:
             errors.append(f"README.md: missing author {author}")
     if "How to cite" not in readme and "How to Cite" not in readme:

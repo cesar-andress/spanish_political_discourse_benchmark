@@ -58,13 +58,13 @@ data/           Local processed data (gitignored; see data/processed/README.md)
 
 **APA**
 
-> Baena Rojas, J. J., Pinto Pajares, D., & Andrés Sánchez, C. (2025). *Spanish Political Discourse Benchmark (SPDB)* (Version spdb-v0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20745404
+> Baena Rojas, J. J., Pinto Pajares, D., & Andrés, C. (2025). *Spanish Political Discourse Benchmark (SPDB)* (Version spdb-v0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20745404
 
 **BibTeX**
 
 ```bibtex
 @misc{spdb_2025,
-  author = {Baena Rojas, José Jaime and Pinto Pajares, Daniel and Andrés Sánchez, César},
+  author = {Baena Rojas, José Jaime and Pinto Pajares, Daniel and Andrés, César},
   title = {Spanish Political Discourse Benchmark (SPDB)},
   year = {2025},
   doi = {10.5281/zenodo.20745404},

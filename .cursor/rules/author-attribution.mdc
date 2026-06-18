@@ -1,0 +1,25 @@
+---
+description: SPDB author names and citation attribution
+globs: "{CITATION.cff,.zenodo.json,README.md,bibliography.bib,**/*.bib,docs/**/*.md,scripts/release/**}"
+alwaysApply: false
+---
+
+# SPDB author attribution
+
+## Third author
+
+Use **César Andrés** only. Do **not** add the surname Sánchez.
+
+| Context | Correct | Wrong |
+|---------|---------|-------|
+| CITATION.cff | `family-names: "Andrés"`, `given-names: "César"` | `Andrés Sánchez` |
+| Zenodo / APA | `Andrés, César` | `Andrés Sánchez, César` |
+| BibTeX | `Andr{\'e}s, C{\'e}sar` | `Andr{\'e}s S{\'a}nchez, C{\'e}sar` |
+
+## Author order (fixed)
+
+1. José Jaime Baena Rojas
+2. Daniel Pinto Pajares
+3. César Andrés
+
+When updating citation metadata, keep all three authors in this order across `CITATION.cff`, `.zenodo.json`, `README.md`, and `bibliography.bib`.
