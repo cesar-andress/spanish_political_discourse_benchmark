@@ -32,6 +32,8 @@ def check_citation_cff(errors: list[str]) -> None:
         errors.append("CITATION.cff: version must be 0.1.0-alpha")
     if "PLACEHOLDER" in text:
         errors.append("CITATION.cff: contains PLACEHOLDER repository URL")
+    if "0000-0000-0000-0000" in text:
+        errors.append("CITATION.cff: invalid placeholder ORCID")
     for field in ("title:", "authors:", "repository-code:", "abstract:"):
         if field not in text:
             errors.append(f"CITATION.cff: missing {field}")
@@ -48,6 +50,10 @@ def check_zenodo_json(errors: list[str]) -> None:
         errors.append(".zenodo.json: title required")
     if "PLACEHOLDER" in json.dumps(data):
         errors.append(".zenodo.json: contains PLACEHOLDER values")
+    for creator in data.get("creators", []):
+        orcid = creator.get("orcid", "")
+        if orcid in ("", "0000-0000-0000-0000"):
+            errors.append(".zenodo.json: invalid or missing ORCID for creator")
 
 
 def check_manifest(errors: list[str]) -> None:

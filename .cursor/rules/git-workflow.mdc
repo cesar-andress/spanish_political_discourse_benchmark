@@ -1,0 +1,11 @@
+---
+description: Git branching policy — always work on main
+alwaysApply: true
+---
+
+# Git workflow
+
+- Do **not** create or switch Git branches.
+- Always work on **main**, unless the user explicitly asks for a branch.
+- Commit coherent changes directly to main.
+- Do **not** push unless explicitly instructed.
