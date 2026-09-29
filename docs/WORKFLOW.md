@@ -8,7 +8,7 @@
 
 ## Bibliography
 
-<!-- TODO: Shared bibliography at repository root: bibliography.bib -->
+<!-- Manuscript bibliography lives at papers_unir/bibliography.bib, not in this public repo. -->
 
 ## Results & figures
 

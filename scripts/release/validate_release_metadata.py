@@ -129,17 +129,6 @@ def check_readme_citation(errors: list[str]) -> None:
         errors.append("README.md: contains PLACEHOLDER URL")
 
 
-def check_bibliography_bib(errors: list[str]) -> None:
-    bib = _read(ROOT / "bibliography.bib")
-    if "spdb_2025" not in bib:
-        errors.append("bibliography.bib: missing spdb_2025 entry")
-    if DOI not in bib:
-        errors.append(f"bibliography.bib: missing doi {DOI}")
-    for author in ("Baena Rojas", "Pinto Pajares", "Andr"):
-        if author not in bib:
-            errors.append(f"bibliography.bib: missing author fragment {author}")
-
-
 def main() -> int:
     errors: list[str] = []
     check_file_exists("README.md", errors)
@@ -153,7 +142,6 @@ def main() -> int:
     check_manifest(errors)
     check_sample_counts(errors)
     check_readme_citation(errors)
-    check_bibliography_bib(errors)
 
     if errors:
         print(f"Release validation FAILED ({len(errors)} issue(s)):", file=sys.stderr)

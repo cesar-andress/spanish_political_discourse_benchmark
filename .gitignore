@@ -12,6 +12,12 @@ Desktop.ini
 .idea/
 *.sublime-project
 *.sublime-workspace
+.cursor/
+.claude/
+.agents/
+.agent/
+AGENTS.md
+CLAUDE.md
 
 # --- Credentials & secrets -------------------------------------------------
 .env
@@ -67,7 +73,10 @@ htmlcov/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# --- LaTeX -----------------------------------------------------------------
+# --- LaTeX (manuscript lives in ../paper and papers_unir/bibliography.bib) ---
+*.tex
+*.bib
+*.bbl
 *.aux
 *.bbl
 *.bcf

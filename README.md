@@ -73,7 +73,7 @@ data/           Local processed data (gitignored; see data/processed/README.md)
 }
 ```
 
-Machine-readable metadata: [`CITATION.cff`](CITATION.cff) · [`bibliography.bib`](bibliography.bib)
+Machine-readable metadata: [`CITATION.cff`](CITATION.cff)
 
 ## License
 
