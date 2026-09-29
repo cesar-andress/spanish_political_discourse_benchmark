@@ -1,4 +1,4 @@
-.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare discriminant-validity discriminant-validity-fixtures register-shift register-shift-fixtures dataset-card datasheet docs-release leaderboard leaderboard-fixtures leaderboard-validate leaderboard-score error-taxonomy error-taxonomy-fixtures external-validation fallacy-external-dry-run fallacy-external-run fallacy-external-report ingest-fallacyes-political map-fallacyes-political run-fallacyes-political-mistral report-fallacyes-political
+.PHONY: ingest segment validate test pipeline pipeline-fixture check-ingest-input release-validate artifact-audit pilot-analytics ontology-validation llm-annotation-dry-run llm-annotation-local human-vs-llm human-vs-llm-fixtures ollama-annotate-all ollama-compare discriminant-validity discriminant-validity-fixtures register-shift register-shift-fixtures dataset-card datasheet docs-release leaderboard leaderboard-fixtures leaderboard-validate leaderboard-score error-taxonomy error-taxonomy-fixtures external-validation fallacy-external-dry-run fallacy-external-run fallacy-external-report ingest-fallacyes-political map-fallacyes-political run-fallacyes-political-mistral report-fallacyes-political evaluate-external-metrics
 .PHONY: ingest-parlamint segment-parlamint parlamint-100 validate-parlamint-100
 .PHONY: parlamint-500 validate-parlamint-500 pilot-agreement
 
@@ -215,6 +215,16 @@ report-fallacyes-political:
 		--predictions $(FALLACYES_PREDICTIONS) \
 		--model-name mistral \
 		--report $(FALLACYES_REPORT)
+	$(MAKE) evaluate-external-metrics
+
+evaluate-external-metrics:
+	PYTHONPATH=. $(PYTHON) -m scripts.external_validation.evaluate_external_metrics \
+		--mapped $(FALLACYES_MAPPED) \
+		--predictions $(FALLACYES_PREDICTIONS) \
+		--dataset-name fallacyes_political \
+		--model-name mistral \
+		--json-output reports/external_validation/metrics.json \
+		--markdown-output reports/external_validation/metrics.md
 
 ARTIFACT_AUDIT_INPUT ?= tests/fixtures/annotation/artifact_audit_sample.csv
 

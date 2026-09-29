@@ -1,0 +1,5 @@
+cluster_id,title,human_count,model_count,human_units,model_units
+attack_defense,ATTACK vs DEFENSE,8,2,2,2
+advocacy_proposal,ADVOCACY vs PROPOSAL,8,2,2,2
+appeal_advocacy,APPEAL vs ADVOCACY,8,2,2,2
+deflect_defense,DEFLECT vs DEFENSE,8,2,2,2

@@ -1,0 +1,9 @@
+cluster_id,source,target,human_count,model_count,total
+attack_defense,PF_ATTACK,PF_DEFENSE,4,1,5
+attack_defense,PF_DEFENSE,PF_ATTACK,4,1,5
+advocacy_proposal,PF_ADVOCACY,PF_PROPOSAL,4,1,5
+advocacy_proposal,PF_PROPOSAL,PF_ADVOCACY,4,1,5
+appeal_advocacy,PF_APPEAL,PF_ADVOCACY,4,1,5
+appeal_advocacy,PF_ADVOCACY,PF_APPEAL,4,1,5
+deflect_defense,PF_DEFLECT,PF_DEFENSE,4,1,5
+deflect_defense,PF_DEFENSE,PF_DEFLECT,4,1,5

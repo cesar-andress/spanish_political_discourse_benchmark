@@ -1,11 +1,13 @@
-# SPDB v1 — Label Studio annotation instructions
+# SPDB — Label Studio annotation instructions
 
-**Project:** Spanish Political Discourse Benchmark (SPDB) v1  
+**Project:** Spanish Political Discourse Benchmark (SPDB)  
+**Guideline version:** `guidelines-v1.1` (aligned with `codebook-v1.1.0`)  
 **Configuration:** `annotation/labelstudio/config.xml`  
 **Label ontology:** `labels/*.tsv`  
-**Canonical spec:** `docs/dataset_documentation/v1_build_specification.md` (§5–§6, §8–§9)
+**Authoritative codebook:** `annotation/codebook/SPDB_Codebook_v1.1.md`  
+**Canonical build spec:** `docs/dataset_documentation/v1_build_specification.md` (§5–§6, §8–§9)
 
-These instructions describe how to use the Label Studio project. They do **not** contain annotated examples.
+These instructions describe how to use the Label Studio project. Operational PF rules live in the codebook (especially §2.1 context, §4.2 PROCEDURAL/INFO, §4.3 pair discriminators).
 
 ---
 
@@ -90,11 +92,13 @@ Context (read-only)
 **Rules:**
 
 - Select the **dominant** function toward the primary political target.
+- Apply codebook §4 decision tree top-to-bottom; for PROCEDURAL vs INFO use §4.2 (**function of utterance**, not speaker identity).
 - If truly tied, choose the function directed at the primary target and enable **Borderline PF case**.
 - Borderline cases should be **≤5%** of submissions (§5.1).
 - Pragmatic function is **independent** of fallacy labels (§6 rule 4).
+- Context: unit text + metadata + optional ±1 same-`document_id` unit only (codebook §2.1). No web search.
 
-Definitions: see `labels/pragmatic_functions.tsv`.
+Definitions: see `labels/pragmatic_functions.tsv` and `annotation/codebook/SPDB_Codebook_v1.1.md`.
 
 ---
 

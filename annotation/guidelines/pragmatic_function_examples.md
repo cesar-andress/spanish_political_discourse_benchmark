@@ -1,11 +1,15 @@
-# Pragmatic function annotation — worked examples (SPDB v1)
+# Pragmatic function annotation — worked examples (SPDB)
 
+**Guideline version:** `guidelines-v1.1` (aligned with `codebook-v1.1.0`)  
 **Ontology:** `labels/pragmatic_functions.tsv`  
-**Label IDs:** exactly one `PF_*` per discourse unit (mutually exclusive)  
+**Label IDs:** exactly one `PF_*` per discourse unit (mutually exclusive; inventory unchanged from v1.0)  
+**Authoritative rules:** `annotation/codebook/SPDB_Codebook_v1.1.md` (§4.2 PROCEDURAL/INFO; §4.3 pair discriminators; §2.1 context)  
 **Example source:** real units from ParlaMint-ES sessions ingested locally and segmented into SPDB discourse units (`data/processed/parlamint_100_units.jsonl` and `data/processed/parlamint_units.jsonl`).  
 **Provenance:** ParlaMint 5.0 Spanish corpus (see `docs/sources/parlamint.md`).
 
-Use these examples for pilot and full annotation training. Quotes are **truncated** where the full unit mixes functions; label the **entire unit**, not the excerpt alone.
+Use these examples for training/calibration. Quotes are **truncated** where the full unit mixes functions; label the **entire unit**, not the excerpt alone.
+
+**Wave-1 note:** Dual-annotator agreement examples are **not** adjudicated gold. Wave-1 disagreement units are **not** used here as newly correct labels.
 
 ---
 
@@ -256,11 +260,11 @@ Label `PF_APPEAL` when the dominant move **mobilises** the audience (citizens, v
 
 ### Definition
 
-Conveys factual or procedural information with minimal evaluative framing.
+Conveys **subject-matter** factual information (policy, bill content, figures, technical description) with minimal evaluative framing. Not for chamber-management or vote-tally reporting (`PF_PROCEDURAL`; codebook §4.2).
 
 ### Decision rule
 
-Label `PF_INFO` when the span **reports** facts, figures, bill contents, or technical/process information without the dominant move being persuasion, attack, or mobilisation. Brief courtesy formulae inside informational speech do not flip the label. Heavy evaluative framing or moral judgement pushes toward advocacy or attack.
+Label `PF_INFO` when the span **reports** bill/policy facts without dominant persuasion, attack, mobilisation, or **sitting management**. Brief courtesy formulae inside informational speech do not flip the label. Vote results and speaker recognition are `PF_PROCEDURAL`, not `PF_INFO`.
 
 ### Positive examples (ParlaMint sample)
 
@@ -294,7 +298,7 @@ Label `PF_INFO` when the span **reports** facts, figures, bill contents, or tech
 | Often confused with | How to decide |
 |---------------------|---------------|
 | `PF_ADVOCACY` | Info **reports**; advocacy **argues** what should follow from facts. |
-| `PF_PROCEDURAL` | Procedural info is about **chamber process**; PF_INFO is about **policy/subject matter**. |
+| `PF_PROCEDURAL` | See codebook §4.2 — chamber/proceeding management vs policy/bill information. |
 | `PF_DEFENSE` | Correcting facts to **rebut** an opponent is often defense, not neutral info. |
 
 ---
@@ -353,7 +357,7 @@ Order of business, courtesy, formal parliamentary ritual with political context.
 
 ### Decision rule
 
-Label `PF_PROCEDURAL` for the **Presidencia** (or equivalent chair) managing agenda, speaking time, votes, and chamber rules, and for formulaic courtesy openers/closers when **no substantive policy move** dominates the unit. Short “Gracias, presidenta” alone inside a policy speech does not make the whole unit procedural.
+Label `PF_PROCEDURAL` when the dominant move **manages the sitting** (agenda, turn-taking, votes/tallies, timekeeping, suspension/resumption), including proceeding-facts. **Speaker identity alone does not decide** (codebook §4.2). Short “Gracias, presidenta” alone inside a policy speech does not make the whole unit procedural.
 
 ### Positive examples (ParlaMint sample)
 
@@ -372,6 +376,10 @@ Label `PF_PROCEDURAL` for the **Presidencia** (or equivalent chair) managing age
 > «Pasamos ahora a votar el Real Decreto-ley 17/2017 […] Comienza la votación. Efectuada la votación, esta Presidencia informa del resultado.»
 
 — Presidencia (2017-11-30). Unit: `spdb-v1-unassigned-f4efaf8c67ab`.
+
+> «Queda aprobado. Punto 10. Comienza la votación. Efectuada la votación, dio el siguiente resultado: votos emitidos, 329; a favor, 197; en contra, 1; abstenciones, 131.»
+
+— Presidencia. Unit: `spdb-v1-unassigned-a462b78e5554` (**Wave-1 dual agreement** on `PF_PROCEDURAL`; not adjudicated gold). Vote tallies are proceeding-facts → `PF_PROCEDURAL`, not `PF_INFO` (codebook §4.2).
 
 ### Negative examples
 

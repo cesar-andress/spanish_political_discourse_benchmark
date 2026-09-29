@@ -8,11 +8,11 @@ Draft tables formatted for *Language Resources and Evaluation* (LREC) and *Scien
 
 | Attribute | Value |
 |-----------|-------|
-| Discourse units | 24 |
-| Annotators | 3 |
+| Discourse units | 100 |
+| Annotators | 0 |
 | Primary ontology | 8-class pragmatic function (`PF_*`) |
-| Annotation status | `complete` |
-| Ontology decision | PASS |
+| Annotation status | `pending` |
+| Ontology decision | PENDING — AWAITING ANNOTATIONS |
 
 ## Table 2. Overall inter-annotator reliability (LREC style)
 
@@ -20,9 +20,9 @@ Draft tables formatted for *Language Resources and Evaluation* (LREC) and *Scien
 
 | Metric | Estimate | 95% CI |
 |--------|---------:|--------|
-| Krippendorff α | 0.797 | [0.633, 0.935] |
-| Fleiss κ | 0.793 | [0.626, 0.934] |
-| Gwet AC1 | 0.794 | [0.644, 0.937] |
+| Krippendorff α | — | [—, —] |
+| Fleiss κ | — | [—, —] |
+| Gwet AC1 | — | [—, —] |
 
 ## Table 3. Per-class reliability and support
 
@@ -30,14 +30,14 @@ Draft tables formatted for *Language Resources and Evaluation* (LREC) and *Scien
 
 | Label | Support | κ (1 vs rest) | α (1 vs rest) | PSA |
 |-------|--------:|--------------:|--------------:|----:|
-| `PF_ADVOCACY` | 8 | 0.852 | 0.854 | 0.778 |
-| `PF_ATTACK` | 10 | 0.667 | 0.672 | 0.467 |
-| `PF_DEFENSE` | 10 | 0.667 | 0.672 | 0.467 |
-| `PF_PROPOSAL` | 8 | 0.725 | 0.730 | 0.500 |
-| `PF_APPEAL` | 8 | 0.852 | 0.854 | 0.778 |
-| `PF_INFO` | 9 | 0.745 | 0.748 | 0.583 |
-| `PF_DEFLECT` | 9 | 1.000 | 1.000 | 1.000 |
-| `PF_PROCEDURAL` | 10 | 0.889 | 0.891 | 0.750 |
+| `PF_ADVOCACY` | 0 | — | — | — |
+| `PF_ATTACK` | 0 | — | — | — |
+| `PF_DEFENSE` | 0 | — | — | — |
+| `PF_PROPOSAL` | 0 | — | — | — |
+| `PF_APPEAL` | 0 | — | — | — |
+| `PF_INFO` | 0 | — | — | — |
+| `PF_DEFLECT` | 0 | — | — | — |
+| `PF_PROCEDURAL` | 0 | — | — | — |
 
 ## Table 4. Dominant-function audit and disagreement structure
 
@@ -45,12 +45,12 @@ Draft tables formatted for *Language Resources and Evaluation* (LREC) and *Scien
 
 | Metric | Value |
 |--------|------:|
-| Unanimous rate | 0.750 |
-| Majority rate | 0.958 |
-| Full-split rate | 0.042 |
-| Borderline rate | 0.125 |
-| Mean vote entropy | 0.178 |
+| Unanimous rate | — |
+| Majority rate | — |
+| Full-split rate | — |
+| Borderline rate | — |
+| Mean vote entropy | — |
 
 | Top confusion pair | Count | Mass |
 |--------------------|------:|-----:|
-| `PF_ADVOCACY` → `PF_PROPOSAL` | 2 | 0.154 |
+| — | 0 | — |

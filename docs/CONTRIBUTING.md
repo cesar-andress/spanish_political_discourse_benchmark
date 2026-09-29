@@ -1,11 +1,10 @@
 # Contributing
 
-<!-- TODO: Guidelines for collaborators and external contributors. -->
+External contributions are welcome via GitHub pull requests against `main`.
 
-## Workflow
+1. Fork and create a topic branch.
+2. Keep changes scoped; do not commit raw ParlaMint TEI or secrets.
+3. Run `make test` and `make release-validate` before opening a PR.
+4. Do not alter frozen Wave-1 annotation values.
 
-<!-- TODO: Branch naming, PR process, and review expectations. -->
-
-## Code & data standards
-
-<!-- TODO: Link to docs/WORKFLOW.md and data policies. -->
+See also `docs/contributing.md` if present for workflow detail.

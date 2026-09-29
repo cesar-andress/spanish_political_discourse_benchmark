@@ -1,3 +1,7 @@
+<!-- DOCUMENT STATUS: Frozen Wave-1 instrument (codebook-v1.0.0 / guidelines-v1.0).
+For new human reliability coding use codebook-v1.1.0 (SPDB_Codebook_v1.1.md).
+Wave-1 annotations remain v1.0-era diagnostic annotations and are not reclassified under v1.1. -->
+
 # SPDB Annotation Codebook v1
 
 **Spanish Political Discourse Benchmark (SPDB)**  

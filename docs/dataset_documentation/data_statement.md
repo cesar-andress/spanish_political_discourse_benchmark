@@ -1,15 +1,7 @@
-# Data statement (p01)
+# Data statement (SPDB v1.0.0)
 
-<!-- TODO: Data statement for journal submission and reproducibility. -->
-
-## Source corpora
-
-<!-- TODO: List open or legally reusable Spanish political discourse sources. -->
-
-## Annotation
-
-<!-- TODO: Summarize human annotation process and label sets. -->
-
-## Availability
-
-<!-- TODO: GitHub repository paths, Zenodo DOI, and access conditions. -->
+**Language:** Spanish (parliamentary).
+**Source:** ParlaMint-ES (ParlaMint 5.0), CC BY 4.0.
+**Annotation:** Wave-1 pragmatic-function pilot, N=100, two independent annotators.
+**Access:** GitHub + Zenodo (concept DOI 10.5281/zenodo.20745404).
+**Limitations:** Diagnostic pilot only; no adjudicated gold; codebook-v1.1.0 not revalidated.

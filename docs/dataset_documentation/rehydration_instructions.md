@@ -1,19 +1,7 @@
-# Rehydration instructions (p01)
+# Rehydration (v1.0.0)
 
-<!-- TODO: Steps to reconstruct the benchmark from GitHub + Zenodo artifacts. -->
-
-## Prerequisites
-
-<!-- TODO: Environment setup; link to environment/reproducibility_setup.md. -->
-
-## Download
-
-<!-- TODO: Zenodo bundle contents and expected directory layout after extraction. -->
-
-## Restore processed data
-
-<!-- TODO: Scripts or commands to rebuild processed splits if not shipped directly. -->
-
-## Verify
-
-<!-- TODO: Checksums, row counts, and smoke tests to confirm successful rehydration. -->
+1. Clone the GitHub repository at tag `v1.0.0` (or download the Zenodo archive).
+2. `python -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"`.
+3. Verify Wave-1 CSVs under `annotation/pilot_001/` and `releases/v1.0.0/`.
+4. Run `make test` and reproduce agreement metrics per `docs/REPRODUCIBILITY.md`.
+5. Optional: place ParlaMint TEI under `data/raw/parlamint/` to regenerate samples.

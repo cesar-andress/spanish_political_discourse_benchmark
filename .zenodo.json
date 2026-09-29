@@ -1,6 +1,6 @@
 {
-  "title": "Spanish Political Discourse Benchmark (SPDB)",
-  "description": "SPDB is an open benchmark for the systematic annotation and analysis of Spanish political discourse in parliamentary debates.",
+  "title": "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource",
+  "description": "SPDB is a reproducible annotation resource for pragmatic-function coding in Spanish parliamentary discourse. Version 1.0.0 includes schemas and guidelines, a ParlaMint-derived development slice (pool N=878), a completed two-coder diagnostic reliability pilot (N=100; simple random sample, seed=42; observed agreement 0.350; Cohen kappa ~0.235; Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements), disagreement analysis, and revised codebook-v1.1.0. The revised guidelines are documented but have not been independently reliability-tested. This release is not an adjudicated gold or production benchmark.",
   "creators": [
     {
       "name": "Baena Rojas, José Jaime",
@@ -19,27 +19,23 @@
     }
   ],
   "keywords": [
-    "political discourse",
-    "parliamentary debates",
-    "Spain",
-    "NLP",
-    "computational social science",
-    "annotation",
-    "benchmark"
+    "Spanish political discourse",
+    "parliamentary discourse",
+    "pragmatics",
+    "pragmatic function",
+    "corpus annotation",
+    "inter-annotator agreement",
+    "annotation disagreement",
+    "language resources"
   ],
   "license": {
     "id": "CC-BY-4.0"
   },
   "language": "eng",
-  "upload_type": "software",
-  "publication_date": "2025-01-01",
-  "version": "spdb-v0.1.0",
+  "upload_type": "dataset",
+  "publication_date": "2026-09-29",
+  "version": "1.0.0",
   "access_right": "open",
-  "communities": [
-    {
-      "identifier": "zenodo"
-    }
-  ],
   "related_identifiers": [
     {
       "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark",
@@ -47,9 +43,19 @@
       "scheme": "url"
     },
     {
-      "identifier": "10.5281/zenodo.20745404",
+      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark/releases/tag/v1.0.0",
       "relation": "isIdenticalTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.20745404",
+      "relation": "isVersionOf",
       "scheme": "doi"
+    },
+    {
+      "identifier": "https://www.clarin.si/repository/xmlui/handle/11356/2004",
+      "relation": "isDerivedFrom",
+      "scheme": "url"
     }
   ]
 }

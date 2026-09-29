@@ -2,7 +2,7 @@
 
 **Input:** `tests/fixtures/annotation/artifact_audit_sample.csv`  
 **Metadata merge:** none  
-**Generated:** 2026-06-18 10:48 UTC  
+**Generated:** 2026-06-18 10:56 UTC  
 **Units audited:** 30
 
 ## Purpose

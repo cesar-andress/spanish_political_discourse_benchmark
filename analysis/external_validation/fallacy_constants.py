@@ -26,6 +26,8 @@ DEFAULT_OUTPUT_DIR = Path("data/experiments/external_validation")
 DEFAULT_FALLACY_REPORT = DEFAULT_REPORT_DIR / "fallacy_llm_report.md"
 DEFAULT_LABEL_DISTRIBUTION = DEFAULT_REPORT_DIR / "fallacy_label_distribution.csv"
 DEFAULT_PARSE_ERRORS = DEFAULT_REPORT_DIR / "fallacy_parse_errors.csv"
+DEFAULT_METRICS_JSON = DEFAULT_REPORT_DIR / "metrics.json"
+DEFAULT_METRICS_MD = DEFAULT_REPORT_DIR / "metrics.md"
 
 FIXTURE_DATASET = Path("tests/fixtures/external_validation/fallacy_sample.jsonl")
 FIXTURE_MOCK_BACKEND = Path("tests/fixtures/external_validation/mock_fallacy_backend.py")

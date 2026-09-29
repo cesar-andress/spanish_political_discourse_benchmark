@@ -2,17 +2,17 @@
 
 | Field | Value |
 |-------|-------|
-| **Source** | ParlaMint |
+| **Source** | ParlaMint 5.0 (ParlaMint-ES) |
 | **Project URL** | https://www.clarin.eu/parlamint |
 | **GitHub** | https://github.com/clarin-eric/ParlaMint |
-| **CLARIN.SI handle (ParlaMint 5.0)** | https://www.clarin.si/repository/xmlui/handle/11356/2004 |
-| **Access date** | 2026-06-18 |
-| **Status** | License **to be verified** before public release |
+| **CLARIN.SI handle** | https://www.clarin.si/repository/xmlui/handle/11356/2004 |
+| **Licence** | **CC BY 4.0** (verified from CLARIN.SI deposit metadata) |
+| **Access date (project)** | 2026-06-18 |
 
 ## Intended use in SPDB
 
-ParlaMint provides harmonised TEI/XML parliamentary corpora. For SPDB it serves as the
-**parliamentary source layer** while direct Congreso ingestion is finalised:
+ParlaMint provides harmonised TEI/XML parliamentary corpora. For SPDB it is the
+parliamentary source layer:
 
 - utterance-level `<u>` elements with speaker metadata;
 - session dates and identifiers;
@@ -21,15 +21,17 @@ ParlaMint provides harmonised TEI/XML parliamentary corpora. For SPDB it serves 
 
 The local ingestor writes intermediate JSONL without downloading data automatically.
 
-## Redistribution note
+## Redistribution
 
-**Do not redistribute raw ParlaMint texts or SPDB slices derived from them until:**
+ParlaMint 5.0 is licensed **CC BY 4.0**. SPDB may redistribute derived unit texts
+in release samples and Wave-1 packages provided that:
 
-1. licence terms for the exact ParlaMint 5.0 Spanish deposit are verified;
-2. citation and attribution requirements are documented;
-3. SPDB release policy explicitly permits the derived sample.
+1. ParlaMint / CLARIN.SI attribution is retained;
+2. the CC BY 4.0 notice remains visible (see repository `LICENSE`);
+3. provenance fields record the upstream source file and licence.
 
-Every ingested record carries `provenance.license_status = "to_be_verified"`.
+Released JSONL units use `provenance.license_status = "CC-BY-4.0"` with a
+ParlaMint attribution note.
 
 ## Local acquisition (manual)
 
@@ -50,8 +52,7 @@ make ingest-parlamint
 make segment-parlamint
 make parlamint-100
 make validate-parlamint-100
-make parlamint-500
-make validate-parlamint-500
 ```
 
-See `reports/parlamint_500_sampling_report.md` for stratified 500-unit candidate sampling (current pool ceiling: 398 units under speaker cap).
+Processed pool files under `data/processed/` are gitignored; release samples under
+`releases/` and Wave-1 CSVs under `annotation/pilot_001/` are the public units.

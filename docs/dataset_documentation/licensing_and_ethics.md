@@ -1,15 +1,10 @@
-# Licensing and ethics (p01)
+# Licensing and ethics matrix (v1.0.0)
 
-<!-- TODO: Licensing terms, ethics approvals, and redistribution constraints. -->
+| Material | In release | Licence / terms |
+|----------|------------|-----------------|
+| SPDB original docs, schemas, Wave-1 labels | Yes | CC BY 4.0 |
+| ParlaMint-derived unit text | Yes | Upstream CC BY 4.0 + attribution |
+| FallacyES-Political raw data | No | Upstream terms; use scripts to acquire |
+| Manifesto / social media bodies | No | Not included |
 
-## Licenses
-
-<!-- TODO: Document licenses for source data, annotations, and released benchmark. -->
-
-## Ethics
-
-<!-- TODO: IRB/ethics review status, consent, and sensitive content handling. -->
-
-## Redistribution
-
-<!-- TODO: What may be published on GitHub vs. Zenodo vs. withheld. -->
+Ethics summary: `docs/ethics.md`. Funding: none. Competing interests: none.

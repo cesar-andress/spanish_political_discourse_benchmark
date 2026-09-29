@@ -78,7 +78,6 @@ htmlcov/
 *.bib
 *.bbl
 *.aux
-*.bbl
 *.bcf
 *.blg
 *.fdb_latexmk
@@ -168,3 +167,13 @@ temp/
 # --- Zenodo release bundles (generated locally) ------------------------------
 zenodo/releases/**/bundle/
 zenodo/releases/**/*.zip
+
+# Prospective / unused protocol material (not Wave-1 evidence)
+annotation/calibration_v1_1/
+annotation/attestation/
+
+# Prospective leaderboard scaffolding (not a published leaderboard)
+leaderboard/
+analysis/leaderboard/
+scripts/leaderboard/
+schemas/leaderboard_submission.schema.json

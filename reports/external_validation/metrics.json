@@ -1,0 +1,74 @@
+{
+  "dataset": "fallacyes_political",
+  "model": "mistral",
+  "mapped_path": "data/external/fallacyes_political/fallacyes_political_spdb_mapped.jsonl",
+  "predictions_path": "data/experiments/external_validation/mistral_fallacyes_political.jsonl",
+  "mapping_types_filter": null,
+  "require_gold_labels": true,
+  "label_set": [
+    "FAL_ADHOM",
+    "FAL_STRAW",
+    "FAL_DILEMMA",
+    "FAL_SLOPE",
+    "FAL_EMOTION",
+    "FAL_GENERAL",
+    "FAL_WHATABOUT"
+  ],
+  "metrics": {
+    "n_samples": 1753,
+    "n_labels": 7,
+    "micro_precision": 0.21432251416795467,
+    "micro_recall": 0.23649801023308697,
+    "micro_f1": 0.22486486486486487,
+    "macro_precision": 0.24960582375893536,
+    "macro_recall": 0.20393880476434195,
+    "macro_f1": 0.17582290859433541,
+    "exact_match_ratio": 0.1865373645179692,
+    "hamming_loss": 0.2337217830657648,
+    "jaccard_similarity": 0.21182734360144512,
+    "per_label": {
+      "FAL_ADHOM": {
+        "precision": 0.33542976939203356,
+        "recall": 0.3669724770642202,
+        "f1": 0.35049288061336253,
+        "support": 436
+      },
+      "FAL_STRAW": {
+        "precision": 0.25,
+        "recall": 0.18803418803418803,
+        "f1": 0.2146341463414634,
+        "support": 351
+      },
+      "FAL_DILEMMA": {
+        "precision": 0.5,
+        "recall": 0.027624309392265192,
+        "f1": 0.05235602094240837,
+        "support": 181
+      },
+      "FAL_SLOPE": {
+        "precision": 0.03017241379310345,
+        "recall": 0.30434782608695654,
+        "f1": 0.05490196078431373,
+        "support": 23
+      },
+      "FAL_EMOTION": {
+        "precision": 0.27491408934707906,
+        "recall": 0.2768166089965398,
+        "f1": 0.2758620689655173,
+        "support": 289
+      },
+      "FAL_GENERAL": {
+        "precision": 0.3516483516483517,
+        "recall": 0.22377622377622378,
+        "f1": 0.27350427350427353,
+        "support": 429
+      },
+      "FAL_WHATABOUT": {
+        "precision": 0.005076142131979695,
+        "recall": 0.04,
+        "f1": 0.009009009009009009,
+        "support": 50
+      }
+    }
+  }
+}

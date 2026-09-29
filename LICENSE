@@ -1,1 +1,54 @@
-# TODO: Choose and record SPDX license for the benchmark release (code + annotations).
+# License
+
+## SPDB original material (CC BY 4.0)
+
+Unless otherwise noted, original SPDB material in this repository is released under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0):
+
+https://creativecommons.org/licenses/by/4.0/
+
+This includes annotation guidelines, codebooks, schemas, label inventories, Wave-1
+diagnostic annotations produced for SPDB, disagreement analyses, and original
+documentation authored by the SPDB team.
+
+You must give appropriate credit, provide a link to the license, and indicate if
+changes were made.
+
+## Software / scripts
+
+Repository analysis and pipeline scripts are released under the same CC BY 4.0 terms
+for this archive, unless an individual file states otherwise.
+
+## Upstream / derived third-party material
+
+### ParlaMint-derived text
+
+Parliamentary unit texts redistributed in SPDB samples and Wave-1 packages are
+derived from **ParlaMint 5.0** (ParlaMint-ES), distributed by CLARIN.SI under
+**CC BY 4.0**:
+
+- Handle: https://www.clarin.si/repository/xmlui/handle/11356/2004
+- Project: https://www.clarin.eu/parlamint
+
+Users must retain ParlaMint attribution when reusing those texts.
+
+### FallacyES-Political and other external corpora
+
+External fallacy corpora used for ontology-compatibility experiments are **not**
+redistributed in this release. Acquisition instructions and mapping code are
+provided under `scripts/external_validation/` and related documentation. Upstream
+licence terms apply to any local copy obtained by the user.
+
+### Manifestos / social media
+
+This release does **not** redistribute manifesto full texts or social-media post
+bodies.
+
+## Summary
+
+| Material | Redistribution in v1.0.0 | Licence |
+|----------|--------------------------|---------|
+| SPDB codebooks, guidelines, schemas, Wave-1 labels | Yes | CC BY 4.0 |
+| ParlaMint-derived unit text in shipped samples | Yes (attribution required) | Upstream CC BY 4.0 |
+| FallacyES-Political raw/mapped corpora | No (reproduce locally) | Upstream terms |
+| Manifesto / social-media full text | No | N/A |

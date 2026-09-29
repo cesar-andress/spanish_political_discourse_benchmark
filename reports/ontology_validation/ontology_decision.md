@@ -1,6 +1,6 @@
 # Ontology pass/fail dashboard
 
-## Decision: **PASS**
+## Decision: **PENDING — AWAITING ANNOTATIONS**
 
 ### Thresholds
 
@@ -11,11 +11,6 @@
 | Borderline rate | ≤ 0.25 |
 | Single confusion-pair mass | ≤ 0.35 |
 
-### Observed metrics
+### Warnings
 
-| Metric | Value |
-|--------|------:|
-| `krippendorff_alpha` | 0.7974 |
-| `full_split_rate` | 0.0417 |
-| `borderline_rate` | 0.1250 |
-| `top_confusion_mass` | 0.1538 |
+- Human annotations not yet available; thresholds not evaluated.
