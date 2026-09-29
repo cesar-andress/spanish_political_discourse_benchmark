@@ -2,7 +2,7 @@
   "version": "1.0.1",
   "release_title": "SPDB v1.0.1 — Provenance and Metadata Correction",
   "release_date": "2026-09-29",
-  "note": "Canonical immutable identifier is git annotated tag v1.0.1. content_commit and git_commit record the release payload commit; a subsequent pin commit may update git_commit only.",
+  "note": "Canonical immutable identifier is git annotated tag v1.0.1. content_commit is the provenance-correction payload commit; git_commit is the annotated-tag target (manifest pin commit).",
   "concept_doi": "10.5281/zenodo.20745403",
   "historical_alpha_version_doi": "10.5281/zenodo.20745404",
   "license": "CC-BY-4.0",
@@ -302,8 +302,8 @@
       "bytes": 975
     }
   ],
-  "git_commit": "82facd811f674312c004978028d5e7f6cd1a4cb6",
-  "content_commit": "82facd811f674312c004978028d5e7f6cd1a4cb6",
+  "git_commit": "432501b9d9612cde2039364662c46d46abf9f711",
+  "content_commit": "cc0f4d9eb0bb12237c0c09b5adcefdcbea77155e",
   "git_tag": "v1.0.1",
   "previous_release_tag": "v1.0.0"
 }
