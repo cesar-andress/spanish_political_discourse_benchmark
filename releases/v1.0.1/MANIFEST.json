@@ -4,7 +4,7 @@
   "release_date": "2026-09-29",
   "note": "Canonical immutable identifier is git annotated tag v1.0.1. content_commit is the provenance-correction payload commit; git_commit is the annotated-tag target.",
   "concept_doi": "10.5281/zenodo.20745403",
-  "historical_alpha_version_doi": "10.5281/zenodo.20745404",
+  "version_doi_published_v1_0_0": "10.5281/zenodo.23039355",
   "license": "CC-BY-4.0",
   "key_counts": {
     "development_pool_n": 878,

@@ -33,7 +33,7 @@ def test_generate_writes_output(tmp_path: Path):
     path, pending = generate_datasheet(output_path=output)
     assert path.exists()
     text = path.read_text(encoding="utf-8")
-    assert "10.5281/zenodo.20745403" in text
+    assert "10.5281/zenodo.23039355" in text
     assert "PF_ADVOCACY" in text or "PF_ATTACK" in text
     assert "**TODO:**" in text
     assert pending

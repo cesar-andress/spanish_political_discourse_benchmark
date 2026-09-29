@@ -14,9 +14,10 @@ DEFAULT_OUTPUT = ROOT / "dataset_card.md"
 LEGACY_OUTPUT = ROOT / "dataset_documentation/dataset_card.md"
 
 GITHUB_REPO = "https://github.com/cesar-andress/spanish_political_discourse_benchmark"
-DOI = "10.5281/zenodo.20745403"
+DOI = "10.5281/zenodo.23039355"
 DOI_URL = f"https://doi.org/{DOI}"
-HISTORICAL_ALPHA_VERSION_DOI = "10.5281/zenodo.20745404"
+CONCEPT_DOI = "10.5281/zenodo.20745403"
+CONCEPT_DOI_URL = f"https://doi.org/{CONCEPT_DOI}"
 
 V1_TARGET_UNITS = 8000
 V1_MVP_UNITS = 5000

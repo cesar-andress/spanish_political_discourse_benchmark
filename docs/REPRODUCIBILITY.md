@@ -55,7 +55,7 @@ files.
 
 ## Data availability
 
-Public GitHub repository and Zenodo **concept** DOI:
-https://doi.org/10.5281/zenodo.20745403
+Public GitHub repository and Zenodo **version** DOI:
+https://doi.org/10.5281/zenodo.23039355
 
-Historical alpha version DOI: https://doi.org/10.5281/zenodo.20745404
+Concept DOI (all versions): https://doi.org/10.5281/zenodo.20745403

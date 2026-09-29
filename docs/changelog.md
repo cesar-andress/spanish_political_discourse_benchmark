@@ -10,7 +10,7 @@ or reported Wave-1 agreement results changed.
 
 ### Changed
 - README, REPRODUCIBILITY, DATA_DICTIONARY, CITATION.cff, and `.zenodo.json`
-  aligned with concept DOI `10.5281/zenodo.20745403`
+  published Zenodo version DOI `10.5281/zenodo.23039355` (concept `10.5281/zenodo.20745403`)
 - Exploratory taxonomy provenance documented beside
   `disagreement_taxonomy.csv`
 - Release bundle `releases/v1.0.1/`
@@ -55,4 +55,4 @@ unannotated sample lineage). Preserved; not rewritten.
 ## [0.1.0-alpha] — 2026-06-18
 
 Historical tag `v0.1.0-alpha` (failed / incomplete Zenodo webhook lineage).
-Preserved for provenance. Zenodo version DOI: `10.5281/zenodo.20745404`.
+Preserved for provenance. Superseded for citation by published v1.0.0 DOI `10.5281/zenodo.23039355`.

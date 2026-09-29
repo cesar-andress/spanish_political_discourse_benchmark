@@ -58,17 +58,19 @@ def _block(text: str, key: str) -> str:
 
 def load_citation_metadata(path: Path = CITATION_CFF) -> CitationMetadata:
     text = _read_text(path)
+    # Preferred-citation duplicates author blocks; parse only the top-level authors.
+    head = text.split("preferred-citation:")[0]
     title = _field(text, "title")
     version = _field(text, "version")
     doi = _field(text, "doi")
     repository = _field(text, "repository-code")
     abstract = _block(text, "abstract")
     license_id = _field(text, "license")
-    year_match = re.search(r"date-released:\s*(\d{4})", text)
+    year_match = re.search(r'date-released:\s*"?(\d{4})', text)
     year = year_match.group(1) if year_match else "2025"
 
     authors: List[AuthorRecord] = []
-    author_blocks = re.split(r"\n\s*-\s+family-names:", text)[1:]
+    author_blocks = re.split(r"\n\s*-\s+family-names:", head)[1:]
     for block in author_blocks:
         family_match = re.match(r"\s*(.+?)\n\s*given-names:\s*(.+?)\n", block)
         if not family_match:

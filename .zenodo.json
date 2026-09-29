@@ -1,6 +1,6 @@
 {
-  "title": "SPDB v1.0.1 — Spanish Political Discourse Annotation Resource",
-  "description": "SPDB is a reproducible annotation resource for pragmatic-function coding in Spanish parliamentary discourse. Version 1.0.1 is a provenance/metadata patch over v1.0.0: Wave-1 dual-coder labels and agreement metrics are unchanged (N=100; observed agreement 0.350; Cohen kappa ~0.235; Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements). Exploratory post-hoc disagreement-cause classifications are AI-assisted and not independently human-verified. Revised codebook-v1.1.0 remains unvalidated. Not an adjudicated gold benchmark.",
+  "title": "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource",
+  "description": "SPDB is a reproducible annotation resource for pragmatic-function coding in Spanish parliamentary discourse. Version 1.0.0 provides schemas, guidelines, ParlaMint-derived sampling, and a completed two-annotator Wave-1 reliability pilot (N=100; observed agreement 0.350; Cohen kappa ~0.235; Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements). Revised codebook-v1.1.0 remains unvalidated. Not an adjudicated gold benchmark.",
   "creators": [
     {
       "name": "Baena Rojas, José Jaime",
@@ -34,7 +34,7 @@
   "language": "eng",
   "upload_type": "dataset",
   "publication_date": "2026-09-29",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "access_right": "open",
   "related_identifiers": [
     {
@@ -43,18 +43,13 @@
       "scheme": "url"
     },
     {
-      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark/releases/tag/v1.0.1",
+      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark/releases/tag/v1.0.0",
       "relation": "isIdenticalTo",
       "scheme": "url"
     },
     {
       "identifier": "10.5281/zenodo.20745403",
       "relation": "isVersionOf",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "10.5281/zenodo.20745404",
-      "relation": "isNewVersionOf",
       "scheme": "doi"
     },
     {

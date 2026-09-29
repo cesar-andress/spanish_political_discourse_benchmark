@@ -3,9 +3,10 @@
 > **Provenance correction:** see [`v1.0.1`](release_notes_v1.0.1.md). Exploratory
 > C1–C6 disagreement-cause tallies mentioned below are **not** independently
 > human-verified; v1.0.1 documents that status without changing Wave-1 labels.
-> Zenodo **concept** DOI is `10.5281/zenodo.20745403` (this note originally
-> mislabelled the historical alpha version DOI `10.5281/zenodo.20745404` as the
-> concept DOI).
+> Published on Zenodo as version 1.0.0 under DOI `10.5281/zenodo.23039355`.
+>
+> Concept DOI (all versions): `10.5281/zenodo.20745403`.
+
 
 **Title:** SPDB v1.0.0 — Spanish Political Discourse Annotation Resource
 
@@ -49,5 +50,4 @@ post-Wave-1 revision. Do not mix the two under a single reliability claim.
 
 - Git tag: `v1.0.0`
 - Concept DOI: https://doi.org/10.5281/zenodo.20745403
-- Historical alpha version DOI: https://doi.org/10.5281/zenodo.20745404
-- Version DOI for this tag: see GitHub/Zenodo record for `v1.0.0` if assigned
+- Version DOI: https://doi.org/10.5281/zenodo.23039355

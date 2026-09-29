@@ -28,13 +28,12 @@ Cohen κ ≈ 0.235; Krippendorff α ≈ 0.223; Fleiss κ ≈ 0.219; 65 disagreem
    independently human-audited evidence.
 3. Zenodo **concept DOI** metadata is corrected to
    `10.5281/zenodo.20745403` (historical alpha version DOI remains
-   `10.5281/zenodo.20745404`).
+   ``).
 4. Manifest and data-dictionary wording are aligned with the corrected
    companion manuscript.
 
 ## Canonical identifiers
 
 - Git tag: `v1.0.1`
+- Version DOI (published v1.0.0): https://doi.org/10.5281/zenodo.23039355
 - Concept DOI: https://doi.org/10.5281/zenodo.20745403
-- Historical alpha version DOI: https://doi.org/10.5281/zenodo.20745404
-- Version DOI for this release: assigned by Zenodo upon publication

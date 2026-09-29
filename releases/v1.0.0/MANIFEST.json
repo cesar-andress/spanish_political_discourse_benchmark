@@ -1,9 +1,10 @@
 {
   "version": "1.0.0",
-  "release_title": "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource",
+  "release_title": "SPDB v1.0.0 \u2014 Spanish Political Discourse Annotation Resource",
   "release_date": "2026-09-29",
   "note": "Canonical immutable identifier is git annotated tag v1.0.0. content_commit is the payload commit; the tag may point at the subsequent manifest-pin commit.",
-  "concept_doi": "10.5281/zenodo.20745404",
+  "version_doi": "10.5281/zenodo.23039355",
+  "concept_doi": "10.5281/zenodo.20745403",
   "license": "CC-BY-4.0",
   "key_counts": {
     "development_pool_n": 878,
@@ -34,13 +35,13 @@
   "files": [
     {
       "path": ".zenodo.json",
-      "sha256": "20a19f640b12721b4495fc7d9c4ce96555fcaecdb01b64f1079b0f0a1ff727a6",
-      "bytes": 2296
+      "sha256": "84cfed47e2031a775fccf70d327442a6e227f55912132355da94bbb9b792206c",
+      "bytes": 2115
     },
     {
       "path": "CITATION.cff",
-      "sha256": "b5b1da5b94947f46f2ece3ec068bd4f25cbc4058f7add1d5882fe5c615b336eb",
-      "bytes": 2275
+      "sha256": "826de26fad73f4acda96dbf25992ef0f8bf558f13bea73bd36eacf8700c847f7",
+      "bytes": 2168
     },
     {
       "path": "LICENSE",
@@ -49,8 +50,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "26b83fc638267832b88ce23352b16eb763e9d828832c011b73a53308dde1ee12",
-      "bytes": 4716
+      "sha256": "8a834e428b3d5b1c4c7aad40d249811e22751302cc8f29041f3bf9ab93074e25",
+      "bytes": 4541
     },
     {
       "path": "annotation/codebook/SPDB_Codebook_v1.1.md",
@@ -104,8 +105,8 @@
     },
     {
       "path": "annotation/pilot_001/results/README.md",
-      "sha256": "19b70af35a55416c8519cd720a2d09e853aad4f462d8f5eb43756b2757fd73b9",
-      "bytes": 1154
+      "sha256": "3c8ae0dba1d2ee8cf090ba8102cbba156124a05d18e041b8eac86f3cd28d9ac2",
+      "bytes": 2354
     },
     {
       "path": "annotation/pilot_001/results/SOURCE_ANNOTATIONS.md",
@@ -169,23 +170,23 @@
     },
     {
       "path": "docs/DATA_DICTIONARY.md",
-      "sha256": "076b47297d678b6e2312a3a4a8c2cdead0226cbee3f60695ea74c56284ffc0da",
-      "bytes": 1418
+      "sha256": "8d15a34c3153cbd5c5538819e34068635a077a1a7db7592a4123429833fc7d1a",
+      "bytes": 1686
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
-      "sha256": "8092db2a5579802945f7f34f011c0fd4822163c0dc92209f1541a1a11245cd77",
-      "bytes": 1342
+      "sha256": "c686117298ca1e0a6200e841c3a6f0f02a4f9ed77a0b562aa2591ad6b39628a8",
+      "bytes": 1688
     },
     {
       "path": "docs/changelog.md",
-      "sha256": "c67df613076203f06805058931bc8f4e4cad1e3906b5e2971dfd5bb7bce4a690",
-      "bytes": 1619
+      "sha256": "4ab5a0264d31363d1d17b0d30b507abb7212779198ccd954b597f2ffbd72eea2",
+      "bytes": 2547
     },
     {
       "path": "docs/datasheet_for_datasets.md",
-      "sha256": "8515be84dfabef1553d4decbb874a00ac8ac94d0da0486442f32980ba1340add",
-      "bytes": 1334
+      "sha256": "0345e3a8bb10cc3b81eb3b799d8bd9131a79f684117492163b156b324e129e05",
+      "bytes": 14015
     },
     {
       "path": "docs/ethics.md",
@@ -194,8 +195,8 @@
     },
     {
       "path": "docs/release_notes_v1.0.0.md",
-      "sha256": "bb2d71b7f920a80fea7c9ed9dd9d0dfcca4bcf3c443c43017c8869ad95270d8e",
-      "bytes": 1841
+      "sha256": "7888207e6dad5b60f69d3ebbb2f6aa15860d3e463d8777c7dc63db36f347198f",
+      "bytes": 2235
     },
     {
       "path": "docs/sources/parlamint.md",
