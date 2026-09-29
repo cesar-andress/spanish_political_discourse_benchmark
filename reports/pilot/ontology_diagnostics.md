@@ -2,25 +2,38 @@
 
 | Dimension | Observed assignments | Entropy | Max class share | Imbalance |
 |-----------|---------------------:|--------:|----------------:|-----------|
-| `pragmatic_function` | 0 | 2.0794 | 0.000 | pending |
+| `pragmatic_function` | 200 | 1.9049 | 0.280 | balanced |
 | `fallacy_labels` | 0 | 2.0794 | 0.000 | pending |
 | `semantic_vacuity` | 0 | 1.0986 | 0.000 | pending |
 | `conceptual_anachronism` | 0 | 1.0986 | 0.000 | pending |
-
-_Ontology diagnostics are in pre-annotation mode: inventories are loaded, but observed support counts are zero until labels are submitted._
 
 ### Class support — `pragmatic_function`
 
 | Label | Observed count | Inventory |
 |-------|---------------:|:---------:|
-| `PF_ADVOCACY` | 0 | yes |
-| `PF_ATTACK` | 0 | yes |
-| `PF_DEFENSE` | 0 | yes |
-| `PF_PROPOSAL` | 0 | yes |
-| `PF_APPEAL` | 0 | yes |
-| `PF_INFO` | 0 | yes |
-| `PF_DEFLECT` | 0 | yes |
-| `PF_PROCEDURAL` | 0 | yes |
+| `PF_ADVOCACY` | 34 | yes |
+| `PF_ATTACK` | 29 | yes |
+| `PF_DEFENSE` | 12 | yes |
+| `PF_PROPOSAL` | 21 | yes |
+| `PF_APPEAL` | 19 | yes |
+| `PF_INFO` | 25 | yes |
+| `PF_DEFLECT` | 4 | yes |
+| `PF_PROCEDURAL` | 56 | yes |
+
+### Dominant confusion pairs — `pragmatic_function`
+
+| From | To | Count |
+|------|----|------:|
+| `PF_PROCEDURAL` | `PF_INFO` | 11 |
+| `PF_ATTACK` | `PF_ADVOCACY` | 5 |
+| `PF_ATTACK` | `PF_APPEAL` | 5 |
+| `PF_ADVOCACY` | `PF_INFO` | 4 |
+| `PF_DEFENSE` | `PF_ADVOCACY` | 3 |
+| `PF_PROPOSAL` | `PF_ADVOCACY` | 3 |
+| `PF_PROPOSAL` | `PF_INFO` | 3 |
+| `PF_APPEAL` | `PF_ADVOCACY` | 2 |
+| `PF_APPEAL` | `PF_PROPOSAL` | 2 |
+| `PF_ATTACK` | `PF_DEFENSE` | 2 |
 
 ### Class support — `fallacy_labels`
 

@@ -95,7 +95,7 @@ def render_markdown(rows: List[Dict[str, str]], *, aligned) -> List[str]:
 
 
 def run(annotator_a: Path, annotator_b: Path, output_dir: Path) -> List[Dict[str, str]]:
-    aligned = load_aligned_annotations(annotator_a, annotator_b)
+    aligned = load_aligned_annotations(annotator_a, annotator_b, require_filled=False)
     ensure_output_dir(output_dir)
     rows = collect_disagreements(aligned)
 

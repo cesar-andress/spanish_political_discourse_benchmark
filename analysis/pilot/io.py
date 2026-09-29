@@ -49,6 +49,10 @@ def _read_csv(path: Path) -> tuple[List[str], List[Dict[str, str]]]:
 
 def _normalize_label(column: str, value: str) -> str:
     value = (value or "").strip()
+    # Keep truly unannotated cells empty. Mapping "" → FAL_NONE would inflate
+    # fallacy agreement when annotators have not yet coded that layer.
+    if not value:
+        return ""
     if column == "fallacy_labels":
         return fallacy_set_label(value)
     return value

@@ -19,6 +19,7 @@ from scripts.analysis.agreement_metrics import (
 from scripts.analysis.pilot_annotation_io import (
     ANNOTATION_COLUMNS,
     add_pilot_input_args,
+    column_is_annotated,
     ensure_output_dir,
     load_aligned_annotations,
     normalized_column_values,
@@ -77,14 +78,15 @@ def render_markdown(results: Dict[str, KrippendorffAlphaResult], *, aligned) -> 
         "| Dimension | Units | Codings | Krippendorff's α |",
         "|-----------|------:|--------:|-----------------:|",
     ]
-    for column in ANNOTATION_COLUMNS:
-        result = results[column]
+    for column, result in results.items():
         lines.append(
             f"| `{column}` | {result.n_units} | {result.n_values} | **{_format_float(result.alpha)}** |"
         )
 
-    for column in ANNOTATION_COLUMNS:
-        result = results[column]
+    if not results:
+        lines.extend(["", "_No fully annotated dimensions available for alpha._"])
+
+    for column, result in results.items():
         lines.extend(
             [
                 "",
@@ -103,9 +105,13 @@ def render_markdown(results: Dict[str, KrippendorffAlphaResult], *, aligned) -> 
 
 
 def run(annotator_a: Path, annotator_b: Path, output_dir: Path) -> Dict[str, KrippendorffAlphaResult]:
-    aligned = load_aligned_annotations(annotator_a, annotator_b)
+    aligned = load_aligned_annotations(annotator_a, annotator_b, require_filled=False)
     ensure_output_dir(output_dir)
-    results = {column: _compute_for_column(aligned, column) for column in ANNOTATION_COLUMNS}
+    results = {
+        column: _compute_for_column(aligned, column)
+        for column in ANNOTATION_COLUMNS
+        if column_is_annotated(aligned, column)
+    }
 
     payload = {
         "annotator_a": str(annotator_a),

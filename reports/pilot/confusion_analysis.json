@@ -1,6 +1,914 @@
 {
-  "status": "pending",
-  "matrices": {},
-  "disagreement_units": [],
-  "figures": []
+  "status": "partial",
+  "matrices": {
+    "pragmatic_function": {
+      "matrix": {
+        "PF_ADVOCACY": {
+          "PF_ADVOCACY": 6,
+          "PF_APPEAL": 1,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 1,
+          "PF_DEFLECT": 1,
+          "PF_INFO": 4,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 1
+        },
+        "PF_APPEAL": {
+          "PF_ADVOCACY": 2,
+          "PF_APPEAL": 3,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 0,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 2
+        },
+        "PF_ATTACK": {
+          "PF_ADVOCACY": 5,
+          "PF_APPEAL": 5,
+          "PF_ATTACK": 3,
+          "PF_DEFENSE": 2,
+          "PF_DEFLECT": 2,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 1,
+          "PF_PROPOSAL": 2
+        },
+        "PF_DEFENSE": {
+          "PF_ADVOCACY": 3,
+          "PF_APPEAL": 1,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 1,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_DEFLECT": {
+          "PF_ADVOCACY": 0,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 0,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_INFO": {
+          "PF_ADVOCACY": 0,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 2,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_PROCEDURAL": {
+          "PF_ADVOCACY": 1,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 11,
+          "PF_PROCEDURAL": 20,
+          "PF_PROPOSAL": 1
+        },
+        "PF_PROPOSAL": {
+          "PF_ADVOCACY": 3,
+          "PF_APPEAL": 2,
+          "PF_ATTACK": 2,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 3,
+          "PF_PROCEDURAL": 1,
+          "PF_PROPOSAL": 2
+        }
+      },
+      "labels": [
+        "PF_ADVOCACY",
+        "PF_APPEAL",
+        "PF_ATTACK",
+        "PF_DEFENSE",
+        "PF_DEFLECT",
+        "PF_INFO",
+        "PF_PROCEDURAL",
+        "PF_PROPOSAL"
+      ],
+      "total": 100,
+      "dominant_pairs": [
+        [
+          "PF_PROCEDURAL",
+          "PF_INFO",
+          11
+        ],
+        [
+          "PF_ATTACK",
+          "PF_ADVOCACY",
+          5
+        ],
+        [
+          "PF_ATTACK",
+          "PF_APPEAL",
+          5
+        ],
+        [
+          "PF_ADVOCACY",
+          "PF_INFO",
+          4
+        ],
+        [
+          "PF_DEFENSE",
+          "PF_ADVOCACY",
+          3
+        ],
+        [
+          "PF_PROPOSAL",
+          "PF_ADVOCACY",
+          3
+        ],
+        [
+          "PF_PROPOSAL",
+          "PF_INFO",
+          3
+        ],
+        [
+          "PF_APPEAL",
+          "PF_ADVOCACY",
+          2
+        ],
+        [
+          "PF_APPEAL",
+          "PF_PROPOSAL",
+          2
+        ],
+        [
+          "PF_ATTACK",
+          "PF_DEFENSE",
+          2
+        ]
+      ],
+      "disagreement_patterns": [
+        [
+          "PF_INFO|PF_PROCEDURAL",
+          11
+        ],
+        [
+          "PF_ADVOCACY|PF_ATTACK",
+          5
+        ],
+        [
+          "PF_APPEAL|PF_ATTACK",
+          5
+        ],
+        [
+          "PF_ADVOCACY|PF_DEFENSE",
+          4
+        ],
+        [
+          "PF_APPEAL|PF_PROPOSAL",
+          4
+        ],
+        [
+          "PF_ADVOCACY|PF_PROPOSAL",
+          4
+        ],
+        [
+          "PF_ATTACK|PF_PROPOSAL",
+          4
+        ],
+        [
+          "PF_ADVOCACY|PF_INFO",
+          4
+        ],
+        [
+          "PF_INFO|PF_PROPOSAL",
+          3
+        ],
+        [
+          "PF_DEFENSE|PF_INFO",
+          3
+        ]
+      ]
+    }
+  },
+  "disagreement_units": [
+    {
+      "unit_id": "spdb-v1-unassigned-783020218722",
+      "speaker_name": "Inés Arrimadas García",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_DEFENSE|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-7bc5528e899b",
+      "speaker_name": "Íñigo Barandiaran Benito",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_DEFENSE|PF_DEFLECT",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-eb453642ca5f",
+      "speaker_name": "Joseba Agirretxea Urresti",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-b57f53b63185",
+      "speaker_name": "Joan Olòriz Serra",
+      "speaker_party": "ERCCATSÍ",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_PROCEDURAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-05d607df9c93",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-35a6117f0c82",
+      "speaker_name": "Adriana Lastra Fernández",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_ATTACK|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-483e95cc103b",
+      "speaker_name": "Idoia Sagastizabal Unzetabarrenetxea",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_INFO|PF_DEFENSE",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-082ee9dc9ec7",
+      "speaker_name": "María Montero Cuadrado",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_DEFENSE|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-60dd3e86e761",
+      "speaker_name": "Dolors Montserrat Montserrat",
+      "speaker_party": "PP",
+      "pragmatic_function_values": "PF_APPEAL|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-af494fedf1eb",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_ATTACK",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-f4efaf8c67ab",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-91b87988aed6",
+      "speaker_name": "José Villegas Pérez",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_ATTACK|PF_DEFENSE",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-6d6700eea2a4",
+      "speaker_name": "Yolanda Díaz Pérez",
+      "speaker_party": "ECUP",
+      "pragmatic_function_values": "PF_ATTACK|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-dff8b57dc1a6",
+      "speaker_name": "Melisa Rodríguez Hernández",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_ATTACK|PF_PROCEDURAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-1b02f725631c",
+      "speaker_name": "Lucía Martín González",
+      "speaker_party": "ECP",
+      "pragmatic_function_values": "PF_ATTACK|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-6a499198b4d9",
+      "speaker_name": "Idoia Sagastizabal Unzetabarrenetxea",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-cfc51ad239a1",
+      "speaker_name": "Pablo Echenique Robba",
+      "speaker_party": "UP",
+      "pragmatic_function_values": "PF_INFO|PF_DEFENSE",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-a8455bf2bda3",
+      "speaker_name": "Melisa Rodríguez Hernández",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_ATTACK|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-01002191acc8",
+      "speaker_name": "Amparo Botejara Sanz",
+      "speaker_party": "UP",
+      "pragmatic_function_values": "PF_ATTACK|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-2c68bbd87376",
+      "speaker_name": "María Montero Cuadrado",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-76429caa650e",
+      "speaker_name": "Inés Arrimadas García",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_ATTACK|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-329e5f834a1f",
+      "speaker_name": "Oskar Matute García Jalón",
+      "speaker_party": "EHBildu",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-b441d3dc04e0",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-068f7ac6e082",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-c0c77687ca44",
+      "speaker_name": "Joseba Agirretxea Urresti",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-aef6af22819b",
+      "speaker_name": "Pilar Garrido Gutiérrez",
+      "speaker_party": "UP",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-cfa82fc9c391",
+      "speaker_name": "María Montero Cuadrado",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_DEFENSE|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-443dcd74d760",
+      "speaker_name": "Joan Baldoví Roda",
+      "speaker_party": "COMPROMÍSQ",
+      "pragmatic_function_values": "PF_ATTACK|PF_DEFLECT",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-597eb26a3f6c",
+      "speaker_name": "José Bermúdez Castro Fernández",
+      "speaker_party": "PP",
+      "pragmatic_function_values": "PF_DEFENSE|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-6fa9450f10d7",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-1c2af9a1728f",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-1590cc6e03b7",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-8740f8f1e4e8",
+      "speaker_name": "Lucía Martín González",
+      "speaker_party": "ECP",
+      "pragmatic_function_values": "PF_ATTACK|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-fa90f514edd7",
+      "speaker_name": "Susana Sumelzo Jordán",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-7a1e7c1efb7a",
+      "speaker_name": "Lucía Martín González",
+      "speaker_party": "ECP",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-eda6c9203b41",
+      "speaker_name": "Idoia Sagastizabal Unzetabarrenetxea",
+      "speaker_party": "EAJPNV",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-598437f9ffdc",
+      "speaker_name": "Óscar Galeano Gracia",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_ATTACK|PF_DEFENSE",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-e0c5ed850aea",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-a8fafbfe6cd5",
+      "speaker_name": "María García Puig",
+      "speaker_party": "ECPGUAYEMELCANVI",
+      "pragmatic_function_values": "PF_APPEAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-6fd100ce1240",
+      "speaker_name": "Adriana Lastra Fernández",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_APPEAL|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-53ec7a381c34",
+      "speaker_name": "Sergi Miquel Valentí",
+      "speaker_party": "JxCatJUNTS",
+      "pragmatic_function_values": "PF_ATTACK|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-44bf652df8f3",
+      "speaker_name": "Susana Sumelzo Jordán",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_ATTACK|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-65b5f1261c2f",
+      "speaker_name": "María Galovart Carrera",
+      "speaker_party": "PSdGPSOE",
+      "pragmatic_function_values": "PF_INFO|PF_ATTACK",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-1ce88cf743e8",
+      "speaker_name": "María Montero Cuadrado",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-2ed2284747e8",
+      "speaker_name": "Teodoro García Egea",
+      "speaker_party": "PP",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_ATTACK",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-ab76459daa03",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-405d9499b876",
+      "speaker_name": "Oskar Matute García Jalón",
+      "speaker_party": "EHBildu",
+      "pragmatic_function_values": "PF_ATTACK|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-7108aebeecb7",
+      "speaker_name": "María García Puig",
+      "speaker_party": "ECPGUAYEMELCANVI",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_DEFENSE",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-a707072d44fe",
+      "speaker_name": "Segundo González García",
+      "speaker_party": "UP",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-7c6ba9a857ad",
+      "speaker_name": "Inés Cañizares Pacheco",
+      "speaker_party": "Vox",
+      "pragmatic_function_values": "PF_ATTACK|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-5b618b4d7943",
+      "speaker_name": "María Galovart Carrera",
+      "speaker_party": "PSdGPSOE",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_DEFLECT",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-7d41ba6a69d6",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-491f4793313e",
+      "speaker_name": "Enric Bataller Ruiz",
+      "speaker_party": "CPEUPV",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_ATTACK",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-b69e45a0bec6",
+      "speaker_name": "Pilar Garrido Gutiérrez",
+      "speaker_party": "UP",
+      "pragmatic_function_values": "PF_DEFENSE|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-6a45a832de6e",
+      "speaker_name": "Gabriel Elorriaga Pisarik",
+      "speaker_party": "PP",
+      "pragmatic_function_values": "PF_ATTACK|PF_DEFLECT",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-30d3904ba130",
+      "speaker_name": "José Bermúdez Castro Fernández",
+      "speaker_party": "PP",
+      "pragmatic_function_values": "PF_ADVOCACY|PF_APPEAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-37aa7726674c",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-0d29c8934566",
+      "speaker_name": "María Montero Cuadrado",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-e445ea8dcd00",
+      "speaker_name": "María Galovart Carrera",
+      "speaker_party": "PSdGPSOE",
+      "pragmatic_function_values": "PF_PROPOSAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-afdb8901b085",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-1b690fdd7009",
+      "speaker_name": "Inés Arrimadas García",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_DEFENSE|PF_ATTACK",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-af42799d1d3b",
+      "speaker_name": "Patricia Reyes Rivera",
+      "speaker_party": "Cs",
+      "pragmatic_function_values": "PF_APPEAL|PF_ADVOCACY",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-8b84bda12647",
+      "speaker_name": "Inés Cañizares Pacheco",
+      "speaker_party": "Vox",
+      "pragmatic_function_values": "PF_ATTACK|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-73334dc3a186",
+      "speaker_name": "Esther Peña Camarero",
+      "speaker_party": "PSOE",
+      "pragmatic_function_values": "PF_ATTACK|PF_PROPOSAL",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    },
+    {
+      "unit_id": "spdb-v1-unassigned-fc7bbb055ea5",
+      "speaker_name": "Presidencia",
+      "speaker_party": "non_partisan",
+      "pragmatic_function_values": "PF_PROCEDURAL|PF_INFO",
+      "fallacy_labels_values": "|",
+      "semantic_vacuity_values": "|",
+      "conceptual_anachronism_values": "|",
+      "changed_columns": "pragmatic_function",
+      "disagreement_count": "1"
+    }
+  ],
+  "figures": [
+    "figures/pilot/confusion_pragmatic_function.png"
+  ]
 }

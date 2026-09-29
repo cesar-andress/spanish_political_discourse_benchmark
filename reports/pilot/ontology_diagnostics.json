@@ -1,5 +1,5 @@
 {
-  "status": "pending",
+  "status": "partial",
   "dimensions": {
     "pragmatic_function": {
       "inventory": [
@@ -13,24 +13,75 @@
         "PF_PROCEDURAL"
       ],
       "support": {
-        "PF_ADVOCACY": 0,
-        "PF_ATTACK": 0,
-        "PF_DEFENSE": 0,
-        "PF_PROPOSAL": 0,
-        "PF_APPEAL": 0,
-        "PF_INFO": 0,
-        "PF_DEFLECT": 0,
-        "PF_PROCEDURAL": 0
+        "PF_ADVOCACY": 34,
+        "PF_ATTACK": 29,
+        "PF_DEFENSE": 12,
+        "PF_PROPOSAL": 21,
+        "PF_APPEAL": 19,
+        "PF_INFO": 25,
+        "PF_DEFLECT": 4,
+        "PF_PROCEDURAL": 56
       },
-      "entropy": 2.0794415416798357,
+      "entropy": 1.9049033853094346,
       "imbalance": {
-        "total": 0,
-        "max_share": 0.0,
-        "min_share": 0.0,
-        "imbalance_ratio": null,
-        "assessment": "pending"
+        "total": 200,
+        "max_share": 0.28,
+        "min_share": 0.02,
+        "imbalance_ratio": 14.000000000000002,
+        "assessment": "balanced"
       },
-      "dominant_confusion_pairs": []
+      "dominant_confusion_pairs": [
+        {
+          "from": "PF_PROCEDURAL",
+          "to": "PF_INFO",
+          "count": 11
+        },
+        {
+          "from": "PF_ATTACK",
+          "to": "PF_ADVOCACY",
+          "count": 5
+        },
+        {
+          "from": "PF_ATTACK",
+          "to": "PF_APPEAL",
+          "count": 5
+        },
+        {
+          "from": "PF_ADVOCACY",
+          "to": "PF_INFO",
+          "count": 4
+        },
+        {
+          "from": "PF_DEFENSE",
+          "to": "PF_ADVOCACY",
+          "count": 3
+        },
+        {
+          "from": "PF_PROPOSAL",
+          "to": "PF_ADVOCACY",
+          "count": 3
+        },
+        {
+          "from": "PF_PROPOSAL",
+          "to": "PF_INFO",
+          "count": 3
+        },
+        {
+          "from": "PF_APPEAL",
+          "to": "PF_ADVOCACY",
+          "count": 2
+        },
+        {
+          "from": "PF_APPEAL",
+          "to": "PF_PROPOSAL",
+          "count": 2
+        },
+        {
+          "from": "PF_ATTACK",
+          "to": "PF_DEFENSE",
+          "count": 2
+        }
+      ]
     },
     "fallacy_labels": {
       "inventory": [

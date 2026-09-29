@@ -1,0 +1,62 @@
+{
+  "annotator_a": "annotation/pilot_001/pilot_100_units_annotator_a.csv",
+  "annotator_b": "annotation/pilot_001/pilot_100_units_annotator_b.csv",
+  "n_units": 100,
+  "dimensions": {
+    "pragmatic_function": {
+      "alpha": 0.22265625,
+      "n_units": 100,
+      "n_values": 200,
+      "per_label": {
+        "PF_ADVOCACY": {
+          "support_a": 14,
+          "support_b": 20,
+          "agree_both": 6,
+          "agree_rate": 0.21428571428571427
+        },
+        "PF_APPEAL": {
+          "support_a": 7,
+          "support_b": 12,
+          "agree_both": 3,
+          "agree_rate": 0.1875
+        },
+        "PF_ATTACK": {
+          "support_a": 21,
+          "support_b": 8,
+          "agree_both": 3,
+          "agree_rate": 0.11538461538461539
+        },
+        "PF_DEFENSE": {
+          "support_a": 7,
+          "support_b": 5,
+          "agree_both": 0,
+          "agree_rate": 0.0
+        },
+        "PF_DEFLECT": {
+          "support_a": 0,
+          "support_b": 4,
+          "agree_both": 0,
+          "agree_rate": 0.0
+        },
+        "PF_INFO": {
+          "support_a": 4,
+          "support_b": 21,
+          "agree_both": 1,
+          "agree_rate": 0.041666666666666664
+        },
+        "PF_PROCEDURAL": {
+          "support_a": 34,
+          "support_b": 22,
+          "agree_both": 20,
+          "agree_rate": 0.5555555555555556
+        },
+        "PF_PROPOSAL": {
+          "support_a": 13,
+          "support_b": 8,
+          "agree_both": 2,
+          "agree_rate": 0.10526315789473684
+        }
+      }
+    }
+  }
+}

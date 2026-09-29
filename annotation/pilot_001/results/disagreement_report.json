@@ -1,0 +1,10 @@
+{
+  "annotator_a": "annotation/pilot_001/pilot_100_units_annotator_a.csv",
+  "annotator_b": "annotation/pilot_001/pilot_100_units_annotator_b.csv",
+  "n_units": 100,
+  "n_disagreements": 65,
+  "disagreement_rate": 0.65,
+  "by_type": {
+    "pragmatic_function": 65
+  }
+}

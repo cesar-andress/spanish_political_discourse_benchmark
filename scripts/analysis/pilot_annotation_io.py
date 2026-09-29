@@ -174,8 +174,15 @@ def normalized_column_values(
 ) -> Tuple[List[str], List[str]]:
     values_a, values_b = column_values(aligned, column)
     if column == "fallacy_labels":
+        # Preserve empty cells as unannotated; do not coerce "" → FAL_NONE.
         return (
-            [fallacy_set_label(value) for value in values_a],
-            [fallacy_set_label(value) for value in values_b],
+            [fallacy_set_label(value) if (value or "").strip() else "" for value in values_a],
+            [fallacy_set_label(value) if (value or "").strip() else "" for value in values_b],
         )
     return values_a, values_b
+
+
+def column_is_annotated(aligned: AlignedPilotAnnotations, column: str) -> bool:
+    """True when both annotators filled the column for every aligned unit."""
+    values_a, values_b = column_values(aligned, column)
+    return all((a or "").strip() and (b or "").strip() for a, b in zip(values_a, values_b))

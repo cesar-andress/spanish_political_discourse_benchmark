@@ -1,9 +1,131 @@
 {
-  "status": "pending",
+  "status": "partial",
   "annotators": [
-    "pending"
+    "pilot_100_units_annotator_a",
+    "pilot_100_units_annotator_b"
   ],
   "n_units": 100,
-  "dimensions": {},
-  "pairwise": []
+  "dimensions": {
+    "pragmatic_function": {
+      "units": 100,
+      "fleiss_kappa": 0.21874999999999997,
+      "krippendorff_alpha": 0.22265625,
+      "mean_pairwise_kappa": 0.23502412616217486,
+      "pairwise_matrix": [
+        [
+          1.0,
+          0.23502412616217486
+        ],
+        [
+          0.23502412616217486,
+          1.0
+        ]
+      ],
+      "per_class_agreement": {
+        "PF_ADVOCACY": {
+          "units_with_label": 28,
+          "units_unanimous": 6,
+          "unanimous_rate": 0.21428571428571427
+        },
+        "PF_APPEAL": {
+          "units_with_label": 16,
+          "units_unanimous": 3,
+          "unanimous_rate": 0.1875
+        },
+        "PF_ATTACK": {
+          "units_with_label": 26,
+          "units_unanimous": 3,
+          "unanimous_rate": 0.11538461538461539
+        },
+        "PF_DEFENSE": {
+          "units_with_label": 12,
+          "units_unanimous": 0,
+          "unanimous_rate": 0.0
+        },
+        "PF_DEFLECT": {
+          "units_with_label": 4,
+          "units_unanimous": 0,
+          "unanimous_rate": 0.0
+        },
+        "PF_INFO": {
+          "units_with_label": 24,
+          "units_unanimous": 1,
+          "unanimous_rate": 0.041666666666666664
+        },
+        "PF_PROCEDURAL": {
+          "units_with_label": 36,
+          "units_unanimous": 20,
+          "unanimous_rate": 0.5555555555555556
+        },
+        "PF_PROPOSAL": {
+          "units_with_label": 19,
+          "units_unanimous": 2,
+          "unanimous_rate": 0.10526315789473684
+        }
+      },
+      "fleiss_per_label": {
+        "PF_ADVOCACY": {
+          "total_assignments": 34,
+          "mean_count_per_unit": 0.34,
+          "category_proportion": 0.17
+        },
+        "PF_APPEAL": {
+          "total_assignments": 19,
+          "mean_count_per_unit": 0.19,
+          "category_proportion": 0.095
+        },
+        "PF_ATTACK": {
+          "total_assignments": 29,
+          "mean_count_per_unit": 0.29,
+          "category_proportion": 0.145
+        },
+        "PF_DEFENSE": {
+          "total_assignments": 12,
+          "mean_count_per_unit": 0.12,
+          "category_proportion": 0.06
+        },
+        "PF_DEFLECT": {
+          "total_assignments": 4,
+          "mean_count_per_unit": 0.04,
+          "category_proportion": 0.02
+        },
+        "PF_INFO": {
+          "total_assignments": 25,
+          "mean_count_per_unit": 0.25,
+          "category_proportion": 0.125
+        },
+        "PF_PROCEDURAL": {
+          "total_assignments": 56,
+          "mean_count_per_unit": 0.56,
+          "category_proportion": 0.28
+        },
+        "PF_PROPOSAL": {
+          "total_assignments": 21,
+          "mean_count_per_unit": 0.21,
+          "category_proportion": 0.105
+        }
+      }
+    },
+    "fallacy_labels": {
+      "status": "insufficient_data",
+      "units": 0
+    },
+    "semantic_vacuity": {
+      "status": "insufficient_data",
+      "units": 0
+    },
+    "conceptual_anachronism": {
+      "status": "insufficient_data",
+      "units": 0
+    }
+  },
+  "pairwise": [
+    {
+      "annotator_a": "pilot_100_units_annotator_a",
+      "annotator_b": "pilot_100_units_annotator_b",
+      "column": "pragmatic_function",
+      "kappa": 0.23502412616217486,
+      "observed_agreement": 0.35
+    }
+  ]
 }

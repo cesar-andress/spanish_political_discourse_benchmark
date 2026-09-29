@@ -14,6 +14,7 @@ from scripts.analysis.agreement_metrics import ConfusionMatrixResult, confusion_
 from scripts.analysis.pilot_annotation_io import (
     ANNOTATION_COLUMNS,
     add_pilot_input_args,
+    column_is_annotated,
     ensure_output_dir,
     load_aligned_annotations,
     normalized_column_values,
@@ -66,11 +67,13 @@ def render_markdown(results: Dict[str, ConfusionMatrixResult], *, aligned) -> Li
 
 
 def run(annotator_a: Path, annotator_b: Path, output_dir: Path) -> Dict[str, ConfusionMatrixResult]:
-    aligned = load_aligned_annotations(annotator_a, annotator_b)
+    aligned = load_aligned_annotations(annotator_a, annotator_b, require_filled=False)
     ensure_output_dir(output_dir)
     results: Dict[str, ConfusionMatrixResult] = {}
 
     for column in (*SINGLE_LABEL_COLUMNS, "fallacy_labels"):
+        if not column_is_annotated(aligned, column):
+            continue
         values_a, values_b = normalized_column_values(aligned, column)
         result = confusion_matrix(values_a, values_b)
         results[column] = ConfusionMatrixResult(

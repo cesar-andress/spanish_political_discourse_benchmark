@@ -1,0 +1,102 @@
+{
+  "annotator_a": "annotation/pilot_001/pilot_100_units_annotator_a.csv",
+  "annotator_b": "annotation/pilot_001/pilot_100_units_annotator_b.csv",
+  "n_units": 100,
+  "matrices": {
+    "pragmatic_function": {
+      "labels": [
+        "PF_ADVOCACY",
+        "PF_APPEAL",
+        "PF_ATTACK",
+        "PF_DEFENSE",
+        "PF_DEFLECT",
+        "PF_INFO",
+        "PF_PROCEDURAL",
+        "PF_PROPOSAL"
+      ],
+      "matrix": {
+        "PF_ADVOCACY": {
+          "PF_ADVOCACY": 6,
+          "PF_APPEAL": 1,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 1,
+          "PF_DEFLECT": 1,
+          "PF_INFO": 4,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 1
+        },
+        "PF_APPEAL": {
+          "PF_ADVOCACY": 2,
+          "PF_APPEAL": 3,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 0,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 2
+        },
+        "PF_ATTACK": {
+          "PF_ADVOCACY": 5,
+          "PF_APPEAL": 5,
+          "PF_ATTACK": 3,
+          "PF_DEFENSE": 2,
+          "PF_DEFLECT": 2,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 1,
+          "PF_PROPOSAL": 2
+        },
+        "PF_DEFENSE": {
+          "PF_ADVOCACY": 3,
+          "PF_APPEAL": 1,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 1,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_DEFLECT": {
+          "PF_ADVOCACY": 0,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 0,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 0,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_INFO": {
+          "PF_ADVOCACY": 0,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 2,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 1,
+          "PF_PROCEDURAL": 0,
+          "PF_PROPOSAL": 0
+        },
+        "PF_PROCEDURAL": {
+          "PF_ADVOCACY": 1,
+          "PF_APPEAL": 0,
+          "PF_ATTACK": 1,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 11,
+          "PF_PROCEDURAL": 20,
+          "PF_PROPOSAL": 1
+        },
+        "PF_PROPOSAL": {
+          "PF_ADVOCACY": 3,
+          "PF_APPEAL": 2,
+          "PF_ATTACK": 2,
+          "PF_DEFENSE": 0,
+          "PF_DEFLECT": 0,
+          "PF_INFO": 3,
+          "PF_PROCEDURAL": 1,
+          "PF_PROPOSAL": 2
+        }
+      },
+      "total": 100
+    }
+  }
+}

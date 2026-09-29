@@ -1,1 +1,2 @@
 column,annotator_a,annotator_b,cohen_kappa,observed_agreement
+pragmatic_function,pilot_100_units_annotator_a,pilot_100_units_annotator_b,0.23502412616217486,0.35
