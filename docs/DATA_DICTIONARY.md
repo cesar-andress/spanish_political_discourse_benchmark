@@ -1,4 +1,4 @@
-# Data dictionary (SPDB v1.0.0)
+# Data dictionary (SPDB v1.0.1)
 
 Concise variable reference for public Wave-1 and release artefacts.
 
@@ -19,12 +19,15 @@ Concise variable reference for public Wave-1 and release artefacts.
 | Field | Description |
 |-------|-------------|
 | `unit_id` | Disagreement unit |
-| `daniel_label` / `jose_jaime_label` | Coder labels (Wave-1) |
+| `daniel_label` / `jose_jaime_label` | Wave-1 human coder labels |
 | `label_pair` | Ordered pair string |
-| `cause_primary` | Primary cause class (`C1`–`C6`) |
-| `codebook_sections` | Relevant guideline sections |
-| `rationale` | Short analytic note |
+| `cause_primary` | Exploratory post-hoc diagnostic classification generated with AI-assisted workflow support; **not** independently human-verified |
+| `codebook_sections` | Relevant guideline sections referenced in the diagnostic note |
+| `rationale` | Short interpretive diagnostic note |
 | `text_preview` | Truncated unit text for inspection |
+
+See `annotation/pilot_001/results/disagreement_taxonomy.provenance.json` and
+`annotation/pilot_001/results/README.md`.
 
 ## Release JSONL units (`releases/*/samples/*.jsonl`)
 

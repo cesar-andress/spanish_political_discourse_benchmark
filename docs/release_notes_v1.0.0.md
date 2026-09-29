@@ -1,5 +1,12 @@
 # Release notes — SPDB v1.0.0
 
+> **Provenance correction:** see [`v1.0.1`](release_notes_v1.0.1.md). Exploratory
+> C1–C6 disagreement-cause tallies mentioned below are **not** independently
+> human-verified; v1.0.1 documents that status without changing Wave-1 labels.
+> Zenodo **concept** DOI is `10.5281/zenodo.20745403` (this note originally
+> mislabelled the historical alpha version DOI `10.5281/zenodo.20745404` as the
+> concept DOI).
+
 **Title:** SPDB v1.0.0 — Spanish Political Discourse Annotation Resource
 
 **Date:** 2026-09-29
@@ -15,8 +22,8 @@ tooling.
   Krippendorff α ≈ 0.223; Fleiss κ ≈ 0.219; 65 disagreements
 - Corrected sampling description (simple random sample without replacement from the
   ParlaMint-derived development pool, N = 878)
-- Systematic disagreement taxonomy (public CSV; C2 = 23, C3 = 18, C4 = 11 among
-  cause classes)
+- Exploratory post-hoc disagreement-cause CSV (later clarified in v1.0.1 as
+  AI-assisted / not independently human-verified)
 - Historical preservation of codebook-v1.0.0 (Wave-1 instrument)
 - Documented revised codebook-v1.1.0 and guidelines-v1.1 (not independently
   revalidated)
@@ -41,5 +48,6 @@ post-Wave-1 revision. Do not mix the two under a single reliability claim.
 ## Canonical identifiers
 
 - Git tag: `v1.0.0`
-- Concept DOI: https://doi.org/10.5281/zenodo.20745404
-- Version DOI: assigned by Zenodo upon publication of this release
+- Concept DOI: https://doi.org/10.5281/zenodo.20745403
+- Historical alpha version DOI: https://doi.org/10.5281/zenodo.20745404
+- Version DOI for this tag: see GitHub/Zenodo record for `v1.0.0` if assigned

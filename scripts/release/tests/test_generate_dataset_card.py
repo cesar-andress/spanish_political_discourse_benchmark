@@ -13,11 +13,11 @@ from scripts.release.metadata_loader import load_citation_metadata
 
 def test_load_citation_metadata_has_doi_and_authors():
     meta = load_citation_metadata()
-    assert meta.doi == "10.5281/zenodo.20745404"
+    assert meta.doi == "10.5281/zenodo.20745403"
     assert "Baena Rojas" in meta.authors_bibtex
     assert "Andrés" in meta.authors_bibtex
     assert "Spanish Political Discourse" in meta.title
-    assert meta.version == "1.0.0"
+    assert meta.version == "1.0.1"
 
 
 def test_render_includes_required_hf_sections():
@@ -49,4 +49,4 @@ def test_generate_writes_root_and_legacy_paths(tmp_path: Path):
     assert legacy.exists()
     text = path.read_text(encoding="utf-8")
     assert "PF_ADVOCACY" in text
-    assert "10.5281/zenodo.20745404" in text
+    assert "10.5281/zenodo.20745403" in text

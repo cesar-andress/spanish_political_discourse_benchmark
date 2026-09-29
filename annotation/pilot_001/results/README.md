@@ -13,7 +13,7 @@ human exports documented in `SOURCE_ANNOTATIONS.md`.
 Both files share the same `unit_id` rows. Wave 1 fills only `pragmatic_function`;
 `fallacy_labels`, `semantic_vacuity`, and `conceptual_anachronism` are empty.
 
-## Outputs
+## Primary outputs (authoritative human evidence)
 
 | File | Description |
 |------|-------------|
@@ -23,6 +23,28 @@ Both files share the same `unit_id` rows. Wave 1 fills only `pragmatic_function`
 | `confusion_matrices.json` / `.md` | Combined confusion-matrix report |
 | `disagreement_report.csv` / `.md` / `.json` | Unit-level PF disagreements (65) |
 | `../disagreement_log.csv` | Protocol disagreement log (wave 1) |
+
+These files derive from the frozen dual-coder labels. They are the primary
+reproducible empirical evidence for Wave-1 reliability.
+
+## Exploratory disagreement-cause file (not independently human-verified)
+
+| File | Description |
+|------|-------------|
+| `disagreement_taxonomy.csv` | Post-hoc diagnostic rows with exploratory `cause_primary` codes (C1–C6) |
+| `disagreement_taxonomy.provenance.json` | Machine-readable provenance for that file |
+
+**Provenance (required reading).** The cause classifications in
+`disagreement_taxonomy.csv` were produced on **2026-09-29** as a **post-hoc**
+diagnostic review with **Cursor/AI-assisted** workflow support. They were
+**not** assigned by a named independent human auditor, were **not** blinded to
+coder identity, were **not** independently duplicated, and have **no**
+cause-assignment reliability statistic. They are **interpretive diagnostics
+only**. They are **not** independently human-verified qualitative annotations.
+
+Do **not** treat exploratory cause tallies as validated empirical findings.
+The authoritative human evidence remains the frozen coder labels, agreement
+coefficients, and confusion matrix.
 
 ## Reproduction
 

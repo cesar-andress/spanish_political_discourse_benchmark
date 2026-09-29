@@ -29,7 +29,7 @@ pragmatics. Not intended as adjudicated gold for leaderboard deployment.
 ## Distribution
 
 GitHub: https://github.com/cesar-andress/spanish_political_discourse_benchmark  
-Zenodo concept DOI: https://doi.org/10.5281/zenodo.20745404  
+Zenodo concept DOI: https://doi.org/10.5281/zenodo.20745403  
 Licence: CC BY 4.0 (see `LICENSE`).
 
 ## Maintenance

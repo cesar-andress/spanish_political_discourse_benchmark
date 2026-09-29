@@ -1,22 +1,22 @@
 cff-version: 1.2.0
-title: "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource"
-version: "1.0.0"
+title: "SPDB v1.0.1 — Spanish Political Discourse Annotation Resource"
+version: "1.0.1"
 date-released: "2026-09-29"
 message: "If you use this resource, please cite it using the metadata from this file."
 type: dataset
 license: CC-BY-4.0
-doi: "10.5281/zenodo.20745404"
+doi: "10.5281/zenodo.20745403"
 repository-code: "https://github.com/cesar-andress/spanish_political_discourse_benchmark"
-url: "https://doi.org/10.5281/zenodo.20745404"
+url: "https://doi.org/10.5281/zenodo.20745403"
 abstract: >
   SPDB is a reproducible annotation resource for pragmatic-function coding in
-  Spanish parliamentary discourse. Version 1.0.0 packages schemas, guidelines,
-  a ParlaMint-derived development slice, a completed two-coder N=100 diagnostic
-  reliability pilot (observed agreement 0.350; Cohen kappa ~0.235;
-  Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements), disagreement
-  analysis, and revised codebook-v1.1.0. The revised guidelines are documented
-  but have not been independently reliability-tested. This release is not an
-  adjudicated gold benchmark.
+  Spanish parliamentary discourse. Version 1.0.1 is a provenance and metadata
+  patch over v1.0.0: primary Wave-1 dual-coder labels and agreement metrics are
+  unchanged (N=100; observed agreement 0.350; Cohen kappa ~0.235;
+  Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements). Exploratory
+  post-hoc disagreement-cause labels are documented as AI-assisted and not
+  independently human-verified. Revised codebook-v1.1.0 remains unvalidated.
+  This release is not an adjudicated gold benchmark.
 keywords:
   - Spanish political discourse
   - parliamentary discourse
@@ -44,7 +44,7 @@ authors:
     email: "cesar.andres@unir.net"
 preferred-citation:
   type: data
-  title: "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource"
+  title: "SPDB v1.0.1 — Spanish Political Discourse Annotation Resource"
   authors:
     - family-names: "Baena Rojas"
       given-names: "José Jaime"
@@ -53,6 +53,6 @@ preferred-citation:
     - family-names: "Andrés"
       given-names: "César"
   year: 2026
-  version: "1.0.0"
-  doi: "10.5281/zenodo.20745404"
+  version: "1.0.1"
+  doi: "10.5281/zenodo.20745403"
   publisher: "Zenodo"

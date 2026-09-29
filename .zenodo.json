@@ -1,6 +1,6 @@
 {
-  "title": "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource",
-  "description": "SPDB is a reproducible annotation resource for pragmatic-function coding in Spanish parliamentary discourse. Version 1.0.0 includes schemas and guidelines, a ParlaMint-derived development slice (pool N=878), a completed two-coder diagnostic reliability pilot (N=100; simple random sample, seed=42; observed agreement 0.350; Cohen kappa ~0.235; Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements), disagreement analysis, and revised codebook-v1.1.0. The revised guidelines are documented but have not been independently reliability-tested. This release is not an adjudicated gold or production benchmark.",
+  "title": "SPDB v1.0.1 — Spanish Political Discourse Annotation Resource",
+  "description": "SPDB is a reproducible annotation resource for pragmatic-function coding in Spanish parliamentary discourse. Version 1.0.1 is a provenance/metadata patch over v1.0.0: Wave-1 dual-coder labels and agreement metrics are unchanged (N=100; observed agreement 0.350; Cohen kappa ~0.235; Krippendorff alpha ~0.223; Fleiss kappa ~0.219; 65 disagreements). Exploratory post-hoc disagreement-cause classifications are AI-assisted and not independently human-verified. Revised codebook-v1.1.0 remains unvalidated. Not an adjudicated gold benchmark.",
   "creators": [
     {
       "name": "Baena Rojas, José Jaime",
@@ -34,7 +34,7 @@
   "language": "eng",
   "upload_type": "dataset",
   "publication_date": "2026-09-29",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "access_right": "open",
   "related_identifiers": [
     {
@@ -43,13 +43,18 @@
       "scheme": "url"
     },
     {
-      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark/releases/tag/v1.0.0",
+      "identifier": "https://github.com/cesar-andress/spanish_political_discourse_benchmark/releases/tag/v1.0.1",
       "relation": "isIdenticalTo",
       "scheme": "url"
     },
     {
-      "identifier": "10.5281/zenodo.20745404",
+      "identifier": "10.5281/zenodo.20745403",
       "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.20745404",
+      "relation": "isNewVersionOf",
       "scheme": "doi"
     },
     {

@@ -9,15 +9,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-RELEASE = "v1.0.0"
-VERSION = "1.0.0"
-DOI = "10.5281/zenodo.20745404"
+RELEASE = "v1.0.1"
+VERSION = "1.0.1"
+DOI = "10.5281/zenodo.20745403"
+HISTORICAL_ALPHA_VERSION_DOI = "10.5281/zenodo.20745404"
 EXPECTED_CREATORS = (
     "Baena Rojas, José Jaime",
     "Pinto Pajares, Daniel",
     "Andrés, César",
 )
 ALPHA_RELEASE = "v0.1.0-alpha"
+PREVIOUS_RELEASE = "v1.0.0"
 
 
 def _read(path: Path) -> str:
@@ -92,14 +94,32 @@ def check_v1_manifest(errors: list[str]) -> None:
         return
     data = json.loads(_read(manifest_path))
     if data.get("version") != VERSION:
-        errors.append("v1.0.0 MANIFEST.json: version field mismatch")
+        errors.append(f"{RELEASE} MANIFEST.json: version field mismatch")
     counts = data.get("key_counts", {})
     if counts.get("wave1_n") != 100:
-        errors.append("v1.0.0 MANIFEST.json: wave1_n must be 100")
+        errors.append(f"{RELEASE} MANIFEST.json: wave1_n must be 100")
     if counts.get("disagreements") != 65:
-        errors.append("v1.0.0 MANIFEST.json: disagreements must be 65")
+        errors.append(f"{RELEASE} MANIFEST.json: disagreements must be 65")
+    for banned in ("cause_C2", "cause_C3", "cause_C4"):
+        if banned in counts:
+            errors.append(
+                f"{RELEASE} MANIFEST.json: {banned} must not appear in key_counts"
+            )
+    tax = data.get("exploratory_taxonomy", {})
+    if tax.get("taxonomy_human_verified") is not False:
+        errors.append(
+            f"{RELEASE} MANIFEST.json: taxonomy_human_verified must be false"
+        )
+    if tax.get("taxonomy_status") != "exploratory_posthoc":
+        errors.append(
+            f"{RELEASE} MANIFEST.json: taxonomy_status must be exploratory_posthoc"
+        )
+    if tax.get("taxonomy_ai_assisted") is not True:
+        errors.append(f"{RELEASE} MANIFEST.json: taxonomy_ai_assisted must be true")
+    if data.get("concept_doi") != DOI:
+        errors.append(f"{RELEASE} MANIFEST.json: concept_doi must be {DOI}")
     if data.get("codebooks", {}).get("revised_revalidated") is not False:
-        errors.append("v1.0.0 MANIFEST.json: revised_revalidated must be false")
+        errors.append(f"{RELEASE} MANIFEST.json: revised_revalidated must be false")
     # Verify SHA256SUMS entries that still exist
     for line in _read(ROOT / "releases" / RELEASE / "SHA256SUMS").splitlines():
         line = line.strip()
@@ -114,6 +134,15 @@ def check_v1_manifest(errors: list[str]) -> None:
         actual = hashlib.sha256(fp.read_bytes()).hexdigest()
         if actual != digest:
             errors.append(f"Checksum mismatch for {path}")
+
+
+def check_previous_release_preserved(errors: list[str]) -> None:
+    """Immutable v1.0.0 bundle must remain intact."""
+    check_file_exists(f"releases/{PREVIOUS_RELEASE}/MANIFEST.json", errors)
+    check_file_exists(f"releases/{PREVIOUS_RELEASE}/SHA256SUMS", errors)
+    check_file_exists(
+        f"releases/{PREVIOUS_RELEASE}/samples/wave1_100_units.jsonl", errors
+    )
 
 
 def check_alpha_preserved(errors: list[str]) -> None:
@@ -172,6 +201,36 @@ def check_readme_citation(errors: list[str]) -> None:
         errors.append("README.md: contains PLACEHOLDER URL")
     if "validated benchmark" in readme.lower():
         errors.append("README.md: must not claim validated benchmark")
+    # Provenance fence: do not promote exact C tallies as validated findings
+    for banned in ("C2 = 23", "C3 = 18", "C4 = 11", "cause_C2", "cause_C3"):
+        if banned in readme:
+            errors.append(f"README.md: must not promote validated cause tally ({banned})")
+
+
+def check_taxonomy_provenance(errors: list[str]) -> None:
+    check_file_exists(
+        "annotation/pilot_001/results/disagreement_taxonomy.provenance.json", errors
+    )
+    check_file_exists("annotation/pilot_001/results/README.md", errors)
+    path = ROOT / "annotation/pilot_001/results/disagreement_taxonomy.provenance.json"
+    if not path.is_file():
+        return
+    data = json.loads(_read(path))
+    if data.get("human_verified") is not False:
+        errors.append("taxonomy provenance: human_verified must be false")
+    if data.get("ai_assisted") is not True:
+        errors.append("taxonomy provenance: ai_assisted must be true")
+    if data.get("status") != "exploratory_posthoc":
+        errors.append("taxonomy provenance: status must be exploratory_posthoc")
+    results_readme = _read(ROOT / "annotation/pilot_001/results/README.md")
+    if "not independently human-verified" not in results_readme.lower() and (
+        "not** independently human-verified" not in results_readme.lower()
+    ):
+        # Accept markdown emphasis variants
+        if "independently human-verified" not in results_readme.lower():
+            errors.append(
+                "results README must document taxonomy as not independently human-verified"
+            )
 
 
 def main() -> int:
@@ -181,6 +240,7 @@ def main() -> int:
     check_file_exists("CITATION.cff", errors)
     check_file_exists(".zenodo.json", errors)
     check_file_exists("docs/release_notes_v1.0.0.md", errors)
+    check_file_exists("docs/release_notes_v1.0.1.md", errors)
     check_file_exists("docs/pipeline.md", errors)
     check_file_exists("annotation/codebook/SPDB_Codebook_v1.md", errors)
     check_file_exists("annotation/codebook/SPDB_Codebook_v1.1.md", errors)
@@ -190,9 +250,11 @@ def main() -> int:
     check_citation_cff(errors)
     check_zenodo_json(errors)
     check_v1_manifest(errors)
+    check_previous_release_preserved(errors)
     check_alpha_preserved(errors)
     check_wave1_counts(errors)
     check_readme_citation(errors)
+    check_taxonomy_provenance(errors)
 
     if errors:
         print(f"Release validation FAILED ({len(errors)} issue(s)):", file=sys.stderr)
@@ -200,7 +262,8 @@ def main() -> int:
             print(f"  - {err}", file=sys.stderr)
         return 1
 
-    print(f"Release validation OK: {RELEASE}")
+    print(f"Release validation OK: {RELEASE} (concept DOI {DOI})")
+    print(f"Historical alpha version DOI retained: {HISTORICAL_ALPHA_VERSION_DOI}")
     return 0
 
 

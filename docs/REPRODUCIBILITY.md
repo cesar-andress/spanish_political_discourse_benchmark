@@ -1,4 +1,4 @@
-# Reproducibility (SPDB v1.0.0)
+# Reproducibility (SPDB v1.0.1)
 
 ## Environment
 
@@ -9,7 +9,7 @@ pip install -e ".[dev]"
 ```
 
 No absolute local home paths are required. Raw ParlaMint TEI under `data/raw/`
-is optional for regenerating samples; public Wave-1 CSVs and `releases/v1.0.0/`
+is optional for regenerating samples; public Wave-1 CSVs and `releases/v1.0.1/`
 already contain the units needed for the published pilot metrics.
 
 ## Core checks
@@ -19,7 +19,7 @@ make test
 make release-validate
 ```
 
-## Wave-1 metric reproduction
+## Primary reproducible human evidence
 
 ```bash
 python -m analysis.pilot.agreement_analysis \
@@ -37,19 +37,25 @@ Expected locked summary (rounded as in the companion paper):
 - Fleiss κ ≈ 0.219
 - disagreements = 65
 
-Cause counts from `annotation/pilot_001/results/disagreement_taxonomy.csv`:
-C2 = 23, C3 = 18, C4 = 11.
+Authoritative artefacts: dual-coder CSVs, `cohen_kappa.json`,
+`krippendorff_alpha.json`, confusion matrix, and `disagreement_report.*`.
+
+## Exploratory post-hoc diagnostic material
+
+`annotation/pilot_001/results/disagreement_taxonomy.csv` is an exploratory
+post-hoc AI-assisted disagreement review. It is **not** independently
+human-verified. Reproduce or inspect it only as diagnostic context; do not
+treat cause tallies as validated qualitative findings. See
+`disagreement_taxonomy.provenance.json`.
 
 ## Release integrity
 
-```bash
-python scripts/release/verify_manifest.py releases/v1.0.0/MANIFEST.json
-```
-
-(If the helper script name differs in this tree, compare SHA-256 hashes in
-`releases/v1.0.0/SHA256SUMS` against the checked-out files.)
+Compare SHA-256 hashes in `releases/v1.0.1/SHA256SUMS` against the checked-out
+files.
 
 ## Data availability
 
-Public GitHub repository and Zenodo concept DOI:
-https://doi.org/10.5281/zenodo.20745404
+Public GitHub repository and Zenodo **concept** DOI:
+https://doi.org/10.5281/zenodo.20745403
+
+Historical alpha version DOI: https://doi.org/10.5281/zenodo.20745404

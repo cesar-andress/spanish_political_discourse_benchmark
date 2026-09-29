@@ -1,0 +1,22 @@
+{
+  "file": "annotation/pilot_001/results/disagreement_taxonomy.csv",
+  "status": "exploratory_posthoc",
+  "classification_type": "posthoc_disagreement_cause_review",
+  "classification_date": "2026-09-29",
+  "ai_assisted": true,
+  "ai_tools": ["Cursor"],
+  "human_verified": false,
+  "independent_audit": false,
+  "blind_assignment": false,
+  "reliability_measured": false,
+  "intended_use": "diagnostic_only",
+  "authoritative_evidence": [
+    "annotation/pilot_001/pilot_100_units_annotator_a.csv",
+    "annotation/pilot_001/pilot_100_units_annotator_b.csv",
+    "annotation/pilot_001/results/cohen_kappa.json",
+    "annotation/pilot_001/results/krippendorff_alpha.json",
+    "annotation/pilot_001/results/confusion_matrix_pragmatic_function.csv",
+    "annotation/pilot_001/results/disagreement_report.csv"
+  ],
+  "notes": "Cause codes C1-C6 are exploratory interpretive diagnostics. Exact cause tallies must not be cited as independently human-coded empirical results."
+}
