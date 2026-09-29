@@ -2,8 +2,7 @@
   "version": "1.0.0",
   "release_title": "SPDB v1.0.0 — Spanish Political Discourse Annotation Resource",
   "release_date": "2026-09-29",
-  "git_commit_at_manifest_generation": "f48ad535da8c791ffa0b20cbe0ba977bc8151f2a",
-  "note": "git_commit is the annotated-tag target for v1.0.0 (manifest pin commit). content_commit holds the full release payload commit.",
+  "note": "Canonical immutable identifier is git annotated tag v1.0.0. content_commit is the payload commit; the tag may point at the subsequent manifest-pin commit.",
   "concept_doi": "10.5281/zenodo.20745404",
   "license": "CC-BY-4.0",
   "key_counts": {
@@ -285,5 +284,6 @@
     }
   ],
   "git_commit": "f48ad535da8c791ffa0b20cbe0ba977bc8151f2a",
-  "content_commit": "7854700a48460259caf0bb8a671943ca0c97d227"
+  "content_commit": "7854700a48460259caf0bb8a671943ca0c97d227",
+  "git_tag": "v1.0.0"
 }
